@@ -1,17 +1,24 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>login</title>
         <link rel="stylesheet" href="login.css">
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
 
     <body>
         <div id="login_form_container">
             <form id="login_form">
-                <input type="text" id="email" name="email" placeholder="Email"><br>
-                <input type="text" id="password" placeholder="Password"><br>
-                <button type="submit">Registrati</button>
-            </form>
+                <h1 id="login_title">Login</h1>
+                <p id="login_subtitle">Inserisci le tue credenziali</p>
 
+                <input type="text" class="text-input" name="email" placeholder="  Email"><br>
+                <input type="text" class="text-input" placeholder="  Password"><br>
+                <button id="signin_btn" class="roboto-font" type="submit">Accedi</button>
+            </form>
         </div>
     </body>
 </html>
