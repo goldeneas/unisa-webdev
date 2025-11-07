@@ -13,7 +13,7 @@ h1 {
     font-weight: 550;
 }
 
-#login_form {
+#login-form {
     display: inline-content;
     margin-left: auto;
     margin-right: auto;
@@ -26,20 +26,20 @@ h1 {
     width: 30%;
 }
 
-#login_form_container {
+#login-form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-#login_title {
+#login-title {
     margin-top: 0px;
     margin-bottom: 0px;
     text-align: left;
 }
 
-#login_subtitle {
+#login-subtitle {
     margin-top: 0px;
     margin-bottom: 10%;
     text-align: left;
@@ -47,7 +47,7 @@ h1 {
     font-size: 16px;
 }
 
-#signin_btn {
+#signin-btn {
     width: 70%;
     line-height: 3em;
     border-radius: 20px;
