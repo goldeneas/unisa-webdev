@@ -1,5 +1,6 @@
 body, html {
     height: 100%;
+    background-color: #f8f8ff;
 }
 
 * {
@@ -11,10 +12,44 @@ body, html {
 
 h1 {
     font-weight: 550;
+    font-size: 26px;
+}
+
+hr {
+  display: block;
+  margin-top: 1.3em;
+  margin-bottom: 1.3em;
+  border: none;
+
+  height: 1px;
+  width: 30%;
+
+  background-color: #D3D3D3;
+}
+
+#forgot-password-href {
+    display: flex;
+    text-align: left;
+
+    padding-left: 0.5em;
+    font-size: 12px;
+    color: #0965c1;
+    text-decoration-line: none;
+
+    font-weight: 500;
+}
+
+#bar-container {
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
 }
 
 #login-form {
-    display: inline-content;
+    background-color: white;
+
     margin-left: auto;
     margin-right: auto;
     text-align: center;
@@ -24,6 +59,7 @@ h1 {
 
     padding: 3%;
     width: 30%;
+    max-width: 300px;
 }
 
 #login-form-container {
@@ -47,24 +83,53 @@ h1 {
     font-size: 16px;
 }
 
-#signin-btn {
-    width: 70%;
+.form-btn {
+    width: 100%;
     line-height: 3em;
     border-radius: 20px;
-    margin-top: 5%;
-    margin-bottom: 5%;
 
     color: white;
 
     background-color: #0965c1;
 
+    font-weight: 600;
+    font-size: 14px;
+
     border: 0px;
+}
+
+#input-separator {
+    margin-top: 20%;
+}
+
+#password-container {
+    position: relative;
+}
+
+#toggle-password {
+    position: absolute;
+
+    right: 10px;
+    bottom: 15%;
+
+    margin-bottom: 16px;
+
+    border: 0px;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #0965c1;
+
+    font-weight: 500;
+}
+
+#toggle-password:hover {
+    cursor: pointer;
 }
 
 .text-input {
     width: 95%;
 
-    border: 1px solid gray;
+    border: 1px solid #C0C0C0;
     border-radius: 3px;
     line-height: 32px;
     font-size: 16px;

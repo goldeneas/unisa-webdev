@@ -16,8 +16,25 @@
                 <p id="login-subtitle">Inserisci le tue credenziali</p>
 
                 <input type="text" class="text-input" name="email" placeholder="Email"><br>
-                <input type="text" class="text-input" placeholder="Password"><br>
-                <button id="signin-btn" type="submit">Accedi</button>
+
+                <div id="password-container">
+                    <input type="password" class="text-input" placeholder="Password"><br>
+                    <button id="toggle-password">mostra</button>
+                </div>
+
+                <a href="/forgot-password" id="forgot-password-href">Password dimenticata?</a>
+
+                <div id="input-separator">
+                    <button class="form-btn" type="submit">Accedi</button>
+
+                    <div id="bar-container">
+                        <hr>
+                        <p> o </p>
+                        <hr>
+                    </div>
+
+                    <button class="form-btn" type="submit">Registrati</button>
+                </div>
             </form>
         </div>
     </body>
