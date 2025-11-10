@@ -1,16 +1,40 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>login</title>
+        <link rel="stylesheet" href="login.css">
 
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
 
     <body>
-        <div id="login_form">
-            <form>
-                <label for="email">Email</label><br>
-                <input type="text" id="email" name="email"><br>
-                <label for="password">Password</label><br>
-                <input type="text" id="password"><br>
+        <div id="login-form-container">
+            <form id="login-form">
+                <h1 id="login-title">Login</h1>
+                <p id="login-subtitle">Inserisci le tue credenziali</p>
+
+                <input type="text" class="text-input" name="email" placeholder="Email"><br>
+
+                <div id="password-container">
+                    <input type="password" class="text-input" placeholder="Password"><br>
+                    <button id="toggle-password">mostra</button>
+                </div>
+
+                <a href="/forgot-password" id="forgot-password-href">Password dimenticata?</a>
+
+                <div id="input-separator">
+                    <button class="form-btn" type="submit">Accedi</button>
+
+                    <div id="bar-container">
+                        <hr>
+                        <p> o </p>
+                        <hr>
+                    </div>
+
+                    <button class="form-btn" type="submit">Registrati</button>
+                </div>
             </form>
         </div>
     </body>

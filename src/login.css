@@ -1,0 +1,140 @@
+body, html {
+    height: 100%;
+    background-color: #f8f8ff;
+}
+
+* {
+    font-family: "Roboto", sans-serif;
+    font-optical-sizing: auto;
+    font-weight: 350;
+    font-style: normal;
+}
+
+h1 {
+    font-weight: 550;
+    font-size: 26px;
+}
+
+hr {
+  display: block;
+  margin-top: 1.3em;
+  margin-bottom: 1.3em;
+  border: none;
+
+  height: 1px;
+  width: 30%;
+
+  background-color: #D3D3D3;
+}
+
+#forgot-password-href {
+    display: flex;
+    text-align: left;
+
+    padding-left: 0.5em;
+    font-size: 12px;
+    color: #0965c1;
+    text-decoration-line: none;
+
+    font-weight: 500;
+}
+
+#bar-container {
+    display: flex;
+    width: 100%;
+
+    justify-content: center;
+    align-items: center;
+}
+
+#login-form {
+    background-color: white;
+
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+
+    padding: 3%;
+    width: 30%;
+    max-width: 300px;
+}
+
+#login-form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+#login-title {
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+#login-subtitle {
+    margin-top: 0px;
+    margin-bottom: 10%;
+    text-align: left;
+
+    font-size: 16px;
+}
+
+.form-btn {
+    width: 100%;
+    line-height: 3em;
+    border-radius: 20px;
+
+    color: white;
+
+    background-color: #0965c1;
+
+    font-weight: 600;
+    font-size: 14px;
+
+    border: 0px;
+}
+
+#input-separator {
+    margin-top: 20%;
+}
+
+#password-container {
+    position: relative;
+}
+
+#toggle-password {
+    position: absolute;
+
+    right: 10px;
+    bottom: 15%;
+
+    margin-bottom: 16px;
+
+    border: 0px;
+    border-radius: 3px;
+    background-color: transparent;
+    color: #0965c1;
+
+    font-weight: 500;
+}
+
+#toggle-password:hover {
+    cursor: pointer;
+}
+
+.text-input {
+    width: 95%;
+
+    border: 1px solid #C0C0C0;
+    border-radius: 3px;
+    line-height: 32px;
+    font-size: 16px;
+
+    padding-left: 0.5em;
+
+    margin-bottom: 16px;
+}
