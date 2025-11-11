@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    
+    
+    <!-- Il nome del gruppo -->
+    <title>Gruppo "nomeGruppo"</title>
+
+    <link rel="stylesheet" href="group_preview.css">
+    
+    <!-- Importazione dei font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <!-- Contenitore principale che centra la card -->
+    <div class="container">
+
+        <!-- Card del Gruppo -->
+        <div class="card">
+            
+            <!-- Intestazione Card -->
+            <div class="card-header">
+                <!-- Nome del grupo -->
+                <h1>"nomeGruppo"</h1>
+                <!-- Creatore del gruppo -->
+                <p class="subtitle">Creato da: "nomeAdmin"</p>
+            </div>
+
+            <!-- Corpo Card -->
+            <div class="card-body">
+                
+                <!-- Descrizione gruppo -->
+                <h2>Descrizione del gruppo di studio</h2>
+                <p class="description">
+                    Il nostro obiettivo è rifondare l'impero romano! (Daniele puzza)<br>
+                    -----<br>
+                    -----
+                </p>
+
+                <!-- Elenco partecipanti -->
+                <h2>Partecipanti (3/5)</h2>
+                <div class="participants-list">
+                    
+                    <!-- Partecipante 1  / Admin del grupp-->
+                    <div class="participant-item">
+                        <div class="avatar avatar-admin">NA</div>
+                        <span class="participant-name">"nomeAdmin" (Admin)</span>
+                    </div>
+
+                    <!-- Partecipante 2 -->
+                    <div class="participant-item">
+                        <div class="avatar">NP</div>
+                        <span class="participant-name">"nomePartecipante1"</span>
+                    </div>
+
+                    <!-- Parteciante 3 -->
+                    <div class="participant-item">
+                        <div class="avatar">NP</div>
+                        <span class="participant-name">"nomePartecipante2"</span>
+                    </div>
+
+                </div>
+            </div>
+
+            <!-- Footer Card con Pulsanti -->
+            <div class="card-footer">
+                <!-- "Torna alla home" -->
+                <a href="index.html" class="btn btn-secondary">Torna alla home</a>
+                
+                <!-- "Unisciti al gruppo" -->
+                <button onclick="showModal()" class="btn btn-primary">Unisciti al gruppo</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modale di Conferma , fatta con gemini per vedere come funziona -->
+    <div id="join-modal" class="modal">
+        <div class="modal-content">
+            <h3>Richiesta Inviata!</h3>
+            <p>
+                La tua richiesta di unirti al gruppo "nomeGruppo" è stata inviata all'admin per l'approvazione.
+            </p>
+            <button onclick="closeModal()" class="btn btn-primary">Chiudi</button>
+        </div>
+    </div>
+
+    <!-- Script per la modale -->
+    <script>
+        const modal = document.getElementById('join-modal');
+
+        function showModal() {
+            if (modal) {
+                modal.style.display = 'flex';
+            }
+        }
+
+        function closeModal() {
+            if (modal) {
+                modal.style.display = 'none';
+            }
+        }
+
+        // Chiudi la modale se si clicca sullo sfondo
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                closeModal();
+            }
+        }
+    </script>  
+
+</body>
+</html>
