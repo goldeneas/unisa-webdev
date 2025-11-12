@@ -14,8 +14,13 @@
                 <input type="text" class="text-input" name="email" placeholder="Email"><br>
 
                 <div id="password-container">
-                    <input type="password" class="text-input" placeholder="Password"><br>
-                    <button id="toggle-password">mostra</button>
+                    <input type="password" id="password-input" class="text-input" placeholder="Password">
+                    <br>
+
+                    <!-- we need type=button to override type=submit -->
+                    <button type="button" onclick="togglePassword()" id="toggle-password">
+                        mostra
+                    </button>
                 </div>
 
                 <a href="/forgot-password" id="forgot-password-href">Password dimenticata?</a>
@@ -35,5 +40,12 @@
                 </div>
             </form>
         </div>
+
+        <script>
+            function togglePassword() {
+                const passwordElement = document.getElementById("password-input");
+                passwordElement.type = passwordElement.type === "password" ? "text" : "password";
+            }
+        </script>
     </body>
 </html>
