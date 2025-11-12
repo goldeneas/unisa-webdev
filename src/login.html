@@ -44,7 +44,10 @@
         <script>
             function togglePassword() {
                 const passwordElement = document.getElementById("password-input");
+                const passwordToggleElement = document.getElementById("toggle-password");
+
                 passwordElement.type = passwordElement.type === "password" ? "text" : "password";
+                passwordToggleElement.textContent = passwordElement.type === "password" ? "mostra" : "nascondi";
             }
         </script>
     </body>
