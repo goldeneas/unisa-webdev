@@ -107,7 +107,7 @@ hr {
 
 #search-btn:hover {
     cursor: pointer;
-    background-color: #005a8a;
+    background-color: #0a59a8;
 }
 
 #search-btn {
@@ -167,7 +167,7 @@ hr {
 
 .show-group-btn:hover {
     cursor: pointer;
-    background-color: #005a8a;
+    background-color: #0a59a8;
 }
 
 .show-group-btn {
@@ -194,6 +194,10 @@ hr {
     background-color: #0965c1;
     border: 1px solid #0965c1;
     border-radius: 6px;
+}
+
+.register-btn:hover {
+    background-color: #0a59a8;
 }
 
 .login-btn {

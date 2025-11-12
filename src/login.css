@@ -27,6 +27,10 @@ hr {
   background-color: #D3D3D3;
 }
 
+#forgot-password-href:hover {
+    text-decoration-line: underline;
+}
+
 #forgot-password-href {
     display: flex;
     text-align: left;
@@ -85,7 +89,7 @@ hr {
 
 .form-btn:hover {
     cursor: pointer;
-    background-color: #005a8a;
+    background-color: #0a59a8;
 }
 
 .form-btn {
@@ -129,7 +133,7 @@ hr {
 
 #toggle-password:hover {
     cursor: pointer;
-    background-color: #005a8a;
+    text-decoration-line: underline;
 }
 
 .text-input {
