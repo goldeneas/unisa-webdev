@@ -107,6 +107,7 @@ hr {
 
 #search-btn:hover {
     cursor: pointer;
+    background-color: #005a8a;
 }
 
 #search-btn {
@@ -166,6 +167,7 @@ hr {
 
 .show-group-btn:hover {
     cursor: pointer;
+    background-color: #005a8a;
 }
 
 .show-group-btn {

@@ -85,6 +85,7 @@ hr {
 
 .form-btn:hover {
     cursor: pointer;
+    background-color: #005a8a;
 }
 
 .form-btn {
@@ -128,6 +129,7 @@ hr {
 
 #toggle-password:hover {
     cursor: pointer;
+    background-color: #005a8a;
 }
 
 .text-input {
