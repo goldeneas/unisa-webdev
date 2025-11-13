@@ -53,6 +53,7 @@ h1 {
     width: 100%;
     line-height: 3em;
     border-radius: 20px;
+    display: block;
 
     color: white;
 
@@ -63,6 +64,8 @@ h1 {
 
     border: 0px;
     margin-top: 20px;
+
+    text-decoration-line: none;
 }
 
 #name-container {
