@@ -1,4 +1,3 @@
-
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
     background-color: #f0f2f5;
@@ -39,10 +38,6 @@ label {
     font-weight: 600;
 }
 
-input[type="text"],
-input[type="email"],
-input[type="number"],
-input[type="tel"],
 select {
     width: 100%;
     padding: 12px;
@@ -50,9 +45,9 @@ select {
     font-size: 1em;
     border: 1px solid #ccc;
     box-sizing: border-box;
+    background-color: #fff;
 }
 
-input:focus,
 select:focus {
     border-color: #0073b1;
     box-shadow: 0 0 0 2px rgba(0, 115, 177, 0.2);
@@ -88,9 +83,4 @@ button#avanti:hover {
 
 .assistenza a:hover {
     text-decoration: underline;
-}
-
-.obbligatorio {
-    color: red;
-    font-weight: bold;
 }
