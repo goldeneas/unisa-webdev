@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <title>Creazione Profilo - Gruppi di Studio</title>
+    <link rel="stylesheet" href="edithprofile.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Informazioni aggiuntive</h1>
+        <form id="profiloForm">
+            <label for="anno">Anno universitario</label>
+            <select id="anno" name="anno">
+                <option value="">-- Seleziona il tuo anno --</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="fuoricorso">Fuoricorso</option>
+            </select>
+
+            <label for="facolta">Facoltà</label>
+            <select id="facolta" name="facolta">
+                <option value="">-- Seleziona la tua facoltà --</option>
+                <option>Economia</option>
+                <option>Giurisprudenza</option>
+                <option>Ingegneria Civile</option>
+                <option>Ingegneria Informatica</option>
+                <option>Ingegneria Meccanica</option>
+                <option>Lettere e Filosofia</option>
+                <option>Lingue e Letterature Straniere</option>
+                <option>Matematica</option>
+                <option>Medicina e Chirurgia</option>
+                <option>Scienze della Comunicazione</option>
+                <option>Scienze dell’Educazione</option>
+                <option>Scienze Motorie</option>
+                <option>Scienze Politiche</option>
+                <option>Scienze e Tecnologie Alimentari</option>
+                <option>Sociologia</option>
+                <option>Non è tra le opzioni</option>
+            </select>
+
+            <label for="obiettivi">Obiettivi di studio</label>
+            <select id="obiettivi" name="obiettivi" multiple>
+                <option value="ripassare">Ripassare esami</option>
+                <option value="esercizi">Fare esercizi insieme</option>
+                <option value="teoria">Studiare la parte teorica</option>
+            </select>
+
+            <label for="orari">Orari preferiti per studiare</label>
+            <select id="orari" name="orari">
+                <option value="">-- Seleziona un orario --</option>
+                <option value="mattina">Mattina</option>
+                <option value="pomeriggio">Pomeriggio</option>
+                <option value="sera">Sera</option>
+            </select>
+
+            <label for="dimensione">Dimensione del gruppo ideale</label>
+            <select id="dimensione" name="dimensione">
+                <option value="">-- Seleziona una dimensione --</option>
+                <option value="2-3">2-3 persone</option>
+                <option value="4-6">4-6 persone</option>
+                <option value="grande">Grande gruppo</option>
+            </select>
+
+            <label for="impegno">Livello di impegno o frequenza</label>
+            <select id="impegno" name="impegno">
+                <option value="">-- Seleziona la frequenza --</option>
+                <option value="occasionale">Occasionale</option>
+                <option value="settimanale">Settimanale</option>
+                <option value="giornaliero">Giornaliero</option>
+            </select>
+
+            <label for="modalita">Modalità preferita</label>
+            <select id="modalita" name="modalita">
+                <option value="">-- Seleziona la modalità --</option>
+                <option value="presenza">In presenza</option>
+                <option value="online">Online</option>
+                <option value="mista">Mista</option>
+            </select>
+
+            <button type="submit" id="avanti">Completa il tuo profilo</button>
+        </form>
+
+        <p class="assistenza">
+            Se manca un informazione in un campo, contatta l’assistenza all’indirizzo: 
+            <a href="mailto:assistenza@gruppistudio.it">assistenza@gruppistudio.it</a>
+        </p>
+    </div>
+</body>
+</html>
+
