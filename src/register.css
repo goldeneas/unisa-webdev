@@ -51,7 +51,8 @@ label {
 
 /* Campi di input */
 input[type="email"],
-input[type="password"] {
+input[type="password"],
+input[type="text"] {
     width: 100%;
     padding: 12px;
     font-size: 1em;
@@ -69,34 +70,6 @@ form button[type="submit"] {
     border-radius: 24px; /* Per la forma a "pillola" */
     padding: 14px 20px;
     font-size: 1.1em;
+    margin-top: 14px;
 }
 
-/* Bottone Google */
-.google-btn {
-    width: 100%;
-    background-color: white; 
-    color: #0073b1;
-    border-radius: 24px;
-    border-color: #005a8a; 
-    border-style: solid;
-    padding: 14px 20px; /* Stesso padding del bottone sopra */
-    font-size: 1.1em; /* Stessa dimensione font */
-    font-weight: bold;
-    cursor: pointer;
-    text-align: center;
-    transition: background-color 0.2s;
-    display: flex;
-    align-items: center; /* Allinea verticalmente l'icona e il testo */
-    justify-content: center; /* Centra orizzontalmente il contenuto */
-    gap: 10px; /* Spazio tra l'icona e il testo */
-}
-
-.google-btn:hover {
-    background-color: #005a8a; 
-}
-
-.google-icon {
-    height: 30px; /* Altezza dell'icona*/
-    width: auto; /* Mantieni le proporzioni */
-    vertical-align: middle; /* Allinea con il testo */
-}

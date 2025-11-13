@@ -12,11 +12,22 @@
         <div class="register-card"> <!-- Sfondo dell'elemento principale.--> 
             
             <form id="Register" method="post">
+
+                <p>
+                    <label for="name">Nome</label>
+                    <input type="text" placeholder="Inserisci il tuo nome" id="name" name="name" required />
+                    <!-- Con required obbligo l'utente a inserire quel campo nel form-->
+                </p>
+
+                <p>
+                    <label for="cognome">Cognome</label>
+                    <input type="text" placeholder="Inserisci il tuo cognome" id="cognome" name="cognome" required />
+                </p>
+
                 
                 <p>
                     <label for="e-mail">E-mail</label>
                     <input type="email" placeholder="Inserisci la tua e-mail" id="e-mail" name="e-mail" required />
-                    <!-- Con required obbligo l'utente a inserire quel campo nel form-->
                 </p>
                 
                 <p>
@@ -24,18 +35,10 @@
                     <input type="password" placeholder="Inserisci la tua password" id="password" name="password" minlength="6" required />
                 </p>
 
+
                 <button type="submit">Accetta e registrati</button>
 
             </form>
-
-            <div class="separator">
-                <span>o</span>
-            </div>
-
-            <button form="GoogleReg" type="submit" class="google-btn">
-                <img src="Google_g_logo.png" alt="Logo Google" class="google-icon">
-                Registrati con Google
-            </button>
 
             <p class="login-link">
                 Già registrato? <a href="login.html">Esegui il login</a>
