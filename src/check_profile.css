@@ -28,7 +28,8 @@ h1 {
     padding: 42px;
     width: max(30%, 385px);
     max-width: 300px;
-    height: 400px;
+
+    position: relative;
 }
 
 #form-container {
@@ -39,9 +40,21 @@ h1 {
 }
 
 #profile-title {
-    margin: 0;
-    margin-top: 2px;
     text-transform: uppercase;
+    font-weight: 600;
+    margin: 0;
+}
+
+#close-cross:hover {
+    cursor: pointer;
+}
+
+#close-cross {
+    position: absolute;
+    font-size: 22px;
+    font-weight: 200;
+    right: 18px;
+    top: 10px;
 }
 
 .form-btn:hover {
@@ -85,9 +98,8 @@ h1 {
     text-align: left;
     font-weight: 600;
     margin-left: 5px;
-    margin-top: 10px;
 
-    font-size: 20px;
+    font-size: 18px;
 }
 
 .label {
