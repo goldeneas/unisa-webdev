@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>profilo</title>
+        <link rel="stylesheet" href="check_profile.css">
+    </head>
+
+    <body>
+        <div id="login-form-container">
+            <form id="login-form">
+
+                <div id="name-container">
+                    <div class="avatar">NP</div>
+                    <h1 id="login-title">username</h1>
+                </div>
+
+                <label class="label-title">Email</label>
+                <label class="label">nicola.email@gmail.com</label>
+                <br>
+
+                <label class="label-title">Facoltà</label>
+                <label class="label">Diem</label>
+                <br>
+
+                <label class="label-title">Anno universitario</label>
+                <label class="label">Terzo anno</label>
+                <br>
+
+                <label class="label-title">Fascia di età</label>
+                <label class="label">20-35</label>
+                <br>
+
+                <button class="form-btn" type="submit">Contatta</button>
+            </form>
+        </div>
+
+        <script>
+            function togglePassword() {
+                const passwordElement = document.getElementById("password-input");
+                const passwordToggleElement = document.getElementById("toggle-password");
+
+                passwordElement.type = passwordElement.type === "password" ? "text" : "password";
+                passwordToggleElement.textContent = passwordElement.type === "password" ? "mostra" : "nascondi";
+            }
+        </script>
+    </body>
+</html>
+
