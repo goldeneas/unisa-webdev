@@ -17,75 +17,58 @@ h1 {
 
 hr {
   display: block;
-  margin-top: 1.3em;
-  margin-bottom: 1.3em;
+  margin-top: 2.5em;
+  margin-bottom: 2.5em;
   border: none;
 
-  height: 1px;
-  width: 50%;
+  height: 2px;
+  width: 90%;
 
   background-color: #D3D3D3;
 }
 
-#forgot-password-href:hover {
-    text-decoration-line: underline;
-}
-
-#forgot-password-href {
-    display: flex;
-    text-align: left;
-
-    padding-left: 0.5em;
-    font-size: 12px;
-    color: #0965c1;
-    text-decoration-line: none;
-
-    font-weight: 500;
-}
-
-#bar-container {
-    display: flex;
-    width: 100%;
-
-    justify-content: center;
-    align-items: center;
-}
-
-#login-form {
+#form {
     background-color: white;
 
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
 
-    border-radius: 5px;
+    border-radius: 8px;
     box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
 
     padding: 42px;
     width: max(30%, 385px);
     max-width: 300px;
-    height: 400px;
+
+    position: relative;
 }
 
-#login-form-container {
+#form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-#login-title {
-    margin: 0;
-    margin-top: 2px;
-    text-transform: uppercase;
+#close-cross:hover {
+    cursor: pointer;
 }
 
-#login-subtitle {
-    margin-top: 0px;
-    margin-bottom: 10%;
-    text-align: left;
+#close-cross {
+    position: absolute;
+    font-size: 22px;
+    font-weight: 200;
+    right: 18px;
+    top: 10px;
+}
 
-    font-size: 16px;
+#username {
+    font-size: 26px;
+    font-weight: 600;
+}
+
+#email {
+    color: #0965c1;
 }
 
 .form-btn:hover {
@@ -97,6 +80,7 @@ hr {
     width: 100%;
     line-height: 3em;
     border-radius: 20px;
+    display: block;
 
     color: white;
 
@@ -107,35 +91,9 @@ hr {
 
     border: 0px;
     margin-top: 20px;
-}
 
-#input-separator {
-    margin-top: 20%;
-}
-
-#password-container {
-    position: relative;
-}
-
-#toggle-password {
-    position: absolute;
-
-    right: 10px;
-    bottom: 15%;
-
-    margin-bottom: 16px;
-
-    border: 0px;
-    border-radius: 3px;
-    background-color: transparent;
-    color: #0965c1;
-
-    font-weight: 500;
-}
-
-#toggle-password:hover {
-    cursor: pointer;
-    text-decoration-line: underline;
+    text-decoration-line: none;
+    text-align: center;
 }
 
 #name-container {
@@ -150,48 +108,20 @@ hr {
     gap: 20px;
 }
 
-.text-input {
-    width: 95%;
-
-    border: 1px solid #C0C0C0;
-    border-radius: 3px;
-    line-height: 32px;
-    font-size: 16px;
-
-    padding-left: 0.5em;
-
-    margin-bottom: 25px;
-}
-
 .label-title {
     display: flex;
     text-align: left;
     font-weight: 600;
-    margin-left: 5px;
-    margin-top: 10px;
 
-    font-size: 20px;
+    font-size: 18px;
+    text-transform: capitalize;
 }
 
 .label {
     display: flex;
     text-align: left;
-    font-weight: 200;
-    margin-left: 5px;
+    font-weight: 450;
+    color: gray;
 
-    font-size: 18px;
-}
-
-.avatar {
-    width: 3.5rem;
-    height: 3.5rem;
-    border-radius: 9999px;
-    background-color: #e5e7eb;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    font-weight: 600;
-    font-size: 18px;
-    color: #4b5563;
-    text-transform: uppercase;
+    font-size: 16px;
 }
