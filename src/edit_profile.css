@@ -1,6 +1,5 @@
 body {
     font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-    background-color: #f0f2f5;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -55,7 +54,7 @@ select:focus {
 
 button#avanti {
     width: 100%;
-    background-color: #0073b1;
+    background-color: #0965c1;
     color: white;
     border: none;
     padding: 14px 20px;
@@ -66,7 +65,7 @@ button#avanti {
 }
 
 button#avanti:hover {
-    background-color: #005a8a;
+    background-color: #0a59a8;
 }
 
 .assistenza {

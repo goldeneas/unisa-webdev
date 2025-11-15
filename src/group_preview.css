@@ -1,7 +1,6 @@
 /* Reset di base e font */
 body {
     font-family: 'Inter', sans-serif;
-    background-color: #f3f4f6; /* bg-gray-100 */
     color: #111827; /* text-gray-900 */
     margin: 0;
     -webkit-font-smoothing: antialiased;
@@ -21,7 +20,7 @@ body {
 .card {
     background-color: #ffffff; /* bg-white */
     border-radius: 1rem; /* rounded-2xl */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2); 
     width: 100%;
     max-width: 42rem; /* max-w-2xl */
     overflow: hidden;
@@ -137,11 +136,11 @@ h2 {
 
 .avatar-admin {
     background-color: #e0e7ff; /* bg-indigo-100 */
-    color: #4338ca; /* text-indigo-700 */
+    color: #0965c1;
 }
 
 .participant-name {
-    color: #1f2937; /* text-gray-800 */
+    color: #0a59a8;
     font-weight: 500; /* font-medium */
 }
 
@@ -188,14 +187,13 @@ h2 {
 }
 
 .btn-primary {
-    background-color: #4f46e5; /* bg-indigo-600 */
+    background-color: #0965c1;
     color: #ffffff; /* text-white */
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06); /* shadow-md */
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
 }
 
 .btn-primary:hover {
-    background-color: #4338ca; /* hover:bg-indigo-700 */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* hover:shadow-lg */
+    background-color: #0a59a8;
 }
 
 /* Stili Modale */
@@ -213,7 +211,7 @@ h2 {
 .modal-content {
     background-color: #ffffff;
     border-radius: 0.5rem; /* rounded-lg */
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); /* shadow-xl */
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
     padding: 1.5rem; /* p-6 */
     width: 100%;
     max-width: 28rem; /* max-w-md */
