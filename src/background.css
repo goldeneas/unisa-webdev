@@ -1,8 +1,8 @@
 html {
     background-image: url("background.svg");
-    background-position: center bottom;
-    background-repeat: repeat-x;
     min-height: 100%;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-position: center;
     background-size: cover;
-    background-color: #013c78;
 }
