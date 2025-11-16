@@ -48,14 +48,30 @@
                 </select>
 
 
+               <fieldset>
+  <legend>Orari preferiti per studiare</legend>
 
-                <label for="orari">Orari preferiti per studiare</label>
-                <select id="orari" name="orari">
-                    <option value="">-- Seleziona un orario --</option>
-                    <option value="mattina">Mattina</option>
-                    <option value="pomeriggio">Pomeriggio</option>
-                    <option value="sera">Sera</option>
-                </select>
+  <div>
+    <input type="checkbox" id="fascia1" name="orari[]" value="8:30-11:30">
+    <label for="fascia1">8:30 - 11:30</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="fascia2" name="orari[]" value="11:30-14:30">
+    <label for="fascia2">11:30 - 14:30</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="fascia3" name="orari[]" value="14:30-18:30">
+    <label for="fascia3">14:30 - 18:30</label>
+  </div>
+
+  <div>
+    <input type="checkbox" id="fascia4" name="orari[]" value="qualsiasi">
+    <label for="fascia4">Qualsiasi</label>
+  </div>
+  
+</fieldset>
 
 
 
@@ -79,5 +95,6 @@
         </div>
     </body>
 </html>
+
 
 
