@@ -4,7 +4,7 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: flex-start; /* Allinea dall'alto */
+    justify-content: center; /* Allinea dall'alto */
     min-height: 100vh;
     margin: 0;
     padding: 30px 20px; /* Aggiunge spazio sopra e ai lati */
