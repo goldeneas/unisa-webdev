@@ -148,6 +148,22 @@ hr {
     padding-bottom: 100px;
 }
 
+#create-group-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+#create-group-href {
+    margin-left: 6px;
+    color: #0965c1;
+}
+
+#create-group-span {
+    color: rgb(50 50 50);
+    font-weight: 350;
+}
+
 .group {
     width: 100%;
     height: auto;
