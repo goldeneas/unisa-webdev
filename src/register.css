@@ -12,9 +12,9 @@ body {
 }
 
 /* Titolo principale*/
-h1 {
-    font-size: 2.5rem; /* 40px */
-    font-weight: 300; /* Testo più sottile */
+.main {
+    font-size: 1.5rem; 
+    font-weight: 400; /* Testo più sottile */
     color: #333;
     margin-bottom: 24px;
     text-align: center;
