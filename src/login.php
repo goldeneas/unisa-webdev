@@ -11,6 +11,14 @@
     </head>
 
     <body>
+        <?php
+        
+        $email = $_GET["email"];
+        $password = $_GET["password"];
+
+        if (empty($_GET) || !isset($email) || !isset($password)) {
+        ?>
+
         <div id="login-form-container">
             <form id="login-form">
                 <h1 id="login-title">Login</h1>
@@ -19,7 +27,7 @@
                 <input type="text" class="text-input" name="email" placeholder="Email"><br>
 
                 <div id="password-container">
-                    <input type="password" id="password-input" class="text-input" placeholder="Password">
+                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password">
                     <br>
 
                     <!-- we need type=button to override type=submit -->
@@ -44,6 +52,20 @@
                 </div>
             </form>
         </div>
+        
+        <?php
+            } else {
+        ?>
+
+        <div>
+            <p>
+                Sei già loggato!!
+            </p>
+        </div>
+
+        <?php
+            }
+        ?>
 
         <script>
             function togglePassword() {
