@@ -2,14 +2,13 @@
 
 <?php
     session_start();
-    $logged_in = $_SESSION["logged_in"];
 ?>
 
 <div id="navbar-container">
     <a id="logo" href="index.html">StudyGroup</a>
         <ul id="navbar">
 <?php
-        if (!$logged_in) {
+        if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
 ?>
             <li class="navbar-li">
                 <a class="navbar-entry login-btn" href="login.php">Login</a>
