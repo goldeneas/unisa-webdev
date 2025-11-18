@@ -13,6 +13,24 @@
 
 <?php
     session_start();
+
+    $username = $_SESSION["username"];
+    $email = $_SESSION["email"];
+    $department = $_SESSION["department"];
+    $university_year = $_SESSION["university_year"];
+    $enrollment_year = $_SESSION["enrollment_year"];
+    $preferred_mode = $_SESSION["preferred_mode"];
+    $preferred_time = $_SESSION["preferred_time"];
+    $groups = $_SESSION["groups"] ?? [];
+
+    function print_or_default($var) {
+        if (!$var) {
+            echo '<label class="label">Non impostato</label>';
+            return;
+        }
+
+        printf('<label class="label">%s</label>', $var);
+    }
 ?>
 
     <body>
@@ -22,11 +40,6 @@
                     ✕
                 </div>
 <?php
-                $username = $_SESSION["username"];
-                $email = $_SESSION["email"];
-?>
-
-<?php
                 printf('<label id="username">%s</label>', $username);
                 printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
 ?>
@@ -34,29 +47,46 @@
                 <hr>
 
                 <label class="label-title">Facoltà</label>
-                <label class="label">Ingegneria informatica</label>
+<?php
+                print_or_default($department);
+?>
                 <br>
 
                 <label class="label-title">Anno universitario</label>
-                <label class="label">Terzo anno</label>
+<?php
+                print_or_default($university_year);
+?>
                 <br>
 
                 <label class="label-title">Anno di immatricolazione</label>
-                <label class="label">2023</label>
+<?php
+                print_or_default($enrollment_year);
+?>
                 <br>
 
                 <label class="label-title">Modalità preferita</label>
-                <label class="label">In presenza</label>
+<?php
+                print_or_default($preferred_mode);
+?>
                 <br>
 
                 <label class="label-title">Orari preferiti</label>
-                <label class="label">Mattina</label>
+<?php
+                print_or_default($preferred_time);
+?>
                 <br>
 
                 <label class="label-title">Gruppi</label>
-                <ul id="group-list">
-                    <li class="list-entry">Gruppo Analisi I</li>
-                    <li class="list-entry">Gruppo Fisica II</li>
+<?php
+                    if (!$groups) {
+                        echo '<label class="label">Non sei ancora in nessun gruppo</label>';
+                    } else {
+                        echo '<ul id="group-list">';
+                        foreach ($groups as $group) {
+                            printf('<li class="list-entry">%s</li>', $group);
+                        }
+                    }
+?>
                 </ul>
             </form>
         </div>
