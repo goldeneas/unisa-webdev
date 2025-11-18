@@ -12,11 +12,7 @@
     </head>
 
 <?php
-// TODO: use database
-$email = $_POST["email"];
-$password = $_POST["password"];
-
-if (empty($_POST) || !isset($email) || !isset($password)) {
+if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 ?>
     <body>
         <div id="login-form-container">
@@ -27,7 +23,7 @@ if (empty($_POST) || !isset($email) || !isset($password)) {
                 <input type="text" class="text-input" name="email" placeholder="Email" required><br>
 
                 <div id="password-container">
-                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" required>
+                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" minlength="6" required>
                     <br>
 
                     <!-- we need type=button to override type=submit -->
@@ -55,7 +51,7 @@ if (empty($_POST) || !isset($email) || !isset($password)) {
 <?php
 } else {
     session_start();
-    $_SESSION["email"] = $email;
+    $_SESSION["email"] = $_POST["email"];
     $_SESSION["logged_in"] = true;
 ?>
     <body>
