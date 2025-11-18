@@ -21,7 +21,7 @@ body {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 32px 32px; 
+    padding: 36px 32px; 
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
@@ -67,7 +67,8 @@ input[type="email"],
 input[type="password"],
 input[type="text"] {
     width: 100%;
-    padding: 12px;
+    padding-left: 0.5em;
+    line-height: 32px;
     font-size: 1em;
     border: 1px solid #b2b2b2;
     border-radius: 4px;
@@ -115,8 +116,8 @@ input:focus {
 /* Pulsante: mostra */
 #toggle-password {
     position: absolute; /* Lo sgancia dal flusso normale */
-    right: 12px;        
-    bottom: 13px;       
+    right: 10px;        
+    bottom: 10px;       
     
     /* Grafica botone*/
     background: transparent;
