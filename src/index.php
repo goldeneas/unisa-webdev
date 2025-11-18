@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <link rel="stylesheet" href="index.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -10,26 +11,10 @@
         <title>Homepage</title>
     </head>
 
-<?php
-    session_start();
-    $email = $_SESSION["email"];
-    $logged_in = $_SESSION["logged_in"];
-?>
-
     <body>
-        <div id="navbar-container">
-            <a id="logo" href="index.html">StudyGroup</a>
-            <ul id="navbar">
-<?php
-            if (!$logged_in) {
-                echo '<li><a class="navbar-entry login-btn" href="login.php">Login</a></li>';
-                echo '<li><a class="navbar-entry filled-btn" href="register.html">Registrati</a></li>';
-            } else {
-                echo '<li><a class="navbar-entry filled-btn" href="logout.php">Logout</a></li>';
-            }
-?>
-            </ul>
-        </div>
+        <?php
+            require "navbar.php";
+        ?>
 
         <div id="upper">
             <h1 id="header">Trova gruppi di studio ad Unisa</h1>
