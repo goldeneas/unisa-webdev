@@ -126,6 +126,40 @@ input[type="checkbox"] {
     vertical-align: middle; 
     cursor: pointer; 
 }
+#avanti + p {
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    color: #555;
+    font-size: 0.95em;
+}
+
+#profiloForm a {
+    text-decoration: none;
+    display: block;
+    width: 100%;
+}
+
+#profiloForm a button {
+    width: 100%;
+    padding: 14px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    border-radius: 25px;
+    font-family: "Roboto", sans-serif;
+    box-sizing: border-box;
+    background-color: #ffffff;
+    color: #0965c1;
+    border: 2px solid #0965c1;
+}
+
+#profiloForm a button:hover {
+    background-color: #eef7ff;
+    border-color: #0a59a8;
+    color: #0a59a8;
+}
+
 
 
 
