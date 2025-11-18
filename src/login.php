@@ -51,7 +51,6 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 <?php
 } else {
     session_start();
-    $_SESSION["email"] = $_POST["email"];
     $_SESSION["logged_in"] = true;
 ?>
     <body>
