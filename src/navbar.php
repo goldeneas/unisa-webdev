@@ -24,7 +24,7 @@
                 <a class="navbar-entry filled-btn" href="logout.php">Logout</a>
             </li>
             <li class="navbar-li">
-                <a class="navbar-avatar" href="check_profile.html">ጰ</a>
+                <a class="navbar-avatar" href="check_profile.php">ጰ</a>
             </li>
 <?php
         }

@@ -11,15 +11,25 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
 
+<?php
+    session_start();
+?>
+
     <body>
         <div id="form-container">
             <form id="form">
                 <div onclick="redirect()" id="close-cross">
                     ✕
                 </div>
+<?php
+                $username = $_SESSION["username"];
+                $email = $_SESSION["email"];
+?>
 
-                <label id="username">Nicola Picarella</label>
-                <a href="mailto:mail@mail.com" class="label" id="email">nicola.email@gmail.com</a>
+<?php
+                printf('<label id="username">%s</label>', $username);
+                printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
+?>
 
                 <hr>
 

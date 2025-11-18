@@ -20,7 +20,7 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                 <h1 id="login-title">Login</h1>
                 <p id="login-subtitle">Inserisci le tue credenziali</p>
 
-                <input type="text" class="text-input" name="email" placeholder="Email" required><br>
+                <input type="email" class="text-input" name="email" placeholder="Email" required><br>
 
                 <div id="password-container">
                     <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" minlength="6" required>
@@ -51,6 +51,9 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 <?php
 } else {
     session_start();
+    // TODO: Use database
+    $_SESSION["username"] = "TestUsername";
+    $_SESSION["email"] = $_POST["email"];
     $_SESSION["logged_in"] = true;
 ?>
     <body>
