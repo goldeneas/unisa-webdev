@@ -107,6 +107,19 @@ hr {
     gap: 20px;
 }
 
+#group-list {
+    margin: 0px;
+    padding-left: 20px;
+}
+
+.list-entry {
+    font-weight: 450;
+    color: gray;
+    font-size: 16px;
+
+    list-style-type: disc;
+}
+
 .label-title {
     display: flex;
     text-align: left;

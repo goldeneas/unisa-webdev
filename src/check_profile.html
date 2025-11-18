@@ -14,7 +14,7 @@
     <body>
         <div id="form-container">
             <form id="form">
-                <div onclick="history.back()" id="close-cross">
+                <div onclick="redirect()" id="close-cross">
                     ✕
                 </div>
 
@@ -41,8 +41,21 @@
 
                 <label class="label-title">Orari preferiti</label>
                 <label class="label">Mattina</label>
+                <br>
+
+                <label class="label-title">Gruppi</label>
+                <ul id="group-list">
+                    <li class="list-entry">Gruppo Analisi I</li>
+                    <li class="list-entry">Gruppo Fisica II</li>
+                </ul>
             </form>
         </div>
+
+        <script>
+            function redirect() {
+                location.href="index.php";
+            } 
+        </script>
     </body>
 </html>
 
