@@ -22,15 +22,6 @@
     $preferred_mode = $_SESSION["preferred_mode"];
     $preferred_time = $_SESSION["preferred_time"];
     $groups = $_SESSION["groups"] ?? [];
-
-    function print_or_default($var) {
-        if (!$var) {
-            echo '<label class="label">Non impostato</label>';
-            return;
-        }
-
-        printf('<label class="label">%s</label>', $var);
-    }
 ?>
 
     <body>
@@ -39,6 +30,7 @@
                 <div onclick="redirect()" id="close-cross">
                     ✕
                 </div>
+
 <?php
                 printf('<label id="username">%s</label>', $username);
                 printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
@@ -47,41 +39,31 @@
                 <hr>
 
                 <label class="label-title">Facoltà</label>
-<?php
-                print_or_default($department);
-?>
+                <label class="label"><?= $department ?: "Non impostato"?></label>
                 <br>
 
                 <label class="label-title">Anno universitario</label>
-<?php
-                print_or_default($university_year);
-?>
+                <label class="label"><?= $university_year ?: "Non impostato"?></label>
                 <br>
 
                 <label class="label-title">Anno di immatricolazione</label>
-<?php
-                print_or_default($enrollment_year);
-?>
+                <label class="label"><?= $enrollment_year ?: "Non impostato"?></label>
                 <br>
 
                 <label class="label-title">Modalità preferita</label>
-<?php
-                print_or_default($preferred_mode);
-?>
+                <label class="label"><?= $preferred_mode ?: "Non impostato"?></label>
                 <br>
 
                 <label class="label-title">Orari preferiti</label>
-<?php
-                print_or_default($preferred_time);
-?>
+                <label class="label"><?= $preferred_time ?: "Non impostato"?></label>
                 <br>
 
                 <label class="label-title">Gruppi</label>
 <?php
                     if (!$groups) {
-                        echo '<label class="label">Non sei ancora in nessun gruppo</label>';
+                        printf('<label class="label">Non sei ancora in nessun gruppo</label>');
                     } else {
-                        echo '<ul id="group-list">';
+                        echo  '<ul id="group-list">';
                         foreach ($groups as $group) {
                             printf('<li class="list-entry">%s</li>', $group);
                         }
