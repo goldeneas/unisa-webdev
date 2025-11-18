@@ -41,6 +41,10 @@
                 <p>
                     <label for="password">Password (minimo 6 caratteri)</label>
                     <input type="password" placeholder="Inserisci la tua password" id="password" name="password" minlength="6" required />
+
+                    <button type="button" onclick="togglePassword()" id="toggle-password">
+                        mostra
+                    </button>
                 </p>
 
 
@@ -53,6 +57,21 @@
             </p>
 
         </div>
+
+        <script>
+    function togglePassword() {
+        const passwordElement = document.getElementById("password");
+        const passwordToggleElement = document.getElementById("toggle-password");
+
+        if (passwordElement.type === "password") {
+            passwordElement.type = "text";
+            passwordToggleElement.textContent = "nascondi";
+        } else {
+            passwordElement.type = "password";
+            passwordToggleElement.textContent = "mostra";
+        }
+    }
+</script>
 
     </body>
 </html>

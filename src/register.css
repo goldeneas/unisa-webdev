@@ -52,6 +52,7 @@ h1 {
 form p {
     margin: 0 0 16px 0;
     text-align: left;
+    position: relative;
 }
 
 label {
@@ -99,9 +100,37 @@ form button[type="submit"]:hover {
     background-color: #0a59a8;
 }
 
-/* Link in basso (Già registrato?) */
+/* Già registrato? */
 .login-link-container {
     margin-top: 20px;
     text-align: center; 
     font-size: 0.95em;
+}
+
+
+#password {
+    padding-right: 60px; /* Evita che il testo scritto vada sotto il "mostra" */
+}
+
+/* Pulsante: mostra */
+#toggle-password {
+    position: absolute; /* Lo sgancia dal flusso normale */
+    right: 12px;        
+    bottom: 13px;       
+    
+    /* Grafica botone*/
+    background: transparent;
+    border: none;
+    color: #0965c1;     
+    font-weight: 700;   
+    font-size: 14px;    
+    cursor: pointer;
+    padding: 0;
+             
+}
+
+/* Effetto al passaggio del mouse */
+#toggle-password:hover {
+    color: #074e96;
+    text-decoration: underline;
 }
