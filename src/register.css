@@ -1,7 +1,7 @@
 * {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 350;
+    font-weight: 350; 
     font-style: normal;
 }
 
@@ -9,51 +9,59 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center; /* Allinea al centro */
+    justify-content: center;
     min-height: 100vh;
     margin: 0;
-    padding: 30px 20px; /* Aggiunge spazio sopra e ai lati */
-    box-sizing: border-box;
+    padding: 30px 20px;
+    box-sizing: border-box; 
 }
 
-/* Titolo principale*/
-.main {
-    font-size: 1.5rem; 
-    font-weight: 400; /* Testo più sottile */
-    color: #333;
-    margin-bottom: 24px;
-    text-align: center;
-    max-width: 500px;
-}
 
-/* Sfondo dell'elemento principale*/
 .register-card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 24px 32px;
+    padding: 32px 32px; 
     width: 100%;
-    max-width: 400px; /* Larghezza fissa del form */
+    max-width: 400px;
     box-sizing: border-box;
-    text-align: center;
+    
+    text-align: center; 
 }
 
-/* Rimuove il margine di default dai paragrafi del form */
+/* TITOLO E SOTTOTITOLO */
+h1 {
+    font-weight: 700; 
+    font-size: 28px;
+    color: #222;
+    margin-top: 0;
+    margin-bottom: 8px; 
+    text-align: left;
+}
+
+#register-subtitle {
+    margin-top: 0;      
+    margin-bottom: 32px; 
+    text-align: left;
+    font-size: 16px;
+    font-weight: 400;
+    color: #666; 
+}
+
+/* ELEMENTI DEL FORM  */
 form p {
     margin: 0 0 16px 0;
     text-align: left;
 }
 
-/* Etichette (E-mail, Password) */
 label {
-    display: block; /* Mette l'etichetta sulla sua riga */
+    display: block;
     font-size: 0.9em;
     color: #555;
     margin-bottom: 6px;
-    font-weight: 600;
+    font-weight: 600; /
 }
 
-/* Campi di input */
 input[type="email"],
 input[type="password"],
 input[type="text"] {
@@ -62,24 +70,38 @@ input[type="text"] {
     font-size: 1em;
     border: 1px solid #b2b2b2;
     border-radius: 4px;
-    box-sizing: border-box; /* Assicura che il padding non rompa il layout */
+    box-sizing: border-box;
+    transition: border-color 0.3s; /* Effetto carino al click */
+}
+
+/* Effetto focus quando clicchi nell'input */
+input:focus {
+    outline: none;
+    border-color: #0965c1;
+}
+
+/* --- BOTTONE --- */
+form button[type="submit"] {
+    width: 100%;
+    background-color: #0965c1;
+    color: white;
+    border: none;
+    border-radius: 24px;
+    padding: 14px 20px;
+    font-size: 1.1em;
+    margin-top: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    box-shadow: 0px 4px 10px rgba(9, 101, 193, 0.3); 
 }
 
 form button[type="submit"]:hover {
     background-color: #0a59a8;
 }
 
-/* Bottone blu principale (Accetta e registrati) */
-form button[type="submit"] {
-    width: 100%;
-    background-color: #0965c1;
-    color: white;
-    border: none;
-    border-radius: 24px; /* Per la forma a "pillola" */
-    padding: 14px 20px;
-    font-size: 1.1em;
-    margin-top: 14px;
-
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+/* Link in basso (Già registrato?) */
+.login-link-container {
+    margin-top: 20px;
+    text-align: center; 
+    font-size: 0.95em;
 }
-
