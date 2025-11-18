@@ -220,7 +220,7 @@ hr {
     border-radius: 6px;
 }
 
-.register-btn:hover {
+.filled-btn:hover {
     background-color: #0a59a8;
 }
 

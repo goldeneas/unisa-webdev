@@ -7,15 +7,27 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
-        <title> landing </title>
+        <title>Homepage</title>
     </head>
+
+<?php
+    session_start();
+    $email = $_SESSION["email"];
+    $logged_in = $_SESSION["logged_in"];
+?>
 
     <body>
         <div id="navbar-container">
             <a id="logo" href="index.html">StudyGroup</a>
             <ul id="navbar">
-                <li><a class="navbar-entry login-btn" href="login.html">Login</a></li>
-                <li><a class="navbar-entry register-btn" href="register.html">Registrati</a></li>
+<?php
+            if (!$logged_in) {
+                echo '<li><a class="navbar-entry login-btn" href="login.php">Login</a></li>';
+                echo '<li><a class="navbar-entry filled-btn" href="register.html">Registrati</a></li>';
+            } else {
+                echo '<li><a class="navbar-entry filled-btn" href="logout.php">Logout</a></li>';
+            }
+?>
             </ul>
         </div>
 

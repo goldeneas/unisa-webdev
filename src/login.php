@@ -10,24 +10,23 @@
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
 
+<?php
+// TODO: use database
+$email = $_POST["email"];
+$password = $_POST["password"];
+
+if (empty($_POST) || !isset($email) || !isset($password)) {
+?>
     <body>
-        <?php
-        
-        $email = $_GET["email"];
-        $password = $_GET["password"];
-
-        if (empty($_GET) || !isset($email) || !isset($password)) {
-        ?>
-
         <div id="login-form-container">
-            <form id="login-form">
+            <form id="login-form" method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                 <h1 id="login-title">Login</h1>
                 <p id="login-subtitle">Inserisci le tue credenziali</p>
 
-                <input type="text" class="text-input" name="email" placeholder="Email"><br>
+                <input type="text" class="text-input" name="email" placeholder="Email" required><br>
 
                 <div id="password-container">
-                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password">
+                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" required>
                     <br>
 
                     <!-- we need type=button to override type=submit -->
@@ -52,20 +51,30 @@
                 </div>
             </form>
         </div>
-        
-        <?php
-            } else {
-        ?>
-
-        <div>
-            <p>
-                Sei già loggato!!
-            </p>
+<?php
+} else {
+    session_start();
+    $_SESSION["email"] = $email;
+    $_SESSION["logged_in"] = true;
+?>
+    <body>
+        <div id="login-form-container">
+            <form id="login-form">
+                <div>
+                    <h1 style="margin-bottom: 0px;">Ti sei loggato!</h1>
+                    <p style="margin-top: 3px;">Redirect alla pagina principale...</p>
+                    <script>
+                        window.setTimeout(function() {
+                            location.href="index.php"
+                        }, 3000);
+                    </script>
+                </div>
+            </form>
         </div>
-
-        <?php
-            }
-        ?>
+    </body>
+<?php
+}
+?>
 
         <script>
             function togglePassword() {
