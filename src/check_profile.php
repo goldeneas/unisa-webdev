@@ -28,7 +28,7 @@
     <body>
         <div id="form-container">
             <form id="form">
-                <div onclick="redirect()" id="close-cross">
+                <div onclick='redirect("index.php")' id="close-cross">
                     ✕
                 </div>
 
@@ -60,23 +60,27 @@
                 <br>
 
                 <label class="label-title">Gruppi</label>
+
 <?php
-                    if (!$groups) {
-                        printf('<label class="label">Non sei ancora in nessun gruppo</label>');
-                    } else {
-                        echo  '<ul id="group-list">';
-                        foreach ($groups as $group) {
-                            printf('<li class="list-entry">%s</li>', $group);
-                        }
+                if (!$groups) {
+                    printf('<label class="label">Non sei ancora in nessun gruppo</label>');
+                } else {
+                    echo  '<ul id="group-list">';
+                    foreach ($groups as $group) {
+                        printf('<li class="list-entry">%s</li>', $group);
                     }
+                }
 ?>
-                </ul>
+
+                <button id="edit-btn" onclick='redirect("edit_profile.php")' type="button">
+                    Modifica
+                </button>
             </form>
         </div>
 
         <script>
-            function redirect() {
-                location.href="index.php";
+            function redirect(destination) {
+                location.href=destination;
             } 
         </script>
     </body>
