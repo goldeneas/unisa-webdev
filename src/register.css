@@ -40,12 +40,11 @@ h1 {
 }
 
 #register-subtitle {
-    margin-top: 0;      
-    margin-bottom: 32px; 
+     margin-top: 0px;
+    margin-bottom: 10%;
     text-align: left;
+
     font-size: 16px;
-    font-weight: 400;
-    color: #666; 
 }
 
 /* ELEMENTI DEL FORM  */
@@ -58,7 +57,7 @@ form p {
 label {
     display: block;
     font-size: 0.9em;
-    color: #555;
+    color: #222;
     margin-bottom: 6px;
     font-weight: 600; /
 }
