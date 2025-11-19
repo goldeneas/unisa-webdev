@@ -58,7 +58,7 @@
                 $name = $group['name'];
                 $code = $group['id'];
                 $description = $group['description'];
-                $curr_members = $group['members'];
+                $curr_members = $group['curr_members'];
                 $max_members = $group['max_members'];
 
                 printf('<div class="group">');
