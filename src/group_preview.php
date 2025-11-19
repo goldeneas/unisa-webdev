@@ -90,7 +90,7 @@ $dati_gruppo = [
             </div>
 
             <div class="card-footer">
-                <a href="index.php" class="btn btn-primary btn-outline" style="margin-bottom: 10px;">Torna alla home</a>
+                <a href="index.php" class="btn btn-secondary btn-outline" style="margin-bottom: 10px;">Torna alla home</a>
                 
                 <button onclick="showModal()" class="btn btn-primary">Unisciti al gruppo</button>
             </div>

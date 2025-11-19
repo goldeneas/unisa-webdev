@@ -189,6 +189,7 @@ h2 {
     background-color: #0965c1;
     color: #ffffff; /* text-white */
     box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+    font-size: medium;
 }
 
 .btn-primary:hover {
