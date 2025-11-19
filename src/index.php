@@ -49,11 +49,12 @@
         $groups = array();
 
         echo "<hr>";
-        echo "<div id='groups-container'>";
 
         if (!$groups) {
-            echo "<p>Il tuo termine di ricerca non ha prodotto risultati</p>";
+            echo '<p id="no-results-p">Il tuo termine di ricerca non ha prodotto risultati</p>';
         } else {
+            echo "<div id='groups-container'>";
+
             foreach ($groups as $group) {
                 $name = $group['name'];
                 $code = $group['id'];
