@@ -9,7 +9,7 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
 }
 
 // 2. SIMULAZIONE DATABASE (DATI DEL GRUPPO)
-// Immagina che questa parte in futuro verrà sostituita da una richiesta SQL tipo:
+// in futuro verrà sostituita da una richiesta SQL tipo:
 // $gruppo = $conn->query("SELECT * FROM gruppi WHERE id = 1");
 $dati_gruppo = [
     "nome" => "Impero Romano Enjoyers",
