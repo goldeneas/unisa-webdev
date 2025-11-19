@@ -28,6 +28,8 @@ function create_groups_table($db) {
         subject NOT NULL VARCHAR(100),
         description VARCHAR(255),
         is_public BOOLEAN DEFAULT FALSE,
+        curr_members INTEGER DEFAULT 0,
+        max_members NOT NULL INTEGER,
         timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP
     )";
 

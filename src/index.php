@@ -24,8 +24,8 @@
             </h3>
         </div>
 
-        <form id="search-bar" action="/groups.php">
-            <input id="course-input" placeholder="Inserisci il corso per vederne i gruppi">
+        <form id="search-bar" mode="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+            <input id="course-input" name="search" placeholder="Inserisci il corso per vederne i gruppi">
             <button id="search-btn" type="submit">Cerca</button>
         </form>
 
@@ -38,75 +38,50 @@
             </a>
         </div>
 
-        <hr >
+<?php
+        if (!isset($_GET["search"])) {
+            return;
+        }
 
-        <div id="groups-container">
-            <div class="group">
-                <h3 class="group-header"> Nome Gruppo </h3>
-                <h4 class="group-subheader"> Codice </h4>
-                <h5 class="group-info">
-                    Descrizione gruppo qui
-                    <br>
-                    Membri: 4/5
-                </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.php'">
-                    Visualizza
-                </button>
-            </div>
+        $search = $_GET["search"];
 
-            <div class="group">
-                <h3 class="group-header"> Nome Gruppo </h3>
-                <h4 class="group-subheader"> Codice </h4>
-                <h5 class="group-info">
-                    Descrizione gruppo qui
-                    <br>
-                    Membri: 4/5
-                </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.php'"> 
-                    Visualizza
-                </button>
-            </div>
+        // TODO: Fill with found groups from database
+        $groups = array();
 
-            <div class="group">
-                <h3 class="group-header"> Nome Gruppo </h3>
-                <h4 class="group-subheader"> Codice </h4>
-                <h5 class="group-info">
-                    Descrizione gruppo qui
-                    <br>
-                    Membri: 4/5
-                </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.php'">
-                    Visualizza
-                </button>
-            </div>
+        echo "<hr>";
+        echo "<div id='groups-container'>";
 
-            <div class="group">
-                <h3 class="group-header"> Nome Gruppo </h3>
-                <h4 class="group-subheader"> Codice </h4>
-                <h5 class="group-info">
-                    Descrizione gruppo qui
-                    <br>
-                    Membri: 4/5
-                </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.php'">
-                    Visualizza
-                </button>
-            </div>
+        if (!$groups) {
+            echo "<p>Il tuo termine di ricerca non ha prodotto risultati</p>";
+        } else {
+            foreach ($groups as $group) {
+                $name = $group['name'];
+                $code = $group['id'];
+                $description = $group['description'];
+                $curr_members = $group['members'];
+                $max_members = $group['max_members'];
 
-            <div class="group">
-                <h3 class="group-header"> Nome Gruppo </h3>
-                <h4 class="group-subheader"> Codice </h4>
-                <h5 class="group-info">
-                    Descrizione gruppo qui
-                    <br>
-                    Membri: 4/5
-                </h5>
+                printf('<div class="group">');
+                    printf('<h3 class="group-header">%s</h3>', $name);
+                    printf('<h4 class="group-subheader">%s</h4>', $code);
+                    printf('<h5 class="group-info">');
+                        printf('Descrizione gruppo qui<br>Membri: %s/%s', $curr_members, $max_members);
+                    printf('</h5>');
 
-                <button class="show-group-btn" onclick="location.href='group_preview.php'">
-                    Visualizza
-                </button>
-            </div>
-        </div>
+                    printf('<button class="show-group-btn" onclick="redirect(\'group_preview.php?code=%s\')">', $code);
+                    printf('Visualizza');
+                    printf('</button>');
+                printf('</div>');
+            }
+        }
 
+        echo "</div>";
+?>
+
+        <script>
+            function redirect(destination) {
+                location.href=destination;
+            } 
+        </script>
     </body>
 </html>
