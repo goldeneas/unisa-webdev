@@ -28,12 +28,12 @@ if (!isset($_POST["registratiBtn"])) {
 
                 <p>
                     <label for="cognome">Cognome</label>
-                    <input type="text" placeholder="Inserisci il tuo cognome" id="cognome" name="cognome" required />
+                    <input type="text" placeholder="Inserisci il tuo cognome" id="surname" name="surname" required />
                 </p>
                 
                 <p>
-                    <label for="e-mail">E-mail</label>
-                    <input type="email" placeholder="Inserisci la tua e-mail" id="e-mail" name="e-mail" required />
+                    <label for="email">E-mail</label>
+                    <input type="email" placeholder="Inserisci la tua e-mail" id="email" name="email" required />
                 </p>
                 
                 <p>
@@ -77,8 +77,9 @@ if (!isset($_POST["registratiBtn"])) {
     // TODO: Use database
     session_start(); 
     
-    $_SESSION["username"] = $_POST["name"]; // Prendo il vero nome inserito!
-    $_SESSION["email"] = $_POST["e-mail"]; //Stessa cosa qui, fico!!!
+    $_SESSION["name"] = $_POST["name"]; // Prendo il vero nome inserito!
+    $_SESSION["surname"] = $_POST["surname"]; 
+    $_SESSION["email"] = $_POST["email"]; //Stessa cosa qui, fico!!!
     $_SESSION["logged_in"] = true;
 ?>
     <body>
@@ -86,8 +87,10 @@ if (!isset($_POST["registratiBtn"])) {
             <form id="Register">
                 <div>
                     <h1 style="margin-bottom: 0px;">Benvenuto, <?php echo htmlspecialchars($_POST["name"]); ?>!</h1>
-                    <p style="margin-top: 10px;">Registrazione completata con successo.</p>
-                    <p>Redirect alla pagina principale...</p>
+                    <p style="margin-top: 10px;">
+                        Registrazione completata con successo.
+                        Redirect alla pagina principale...
+                    </p>
                     
                     <script>
                         window.setTimeout(function() {

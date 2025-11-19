@@ -3,7 +3,8 @@
 function create_users_table($db) {
     $sql = "CREATE TABLE IF NOT EXISTS users (
         id SERIAL PRIMARY KEY,
-        username NOT NULL VARCHAR(20),
+        nome NOT NULL VARCHAR(20),
+        cognome NOT NULL VARCHAR(20),
         email NOT NULL VARCHAR(50),
         password_hash NOT NULL VARCHAR(255),
         department VARCHAR(100),

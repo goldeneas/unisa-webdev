@@ -56,7 +56,8 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 } else {
     session_start();
     // TODO: Use database
-    $_SESSION["username"] = "TestUsername";
+    $_SESSION["name"] = "Nome";
+    $_SESSION["surname"] = "Cognome";
     $_SESSION["email"] = $_POST["email"];
     $_SESSION["logged_in"] = true;
 ?>

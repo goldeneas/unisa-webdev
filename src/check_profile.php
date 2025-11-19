@@ -14,7 +14,8 @@
 <?php
     session_start();
 
-    $username = $_SESSION["username"] ?? "";
+    $name = $_SESSION["name"] ?? "";
+    $surname = $_SESSION["surname"] ?? "";
     $email = $_SESSION["email"] ?? "";
     $department = $_SESSION["department"] ?? "";
     $university_year = $_SESSION["university_year"] ?? "";
@@ -32,7 +33,7 @@
                 </div>
 
 <?php
-                printf('<label id="username">%s</label>', $username);
+                printf('<label id="username">%s %s</label>', $name, $surname);
                 printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
 ?>
 
