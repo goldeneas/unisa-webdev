@@ -26,6 +26,11 @@ hr {
   background-color: #D3D3D3;
 }
 
+label {
+    font-weight: 500;
+    font-size: 15px;
+}
+
 #forgot-password-href:hover {
     text-decoration-line: underline;
 }
@@ -55,7 +60,7 @@ hr {
 
     margin-left: auto;
     margin-right: auto;
-    text-align: center;
+    text-align: left;
 
     padding: 35px 32px;
 
@@ -120,7 +125,7 @@ hr {
     position: absolute;
 
     right: 10px;
-    bottom: 15%;
+    bottom: 10%;
 
     margin-bottom: 16px;
 
@@ -129,7 +134,8 @@ hr {
     background-color: transparent;
     color: #0965c1;
 
-    font-weight: 500;
+    font-weight: 700;
+    font-size: 14px;
 }
 
 #toggle-password:hover {
@@ -151,5 +157,6 @@ hr {
 
     padding-left: 0.5em;
 
+    margin-top: 4px;
     margin-bottom: 16px;
 }

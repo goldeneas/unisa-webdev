@@ -14,13 +14,13 @@
 <?php
     session_start();
 
-    $username = $_SESSION["username"];
-    $email = $_SESSION["email"];
-    $department = $_SESSION["department"];
-    $university_year = $_SESSION["university_year"];
-    $enrollment_year = $_SESSION["enrollment_year"];
-    $preferred_mode = $_SESSION["preferred_mode"];
-    $preferred_time = $_SESSION["preferred_time"];
+    $username = $_SESSION["username"] ?? "";
+    $email = $_SESSION["email"] ?? "";
+    $department = $_SESSION["department"] ?? "";
+    $university_year = $_SESSION["university_year"] ?? "";
+    $enrollment_year = $_SESSION["enrollment_year"] ?? "";
+    $preferred_mode = $_SESSION["preferred_mode"] ?? "";
+    $preferred_time = $_SESSION["preferred_time"] ?? "";
     $groups = $_SESSION["groups"] ?? [];
 ?>
 

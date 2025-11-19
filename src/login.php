@@ -20,9 +20,11 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                 <h1 id="login-title">Login</h1>
                 <p id="login-subtitle">Inserisci le tue credenziali</p>
 
+                <label>Email</label>
                 <input type="email" class="text-input" name="email" placeholder="Email" required><br>
 
                 <div id="password-container">
+                    <label>Password</label>
                     <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" minlength="6" required>
                     <br>
 

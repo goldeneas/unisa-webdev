@@ -15,7 +15,7 @@
             </li>
 
             <li class="navbar-li">
-                <a class="navbar-entry filled-btn" href="register.html">Registrati</a>
+                <a class="navbar-entry filled-btn" href="register.php">Registrati</a>
             </li>
 <?php
         } else {
