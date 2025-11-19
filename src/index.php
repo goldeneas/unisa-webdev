@@ -48,7 +48,7 @@
                     <br>
                     Membri: 4/5
                 </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.html'">
+                <button class="show-group-btn" onclick="location.href='group_preview.php'">
                     Visualizza
                 </button>
             </div>
@@ -61,7 +61,7 @@
                     <br>
                     Membri: 4/5
                 </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.html'"> 
+                <button class="show-group-btn" onclick="location.href='group_preview.php'"> 
                     Visualizza
                 </button>
             </div>
@@ -74,7 +74,7 @@
                     <br>
                     Membri: 4/5
                 </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.html'">
+                <button class="show-group-btn" onclick="location.href='group_preview.php'">
                     Visualizza
                 </button>
             </div>
@@ -87,7 +87,7 @@
                     <br>
                     Membri: 4/5
                 </h5>
-                <button class="show-group-btn" onclick="location.href='group_preview.html'">
+                <button class="show-group-btn" onclick="location.href='group_preview.php'">
                     Visualizza
                 </button>
             </div>
@@ -101,7 +101,7 @@
                     Membri: 4/5
                 </h5>
 
-                <button class="show-group-btn" onclick="location.href='group_preview.html'">
+                <button class="show-group-btn" onclick="location.href='group_preview.php'">
                     Visualizza
                 </button>
             </div>
