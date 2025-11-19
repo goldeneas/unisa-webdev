@@ -5,7 +5,7 @@
 ?>
 
 <div id="navbar-container">
-    <a id="logo" href="index.html">StudyGroup</a>
+    <a id="logo" href="index.php">StudyGroup</a>
         <ul id="navbar">
 <?php
         if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
