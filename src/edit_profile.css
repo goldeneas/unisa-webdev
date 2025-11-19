@@ -96,69 +96,21 @@ button#avanti:hover {
 .assistenza a:hover {
     text-decoration: underline;
 }
-
-fieldset {
-    border: none;
-    padding: 0;
-    margin-bottom: 16px; 
-}
-
-legend {
-    font-weight: 600;
-    font-size: 0.95em;
-    color: #555;
-    margin-bottom: 6px;
-    padding: 0; 
-}
-
-fieldset label {
-    display: inline;
-    font-weight: 350; 
-    margin-left: 5px; 
-    cursor: pointer; 
-}
-
-fieldset div {
-    margin-bottom: 5px; 
-}
-
-input[type="checkbox"] {
-    vertical-align: middle; 
-    cursor: pointer; 
-}
-#avanti + p {
+#homepage-container {
+    margin-top: 20px;
     text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    color: #555;
-    font-size: 0.95em;
 }
 
-#profiloForm a {
-    text-decoration: none;
-    display: block;
-    width: 100%;
-}
-
-#profiloForm a button {
-    width: 100%;
-    padding: 14px 20px;
-    font-size: 14px;
-    font-weight: 600;
-    cursor: pointer;
-    border-radius: 25px;
-    font-family: "Roboto", sans-serif;
-    box-sizing: border-box;
-    background-color: #ffffff;
+#homepage-container a {
     color: #0965c1;
-    border: 2px solid #0965c1;
+    text-decoration: none;
+    font-weight: 500;
 }
 
-#profiloForm a button:hover {
-    background-color: #eef7ff;
-    border-color: #0a59a8;
-    color: #0a59a8;
+#homepage-container a:hover {
+    text-decoration: underline;
 }
+
 
 
 
