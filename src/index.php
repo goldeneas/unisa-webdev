@@ -18,8 +18,9 @@
 
         <div id="upper">
             <h1 id="header">Trova gruppi di studio ad Unisa</h1>
-            <h3 id="subheader">Smettila di leggere chat lorem ispum gay adas perche poi quando io e allora
-                e quindi no praticamente si domani. Hai capito?
+            <h3 id="subheader"> StudyGroup è la piattaforma collaborativa dedicata agli studenti universitari.
+                <br>
+                Semplifica il tuo studio, espandi il tuo network e raggiungi i tuoi obiettivi accademici insieme agli altri.
             </h3>
         </div>
 
