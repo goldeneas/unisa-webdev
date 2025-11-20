@@ -1,10 +1,14 @@
 <?php
 
+//Funzione per creare un utente dato nome, cognome, email e password
+//(Ovvero le informazioni passate nella registrazione).
 function create_user($db, $name, $surname, $email, $password) {
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO users(name, surname, email, password_hash)
             VALUES($1, $2, $3, $4)";
 
+    //Esegui quel comando $sql e riempi i buchi $1, $2... con i dati che trovi 
+    // in questo array
     pg_query_params($db, $sql, array($name, $surname, $email, $hash));
 
     return true;

@@ -1,4 +1,5 @@
 <?php
+//Informazioni sul db
 $host = "localhost";
 $port = '5432';
 $dbname = 'gruppo15';
