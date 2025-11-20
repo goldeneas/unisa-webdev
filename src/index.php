@@ -14,7 +14,6 @@
     <body>
         <?php
             require_once "navbar.php";
-            require_once "scripts/db_connection.php";
         ?>
 
         <div id="upper">
@@ -26,7 +25,7 @@
         </div>
 
         <form id="search-bar" method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-            <input id="course-input" name="search" placeholder="Inserisci il corso per vederne i gruppi">
+            <input id="course-input" name="search" placeholder="Inserisci il corso per vederne i gruppi" minlength="3">
             <button id="search-btn" type="submit">Cerca</button>
         </form>
 
@@ -44,10 +43,12 @@
             return;
         }
 
-        $search = $_GET["search"];
+        require_once "scripts/db_connection.php";
+        require_once "scripts/db_groups.php";
+        require_once "scripts/db_users.php";
 
-        // TODO: Fill with found groups from database
-        $groups = array();
+        $search = $_GET["search"];
+        $groups = get_groups_starting_with($db, $search);
 
         echo "<hr>";
 
@@ -67,7 +68,7 @@
                     printf('<h3 class="group-header">%s</h3>', $name);
                     printf('<h4 class="group-subheader">%s</h4>', $code);
                     printf('<h5 class="group-info">');
-                        printf('Descrizione gruppo qui<br>Membri: %s/%s', $curr_members, $max_members);
+                        printf('%s<br>Membri: %s/%s', $description, $curr_members, $max_members);
                     printf('</h5>');
 
                     printf('<button class="show-group-btn" onclick="redirect(\'group_preview.php?code=%s\')">', $code);
