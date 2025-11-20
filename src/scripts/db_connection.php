@@ -1,4 +1,6 @@
 <?php
+    require_once "db_tables.php";
+
     //Informazioni sul db
 
     $host = "localhost";
