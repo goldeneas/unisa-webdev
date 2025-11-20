@@ -13,7 +13,8 @@
 
     <body>
         <?php
-            require "navbar.php";
+            require_once "navbar.php";
+            require_once "scripts/db_connection.php";
         ?>
 
         <div id="upper">
@@ -24,7 +25,7 @@
             </h3>
         </div>
 
-        <form id="search-bar" mode="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+        <form id="search-bar" method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
             <input id="course-input" name="search" placeholder="Inserisci il corso per vederne i gruppi">
             <button id="search-btn" type="submit">Cerca</button>
         </form>
