@@ -52,4 +52,13 @@ function get_user_id_by_email($db, $email) {
     return fetch_value($res);
 }
 
+function get_user_by_email($db, $email) {
+    $sql = "SELECT *
+            FROM users
+            WHERE email = $1";
+
+    $res = pg_query_params($db, $sql, array($email));
+    return fetch_one($res);
+}
+
 ?>

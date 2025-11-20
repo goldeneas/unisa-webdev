@@ -14,6 +14,9 @@
     </head>
 
 <?php
+require_once "scripts/db_connection.php";
+require_once "scripts/db_users.php";
+
 if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 ?>
     <body>
@@ -54,11 +57,25 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
         </div>
 <?php
 } else {
+    
+    $email = $_POST["email"];
+    if (!does_user_exist($db, $email)) {
+        echo "<p>Utente inesistente</p>";
+        return;
+    }
+
+    $password = $_POST["password"];
+    if (!check_user_password($db, $email, $password)) {
+        echo "<p>Password errata</p>";
+        return;
+    }
+
+    $user = get_user_by_email($db, $email);
+
     session_start();
-    // TODO: Use database
-    $_SESSION["name"] = "Nome";
-    $_SESSION["surname"] = "Cognome";
-    $_SESSION["email"] = $_POST["email"];
+    $_SESSION["name"] = $user["name"];
+    $_SESSION["surname"] = $user["surname"];
+    $_SESSION["email"] = $email;
     $_SESSION["logged_in"] = true;
 ?>
     <body>
