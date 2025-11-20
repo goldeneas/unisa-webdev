@@ -1,14 +1,5 @@
 <?php
-<<<<<<< HEAD
-//Informazioni sul db
-$host = "localhost";
-$port = '5432';
-$dbname = 'gruppo15';
-$username = 'www';
-$password = 'tsw2023';
-=======
-    require_once "db_tables.php";
->>>>>>> 319db39dbcdbcd0795f99eb9170dac1768f30f6c
+    //Informazioni sul db
 
     $host = "localhost";
     $port = '5432';
