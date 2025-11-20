@@ -1,4 +1,6 @@
 <?php
+    require_once "db_tables.php";
+
     $host = "localhost";
     $port = '5432';
     $dbname = 'postgres';
@@ -7,4 +9,7 @@
 
     $connection_string = "host=$host port=$port dbname=$dbname user=$username password=$password";
     $db = pg_connect($connection_string) or die('Impossibile connetersi');
+
+    create_users_table($db);
+    create_groups_table($db);
 ?>

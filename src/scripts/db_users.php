@@ -5,7 +5,11 @@ function create_user($db, $name, $surname, $email, $password) {
     $sql = "INSERT INTO users(name, surname, email, password_hash)
             VALUES($1, $2, $3, $4)";
 
-    pg_query_params($db, $sql, array($name, $surname, $email, $hash));
+    $res = pg_query_params($db, $sql, array($name, $surname, $email, $hash));
+    if (!$res) {
+        echo "Errore: " . pg_last_error($db);
+        return false;
+    }
 
     return true;
 }
