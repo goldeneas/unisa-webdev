@@ -33,7 +33,7 @@
             <span id="create-group-span">
                 Non trovi il gruppo che cerchi?
             </span>
-            <a id="create-group-href" href="group_creation.html">
+            <a id="create-group-href" href="group_creation.php">
                 Crealo ora!
             </a>
         </div>

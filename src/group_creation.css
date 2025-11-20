@@ -104,3 +104,19 @@ button:hover {
     cursor: pointer;
     background-color: #0a59a8;
 }
+
+#homepage-link {
+    margin-top: 10px;
+    text-align: center;
+    font-size: 14px;
+}
+
+#homepage-link a {
+    color: #0965c1;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#homepage-link a:hover {
+    text-decoration: underline;
+}
