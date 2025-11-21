@@ -78,7 +78,7 @@ if (!isset($_POST["registratiBtn"])) {
 <?php
 } else {
     if (does_user_exist($db, $_POST["email"])) {
-        ?>
+?>
         <body>
             <div id="errore-id">
                 <div id="errore-id-link">
@@ -96,7 +96,7 @@ if (!isset($_POST["registratiBtn"])) {
                 }, 3000);
             </script>
         </body>
-        <?php
+<?php
         exit;
     }
     // (SIMULAZIONE DATABASE) 

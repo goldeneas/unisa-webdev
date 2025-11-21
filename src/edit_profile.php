@@ -1,10 +1,10 @@
 <?php
 session_start();
 
-if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-    header("Location: login.php");
-    exit;
-}
+/* if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) { */
+/*     header("Location: login.php"); */
+/*     exit; */
+/* } */
 
 require_once "scripts/db_connection.php";
 require_once "scripts/db_users.php";
@@ -43,71 +43,72 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
 
     </head>
+
+<?php
+    require_once "navbar.php";
+?>
+
     <body>
-        <div class="container">
-            <h1>Modifica profilo</h1>
-            <p id="subtitle">Inserisci informazioni aggiuntive</p>
+        <div id="card-container">
+            <div class="container">
+                <h1>Modifica profilo</h1>
+                <p id="subtitle">Inserisci informazioni aggiuntive</p>
 
-            <form id="profiloForm">
-                <label for="anno">Anno universitario</label>
-                <select id="anno" name="anno">
-                    <option value="">-- Seleziona il tuo anno --</option>
-                    <option value="1">1</option>
-                    <option value="2">2</option>
-                    <option value="3">3</option>
-                    <option value="fuoricorso">Fuoricorso</option>
-                </select>
+                <form id="profiloForm">
+                    <label for="anno">Anno universitario</label>
+                    <select id="anno" name="anno">
+                        <option value="">-- Seleziona il tuo anno --</option>
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="fuoricorso">Fuoricorso</option>
+                    </select>
 
-                <label for="facolta">Facoltà</label>
-                <select id="facolta" name="facolta">
-                    <option value="">-- Seleziona la tua facoltà --</option>
-                    <option>Economia</option>
-                    <option>Giurisprudenza</option>
-                    <option>Ingegneria Civile</option>
-                    <option>Ingegneria Informatica</option>
-                    <option>Ingegneria Meccanica</option>
-                    <option>Lettere e Filosofia</option>
-                    <option>Lingue e Letterature Straniere</option>
-                    <option>Matematica</option>
-                    <option>Medicina e Chirurgia</option>
-                    <option>Scienze della Comunicazione</option>
-                    <option>Scienze dell’Educazione</option>
-                    <option>Scienze Motorie</option>
-                    <option>Scienze Politiche</option>
-                    <option>Scienze e Tecnologie Alimentari</option>
-                    <option>Sociologia</option>
-                    <option>Non è tra le opzioni</option>
-                </select>
-
-
-               <fieldset>
-  <legend>Orari preferiti per studiare</legend>
-
-  <div class="time-choice">
-    <input type="checkbox" id="fascia4" name="orari[]" value="qualsiasi">
-    <label for="fascia4">Qualsiasi</label>
-  </div>
-
-  <div class="time-choice">
-    <input type="checkbox" id="fascia1" name="orari[]" value="8:30-11:30">
-    <label for="fascia1">8:30 - 11:30</label>
-  </div>
-
-  <div class="time-choice">
-    <input type="checkbox" id="fascia2" name="orari[]" value="11:30-14:30">
-    <label for="fascia2">11:30 - 14:30</label>
-  </div>
-
-  <div class="time-choice">
-    <input type="checkbox" id="fascia3" name="orari[]" value="14:30-18:30">
-    <label for="fascia3">14:30 - 18:30</label>
-  </div>
-  
-</fieldset>
+                    <label for="facolta">Facoltà</label>
+                    <select id="facolta" name="facolta">
+                        <option value="">-- Seleziona la tua facoltà --</option>
+                        <option>Economia</option>
+                        <option>Giurisprudenza</option>
+                        <option>Ingegneria Civile</option>
+                        <option>Ingegneria Informatica</option>
+                        <option>Ingegneria Meccanica</option>
+                        <option>Lettere e Filosofia</option>
+                        <option>Lingue e Letterature Straniere</option>
+                        <option>Matematica</option>
+                        <option>Medicina e Chirurgia</option>
+                        <option>Scienze della Comunicazione</option>
+                        <option>Scienze dell’Educazione</option>
+                        <option>Scienze Motorie</option>
+                        <option>Scienze Politiche</option>
+                        <option>Scienze e Tecnologie Alimentari</option>
+                        <option>Sociologia</option>
+                        <option>Non è tra le opzioni</option>
+                    </select>
 
 
+                <fieldset>
+                    <legend>Orari preferiti per studiare</legend>
 
+                    <div class="time-choice">
+                      <input type="checkbox" id="fascia4" name="orari[]" value="qualsiasi">
+                      <label for="fascia4">Qualsiasi</label>
+                    </div>
 
+                    <div class="time-choice">
+                      <input type="checkbox" id="fascia1" name="orari[]" value="8:30-11:30">
+                      <label for="fascia1">8:30 - 11:30</label>
+                    </div>
+
+                    <div class="time-choice">
+                      <input type="checkbox" id="fascia2" name="orari[]" value="11:30-14:30">
+                      <label for="fascia2">11:30 - 14:30</label>
+                    </div>
+
+                    <div class="time-choice">
+                      <input type="checkbox" id="fascia3" name="orari[]" value="14:30-18:30">
+                      <label for="fascia3">14:30 - 18:30</label>
+                    </div>
+                </fieldset>
 
                 <label for="modalita">Modalità preferita</label>
                 <select id="modalita" name="modalita">
@@ -119,7 +120,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <button type="submit" id="avanti">Completa il tuo profilo</button>
                 <div id="homepage-container">
-               <a href="index.php">Torna all'homepage</a>
                </div>
             </form>
 
@@ -127,6 +127,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Se hai bisogno di aiuto, contatta l’assistenza all’indirizzo: 
             <a href="mailto:assistenza@gruppistudio.it">assistenza@gruppistudio.it</a>
             </p>
+        </div>
         </div>
     </body>
 </html>
