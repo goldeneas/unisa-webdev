@@ -77,6 +77,28 @@ if (!isset($_POST["registratiBtn"])) {
 
 <?php
 } else {
+    if (does_user_exist($db, $_POST["email"])) {
+        ?>
+        <body>
+            <div id="errore-id">
+                <div id="errore-id-link">
+                    <h3 class="error-title">Errore</h3>
+                    <p class="redirect">
+                        Esiste già un account con questa email.<br>
+                        Verrai reindirizzato alla registrazione...
+                    </p>
+                </div>
+            </div>
+
+            <script>
+                setTimeout(function() {
+                    window.location.href = "register.php";
+                }, 3000);
+            </script>
+        </body>
+        <?php
+        exit;
+    }
     // (SIMULAZIONE DATABASE) 
     // TODO: Use database
     session_start(); 
