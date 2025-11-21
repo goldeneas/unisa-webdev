@@ -1,3 +1,35 @@
+<?php
+session_start();
+
+if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
+    header("Location: login.php");
+    exit;
+}
+
+require_once "scripts/db_connection.php";
+require_once "scripts/db_users.php";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
+    $anno = $_POST["anno"] ?? null;
+    $facolta = $_POST["facolta"] ?? null;
+    $modalita = $_POST["modalita"] ?? null;
+    
+    $orari = isset($_POST["orari"]) ? implode(", ", $_POST["orari"]) : "";
+
+    $email = $_SESSION["email"];
+
+    update_user_profile($db, $email, $anno, $facolta, $orari, $modalita);
+
+    $_SESSION["university_year"] = $anno;
+    $_SESSION["department"] = $facolta;
+    $_SESSION["preferred_time"] = $orari;
+    $_SESSION["preferred_mode"] = $modalita;
+
+    header("Location: check_profile.php");
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="it">
     <head>
@@ -98,6 +130,7 @@
         </div>
     </body>
 </html>
+
 
 
 
