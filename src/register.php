@@ -77,6 +77,7 @@ if (!isset($_POST["registratiBtn"])) {
 
 <?php
 } else {
+     $email = $_POST["email"];
     if (does_user_exist($db, $_POST["email"])) {
 ?>
         <body>
