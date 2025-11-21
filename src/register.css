@@ -137,3 +137,37 @@ input:focus {
     color: #074e96;
     text-decoration: underline;
 }
+#errore-id {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#errore-id-link {
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+    padding: 35px 32px;
+    width: max(30%, 385px);
+    max-width: 300px;
+    text-align: center;
+}
+
+.error-title {
+     color: #0965c1;
+    font-weight: 550;
+    font-size: 26px;
+    margin-top: 0px;
+    margin-bottom: 0px;
+    text-align: left;
+}
+
+.redirect {
+    color: gray;
+    font-size: 16px;
+    margin-top: 10px;
+    margin-bottom: 0px;
+    text-align: left;
+}
