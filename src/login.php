@@ -55,14 +55,35 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                         </a>
                     </div>
                 </div>
+    <div class="homepagelink">
+    <a href="index.php" class="homelink">Torna all'homepage</a>
+</div>
+            </form>
             </form>
         </div>
 <?php
 } else {
     
     $email = $_POST["email"];
-    if (!does_user_exist($db, $email)) {
-        echo "<p>Utente inesistente</p>";
+   if (!does_user_exist($db, $email)) {
+        ?>
+        <body>
+            <div id="errore-id">
+                <div id="errore-id-link" class="form-centered">
+                    <h3 class="error-title">Errore</h3>
+                    <p class="redirect">
+                        Verrai reindirizzato al login tra pochi secondi...
+                    </p>
+                </div>
+            </div>
+
+            <script>
+                setTimeout(function() {
+                    window.location.href = "login.php";
+                }, 3000);
+            </script>
+        </body>
+        <?php
         return;
     }
 
