@@ -60,5 +60,16 @@ function get_user_by_email($db, $email) {
     $res = pg_query_params($db, $sql, array($email));
     return fetch_one($res);
 }
+function update_user_profile($db, $email, $anno, $facolta, $orari, $modalita) {
+    $sql = "UPDATE users 
+            SET university_year = $1, 
+                department = $2, 
+                preferred_time = $3, 
+                preferred_mode = $4 
+            WHERE email = $5";
 
+    $res = pg_query_params($db, $sql, array($anno, $facolta, $orari, $modalita, $email));
+
+    return $res;
+}
 ?>
