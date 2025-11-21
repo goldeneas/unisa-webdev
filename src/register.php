@@ -12,47 +12,51 @@
     </head>
 
 <?php
+require_once "navbar.php";
+
 // Controllo se il bottone "Registrati" è stato premuto
 if (!isset($_POST["registratiBtn"])) {
 ?>
     <body>
-        <div class="register-card"> <h1> Registrati</h1>
-            <div id="register-subtitle"> per trovare un gruppo adatto a te! </div>
-            
-            <form id="Register" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-
-                <p>
-                    <label for="name">Nome</label>
-                    <input type="text" placeholder="Inserisci il tuo nome" id="name" name="name" required />
-                </p>
-
-                <p>
-                    <label for="cognome">Cognome</label>
-                    <input type="text" placeholder="Inserisci il tuo cognome" id="surname" name="surname" required />
-                </p>
+        <div id="card-container">
+            <div class="register-card">
+                <h1> Registrati</h1>
+                <div id="register-subtitle"> per trovare un gruppo adatto a te! </div>
                 
-                <p>
-                    <label for="email">E-mail</label>
-                    <input type="email" placeholder="Inserisci la tua e-mail" id="email" name="email" required />
+                <form id="Register" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>">
+
+                    <p>
+                        <label for="name">Nome</label>
+                        <input type="text" placeholder="Inserisci il tuo nome" id="name" name="name" required />
+                    </p>
+
+                    <p>
+                        <label for="cognome">Cognome</label>
+                        <input type="text" placeholder="Inserisci il tuo cognome" id="surname" name="surname" required />
+                    </p>
+                    
+                    <p>
+                        <label for="email">E-mail</label>
+                        <input type="email" placeholder="Inserisci la tua e-mail" id="email" name="email" required />
+                    </p>
+                    
+                    <p>
+                        <label for="password">Password (minimo 6 caratteri)</label>
+                        <input type="password" placeholder="Inserisci la tua password" id="password" name="password" minlength="6" required />
+
+                        <button type="button" onclick="togglePassword()" id="toggle-password">
+                            mostra
+                        </button>
+                    </p>
+
+                    <input type="submit" name="registratiBtn" value="Registrati" class="btn">
+
+                </form>
+
+                <p class="login-link">
+                    Già registrato? <a href="login.php">Esegui il login</a>
                 </p>
-                
-                <p>
-                    <label for="password">Password (minimo 6 caratteri)</label>
-                    <input type="password" placeholder="Inserisci la tua password" id="password" name="password" minlength="6" required />
-
-                    <button type="button" onclick="togglePassword()" id="toggle-password">
-                        mostra
-                    </button>
-                </p>
-
-                <input type="submit" name="registratiBtn" value="Registrati" class="btn">
-
-            </form>
-
-            <p class="login-link">
-                Già registrato? <a href="login.php">Esegui il login</a>
-            </p>
-
+            </div>
         </div>
 
         <script>

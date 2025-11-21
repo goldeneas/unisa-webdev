@@ -1,5 +1,9 @@
 body, html {
     height: 100%;
+    margin: 0;
+
+    /*nascondi scrollbar*/
+    overflow: hidden;
 }
 
 * {
@@ -145,6 +149,7 @@ label {
 
 #register-container {
     margin-top: 20px;
+    text-align: center;
 }
 
 .text-input {

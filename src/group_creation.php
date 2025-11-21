@@ -12,6 +12,8 @@
     </head>
 
     <?php
+        require_once "navbar.php";
+
         if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
     ?>
         <body>
@@ -59,9 +61,6 @@
                     </p>
 
                     <button id="create-btn" type="submit">Crea il gruppo</button>
-                    <div id="homepage-link">
-                        <a href="index.php">Torna all'homepage</a>
-                    </div>
                 </form>
 
             </div>

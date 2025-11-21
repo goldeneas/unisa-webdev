@@ -14,8 +14,10 @@
     </head>
 
 <?php
-require_once "scripts/db_connection.php";
-require_once "scripts/db_users.php";
+/* require_once "scripts/db_connection.php"; */
+/* require_once "scripts/db_users.php"; */
+
+require_once "navbar.php";
 
 if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 ?>

@@ -3,10 +3,10 @@ session_start();
 
 // 1. CONTROLLO LOGIN
 // Se l'utente non è loggato, lo rimandiamo alla pagina di login
-if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-    header("Location: login.php");
-    exit;
-}
+/* if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) { */
+/*     header("Location: login.php"); */
+/*     exit; */
+/* } */
 
 // 2. SIMULAZIONE DATABASE (DATI DEL GRUPPO)
 // in futuro verrà sostituita da una richiesta SQL tipo:
@@ -41,8 +41,12 @@ $dati_gruppo = [
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body>
 
+<?php
+    require_once "navbar.php";
+?>
+
+<body>
     <div class="container">
         <div class="card">
             
@@ -90,8 +94,6 @@ $dati_gruppo = [
             </div>
 
             <div class="card-footer">
-                <a href="index.php" class="btn btn-secondary btn-outline">Torna alla home</a>
-                
                 <button onclick="showModal()" class="btn btn-primary">Unisciti al gruppo</button>
             </div>
         </div>

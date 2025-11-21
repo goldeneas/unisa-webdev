@@ -1,3 +1,11 @@
+body, html {
+    height: 100%;
+    margin: 0;
+
+    /*nascondi scrollbar*/
+    overflow: hidden;
+}
+
 * {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
@@ -146,7 +154,7 @@ h2 {
 @media (min-width: 640px) {
     .card-footer {
         flex-direction: row; /* sm:flex-row */
-        justify-content: space-between; /* sm:justify-between */
+        justify-content: right; /* sm:justify-between */
     }
 }
 

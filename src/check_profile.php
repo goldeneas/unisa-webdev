@@ -23,15 +23,13 @@
     $preferred_mode = $_SESSION["preferred_mode"] ?? "";
     $preferred_time = $_SESSION["preferred_time"] ?? "";
     $groups = $_SESSION["groups"] ?? [];
+
+    require_once "navbar.php";
 ?>
 
     <body>
         <div id="form-container">
             <form id="form">
-                <div onclick='redirect("index.php")' id="close-cross">
-                    ✕
-                </div>
-
 <?php
                 printf('<label id="username">%s %s</label>', $name, $surname);
                 printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
