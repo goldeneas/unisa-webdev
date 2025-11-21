@@ -3,10 +3,10 @@ session_start();
 
 // 1. CONTROLLO LOGIN
 // Se l'utente non è loggato, lo rimandiamo alla pagina di login
-/* if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) { */
-/*     header("Location: login.php"); */
-/*     exit; */
-/* } */
+if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
+    header("Location: login.php");
+    exit;
+}
 
 // 2. SIMULAZIONE DATABASE (DATI DEL GRUPPO)
 // in futuro verrà sostituita da una richiesta SQL tipo:
