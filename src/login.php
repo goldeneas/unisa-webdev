@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <link rel="stylesheet" href="login.css">
         <link rel="stylesheet" href="background.css">
+        <link rel="stylesheet" href="centered_banner.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -17,6 +18,7 @@
 require_once "scripts/db_connection.php";
 require_once "scripts/db_users.php";
 
+require_once "centered_banner.php";
 require_once "navbar.php";
 
 if (!isset($_POST["email"]) || !isset($_POST["password"])) {
@@ -59,27 +61,11 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
         </div>
 <?php
 } else {
-    
-    $email = $_POST["email"];
-   if (!does_user_exist($db, $email)) {
-        ?>
-        <body>
-            <div id="errore-id">
-                <div id="errore-id-link" class="form-centered">
-                    <h3 class="error-title">Errore</h3>
-                    <p class="redirect">
-                        Verrai reindirizzato al login tra pochi secondi...
-                    </p>
-                </div>
-            </div>
 
-            <script>
-                setTimeout(function() {
-                    window.location.href = "login.php";
-                }, 3000);
-            </script>
-        </body>
-        <?php
+   $email = $_POST["email"];
+   if (!does_user_exist($db, $email)) {
+        spawn_centered_banner("Email Inesistente", "Potrai riprovare a breve");
+        header("refresh:3;url=login.php" );
         return;
     }
 
@@ -96,23 +82,9 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
     $_SESSION["surname"] = $user["surname"];
     $_SESSION["email"] = $email;
     $_SESSION["logged_in"] = true;
-?>
-    <body>
-        <div id="login-form-container">
-            <form id="login-form">
-                <div>
-                    <h1 style="margin-bottom: 0px;">Ti sei loggato!</h1>
-                    <p style="margin-top: 3px;">Redirect alla pagina principale...</p>
-                    <script>
-                        window.setTimeout(function() {
-                            location.href="index.php"
-                        }, 3000);
-                    </script>
-                </div>
-            </form>
-        </div>
-    </body>
-<?php
+
+    spawn_centered_banner("Ti sei loggato!", "Redirect alla pagina principale...");
+    header("refresh:3;url=index.php" );
 }
 ?>
 

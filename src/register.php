@@ -4,6 +4,7 @@
         <title>Registrazione</title>
         <link rel="stylesheet" href="register.css">
         <link rel="stylesheet" href="background.css">
+        <link rel="stylesheet" href="centered_banner.css">
 
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
         <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -13,6 +14,8 @@
 
 <?php
 require_once "navbar.php";
+require_once "centered_banner.php";
+
 require_once "scripts/db_users.php";
 require_once "scripts/db_connection.php";
 
@@ -81,57 +84,21 @@ if (!isset($_POST["registratiBtn"])) {
 } else {
      $email = $_POST["email"];
     if (does_user_exist($db, $_POST["email"])) {
-?>
-        <body>
-            <div id="errore-id">
-                <div id="errore-id-link">
-                    <h3 class="error-title">Errore</h3>
-                    <p class="redirect">
-                        Esiste già un account con questa email.<br>
-                        Verrai reindirizzato alla registrazione...
-                    </p>
-                </div>
-            </div>
-
-            <script>
-                setTimeout(function() {
-                    window.location.href = "register.php";
-                }, 3000);
-            </script>
-        </body>
-<?php
+        spawn_centered_banner("Email già in uso!", "Potrai riprovare a breve...");
+        header("refresh:3;url=register.php");
         exit;
     }
+
     // (SIMULAZIONE DATABASE) 
     // TODO: Use database
-    
     
     $_SESSION["name"] = $_POST["name"]; // Prendo il vero nome inserito!
     $_SESSION["surname"] = $_POST["surname"]; 
     $_SESSION["email"] = $_POST["email"]; //Stessa cosa qui, fico!!!
     $_SESSION["logged_in"] = true;
-?>
-    <body>
-        <div class="register-card" style="text-align: center;">
-            <form id="Register">
-                <div>
-                    <h1 style="margin-bottom: 0px;">Benvenuto, <?php echo htmlspecialchars($_POST["name"]); ?>!</h1>
-                    <p style="margin-top: 10px;">
-                        Registrazione completata con successo.
-                        Redirect alla pagina principale...
-                    </p>
-                    
-                    <script>
-                        window.setTimeout(function() {
-                            location.href="index.php"
-                        }, 3000); //Ti fa leggere i messaggi precedenti per 3secondi
-                                  //e dopo ti indirizzia alla homepage.
-                    </script>
-                </div>
-            </form>
-        </div>
-    </body>
-<?php
+    
+    spawn_centered_banner("Registrazione completata!", "Redirect alla pagina principale...");
+    header("refresh:3;url=index.php");
 }
 ?>
 </html>
