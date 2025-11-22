@@ -1,9 +1,8 @@
+/* === SETUP BASE === */
 body, html {
     height: 100%;
     margin: 0;
-
-    /*nascondi scrollbar*/
-    overflow: hidden;
+    overflow: hidden; /* Nascondi scrollbar */
 }
 
 * {
@@ -11,241 +10,204 @@ body, html {
     font-optical-sizing: auto;
     font-weight: 350;
     font-style: normal;
+    box-sizing: border-box; /* Spostato qui per pulizia globale */
 }
 
-/* Contenitore per centrare */
+/* === LAYOUT CENTRALE === */
 .container {
     min-height: 100vh;
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem; /* p-4 */
+    padding: 1rem;
 }
 
-/* Stile della Card */
+/* === CARD === */
 .card {
-    background-color: #ffffff; /* bg-white */
-    border-radius: 1rem; /* rounded-2xl */
+    background-color: #ffffff;
+    border-radius: 1rem;
     box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2); 
     width: 100%;
-    max-width: 42rem; /* max-w-2xl */
+    max-width: 42rem;
     overflow: hidden;
 }
 
-/* Sezioni della Card (Header, Body, Footer) */
-.card-header,
-.card-body,
-.card-footer {
-    padding: 1.5rem; /* p-6 */
+/* Padding unificato per le sezioni */
+.card-header, .card-body, .card-footer {
+    padding: 1.5rem;
 }
 
 @media (min-width: 768px) {
-    .card-header,
-    .card-body,
-    .card-footer {
-        padding: 2rem; /* md:p-8 */
+    .card-header, .card-body, .card-footer {
+        padding: 2rem;
     }
 }
 
-.card-header {
-    border-bottom: 1px solid #e5e7eb; /* border-b border-gray-200 */
+.card-header { border-bottom: 1px solid #e5e7eb; }
+.card-footer { 
+    background-color: #f9fafb; 
+    border-top: 1px solid #e5e7eb;
+    /* La logica flex è gestita da .card-footer-actions */
 }
 
-.card-footer {
-    background-color: #f9fafb; /* bg-gray-50 */
-    border-top: 1px solid #e5e7eb; /* border-t border-gray-200 */
-}
-
-/* Tipografia */
-h1 {
-    font-weight: 700; /* font-bold */
-    margin-bottom: 0; /* mb-2 */
+/* === TIPOGRAFIA === */
+/* Reset margini comuni per pulire il codice */
+h1, h2, .subtitle, .description {
     margin-top: 0;
+}
+
+h1 {
+    font-weight: 700;
+    margin-bottom: 0;
     letter-spacing: -1px;
 }
 
 h2 {
-    font-size: 1.25rem; /* text-xl */
-    font-weight: 600; /* font-semibold */
-    margin-bottom: 0.75rem; /* mb-3 */
-    margin-top: 0;
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.75rem;
 }
 
-.card-body h2 {
-    margin-bottom: 5px; /* mb-4 */
-}
+.card-body h2 { margin-bottom: 5px; }
 
 .subtitle {
-    font-size: 0.875rem; /* text-sm */
-    color: #6b7280; /* text-gray-500 */
-    margin-top: 0;
+    font-size: 0.875rem;
+    color: #6b7280;
     margin-bottom: 0;
 }
 
 .subtitle span {
-    font-weight: 500; /* font-medium */
-    color: #374151; /* text-gray-700 */
+    font-weight: 500;
+    color: #374151;
 }
 
 .description {
-    color: #4b5563; /* text-gray-600 */
-    margin-bottom: 1.5rem; /* mb-6 */
-    margin-top: 0;
+    color: #4b5563;
+    margin-bottom: 1.5rem;
     font-size: 16px;
 }
 
-/* Tags Linguaggio */
-.tags-container {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem; /* gap-2 */
-}
-
-.tag {
-    font-size: 0.75rem; /* text-xs */
-    font-weight: 600; /* font-semibold */
-    padding: 0.25rem 0.75rem; /* px-3 py-1 */
-    border-radius: 9999px; /* rounded-full */
-}
-
-/* Lista Partecipanti */
+/* === PARTECIPANTI === */
 .participants-list {
     display: flex;
     flex-direction: column;
-    gap: 0.75rem; /* space-y-3 */
+    gap: 0.75rem;
 }
 
 .participant-item {
     display: flex;
     align-items: center;
-    gap: 0.75rem; /* space-x-3 */
+    gap: 0.75rem;
 }
 
 .avatar {
-    width: 2.5rem; /* w-10 */
-    height: 2.5rem; /* h-10 */
-    border-radius: 9999px; /* rounded-full */
-    background-color: #e5e7eb; /* bg-gray-200 */
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    background-color: #e5e7eb;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-weight: 600; /* font-semibold */
-    color: #4b5563; /* text-gray-600 */
+    font-weight: 600;
+    color: #4b5563;
     text-transform: uppercase;
 }
 
 .avatar-admin {
-    background-color: #e0e7ff; /* bg-indigo-100 */
+    background-color: #e0e7ff;
     color: #0965c1;
 }
 
 .participant-name {
+    font-weight: 500;
+}
+
+.participant-name a {
     color: #0a59a8;
-    font-weight: 500; /* font-medium */
+    text-decoration: none; /* Aggiunto per pulizia link */
 }
 
-/* Pulsanti */
-.card-footer {
-    display: flex;
-    flex-direction: column;
-    gap: 0.75rem; /* gap-3 */
-}
-
-@media (min-width: 640px) {
-    .card-footer {
-        flex-direction: row; /* sm:flex-row */
-        justify-content: right; /* sm:justify-between */
-    }
-}
-
+/* === PULSANTI === */
 .btn {
-    /* Dimensioni e Spaziatura */
     width: 100%;
     padding: 0.75rem 1.5rem;
-    box-sizing: border-box;
     
-    font-family: 'Inter', sans-serif; /* Forza il font anche sul button */
-    font-size: 14px; /* O 1rem, ma assicurati sia fisso */
+    font-family: 'Inter', sans-serif;
+    font-size: 14px;
     font-weight: 600;
-    line-height: 1.5; /* Assicura stessa altezza riga */
+    line-height: 1.5;
     text-decoration: none;
     
-    /* Allineamento */
-    display: inline-flex; /* Meglio di block per centrare testo in a e button */
-    align-items: center;  /* Centra verticalmente */
-    justify-content: center; /* Centra orizzontalmente */
-    
-    /* Stile Bordo e Colore */
-    border-radius: 0.5rem;
-    border: none; /* Rimuove i bordi default dei button */
-    cursor: pointer;
-    transition: all 0.15s ease-in-out;
-}
-
-/* Mantieni la media query per la larghezza */
-@media (min-width: 640px) {
-    .btn {
-        width: auto;
-    }
-}
-
-.btn-primary {
-    background-color: #0965c1;
-    color: #ffffff; /* text-white */
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
-}
-
-.btn-primary:hover {
-    background-color: #0a59a8;
-}
-
-.btn-secondary {
-    background-color: #616469;
-    color: #ffffff; /* text-white */
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
-}
-
-.btn-secondary:hover {
-    background-color: #0a59a8;
-}
-
-/* Stili Modale */
-.modal {
-    display: none; /* Nascosta di default */
-    position: fixed;
-    inset: 0;
-    background-color: rgba(0, 0, 0, 0.5); /* bg-black bg-opacity-50 */
+    display: inline-flex;
     align-items: center;
     justify-content: center;
-    padding: 1rem; /* p-4 */
+    
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+}
+
+@media (min-width: 640px) {
+    .btn { width: auto; }
+}
+
+/* Varianti Colore */
+.btn-primary {
+    background-color: #0965c1;
+    color: #ffffff;
+}
+.btn-primary:hover { background-color: #0a59a8; }
+
+.btn-danger {
+    background-color: #dc2626;
+    color: white;
+    border: 1px solid #b91c1c; /* Eccezione per il bordo rosso */
+}
+.btn-danger:hover { background-color: #b91c1c; }
+
+/* Contenitore pulsanti nel footer */
+.card-footer-actions {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+/* === MODALE === */
+.modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
     z-index: 50;
 }
 
 .modal-content {
     background-color: #ffffff;
-    border-radius: 0.5rem; /* rounded-lg */
+    border-radius: 0.5rem;
     box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
-    padding: 1.5rem; /* p-6 */
+    padding: 1.5rem;
     width: 100%;
-    max-width: 28rem; /* max-w-md */
+    max-width: 28rem;
     text-align: center;
 }
 
 @media (min-width: 768px) {
-    .modal-content {
-        padding: 2rem; /* md:p-8 */
-    }
+    .modal-content { padding: 2rem; }
 }
 
 .modal-content h3 {
-    font-size: 1.5rem; /* text-2xl */
-    font-weight: 600; /* font-semibold */
-    margin-top: 0;
-    margin-bottom: 1rem; /* mb-4 */
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin: 0 0 1rem 0; /* Shorthand margin */
 }
 
 .modal-content p {
-    color: #4b5563; /* text-gray-600 */
-    margin-top: 0;
-    margin-bottom: 1.5rem; /* mb-6 */
+    color: #4b5563;
+    margin: 0 0 1.5rem 0;
 }
