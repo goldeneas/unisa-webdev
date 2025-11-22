@@ -104,7 +104,7 @@ if (!isset($_POST["registratiBtn"])) {
     }
     // (SIMULAZIONE DATABASE) 
     // TODO: Use database
-    session_start(); 
+    
     
     $_SESSION["name"] = $_POST["name"]; // Prendo il vero nome inserito!
     $_SESSION["surname"] = $_POST["surname"]; 
