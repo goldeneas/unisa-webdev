@@ -1,56 +1,47 @@
 * {
     font-family: "Roboto", sans-serif;
-    font-optical-sizing: auto;
-    font-weight: 350; 
-    font-style: normal;
+    font-weight: 350;
 }
 
 body, html {
     height: 100%;
     margin: 0;
-
-    /*nascondi scrollbar*/
     overflow: hidden;
 }
 
-#card-container {
+#card-container, #errore-id {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
+    width: 100%;
 }
 
 .register-card {
     background-color: white;
     border-radius: 8px;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    padding: 36px 32px; 
+    padding: 36px 32px;
     width: 100%;
     max-width: 400px;
     box-sizing: border-box;
-    
-    text-align: center; 
+    text-align: center;
 }
 
-/* TITOLO E SOTTOTITOLO */
 h1 {
-    font-weight: 700; 
+    font-weight: 700;
     font-size: 28px;
     color: #222;
-    margin-top: 0;
-    margin-bottom: 0px; 
+    margin: 0;
     text-align: left;
 }
 
 #register-subtitle {
-     margin-top: 0px;
-    margin-bottom: 10%;
+    margin: 0 0 10% 0;
     text-align: left;
-
     font-size: 16px;
 }
 
-/* ELEMENTI DEL FORM  */
 form p {
     margin: 0 0 16px 0;
     text-align: left;
@@ -62,7 +53,7 @@ label {
     font-size: 0.9em;
     color: #222;
     margin-bottom: 6px;
-    font-weight: 600; /
+    font-weight: 600;
 }
 
 input[type="email"],
@@ -75,16 +66,14 @@ input[type="text"] {
     border: 1px solid #b2b2b2;
     border-radius: 4px;
     box-sizing: border-box;
-    transition: border-color 0.3s; /* Effetto carino al click */
+    transition: border-color 0.3s;
 }
 
-/* Effetto focus quando clicchi nell'input */
 input:focus {
     outline: none;
     border-color: #0965c1;
 }
 
-/* --- BOTTONE --- */
 .btn {
     width: 100%;
     background-color: #0965c1;
@@ -96,59 +85,39 @@ input:focus {
     margin-top: 14px;
     font-weight: 500;
     cursor: pointer;
-    box-shadow: 0px 4px 10px rgba(9, 101, 193, 0.3); 
+    box-shadow: 0 4px 10px rgba(9, 101, 193, 0.3);
 }
 
 .btn:hover {
     background-color: #0a59a8;
 }
 
-/* Già registrato? */
-.login-link-container {
-    margin-top: 20px;
-    text-align: center; 
-    font-size: 0.95em;
-}
-
-
 #password {
-    padding-right: 60px; /* Evita che il testo scritto vada sotto il "mostra" */
+    padding-right: 60px;
 }
 
-/* Pulsante: mostra */
 #toggle-password {
-    position: absolute; /* Lo sgancia dal flusso normale */
-    right: 10px;        
-    bottom: 10px;       
-    
-    /* Grafica botone*/
+    position: absolute;
+    right: 10px;
+    bottom: 10px;
     background: transparent;
     border: none;
-    color: #0965c1;     
-    font-weight: 700;   
-    font-size: 14px;    
+    color: #0965c1;
+    font-weight: 700;
+    font-size: 14px;
     cursor: pointer;
     padding: 0;
-             
 }
 
-/* Effetto al passaggio del mouse */
 #toggle-password:hover {
     color: #074e96;
     text-decoration: underline;
-}
-#errore-id {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
 }
 
 #errore-id-link {
     background-color: white;
     border-radius: 5px;
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px -2px rgba(0, 0, 0, 0.2);
     padding: 35px 32px;
     width: 100%;
     max-width: 385px;
@@ -159,15 +128,13 @@ input:focus {
     color: #0965c1;
     font-weight: 550;
     font-size: 26px;
-    margin-top: 0px;
-    margin-bottom: 0px;
+    margin: 0;
     text-align: center;
 }
 
 .redirect {
     color: gray;
     font-size: 16px;
-    margin-top: 10px;
-    margin-bottom: 0px;
+    margin: 10px 0 0 0;
     text-align: center;
 }
