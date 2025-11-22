@@ -14,6 +14,7 @@
 <?php
 require_once "navbar.php";
 require_once "scripts/db_users.php";
+require_once "scripts/connection.php";
 
 // Controllo se il bottone "Registrati" è stato premuto
 if (!isset($_POST["registratiBtn"])) {
