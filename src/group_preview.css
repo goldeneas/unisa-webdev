@@ -76,10 +76,7 @@ h2 {
     margin-bottom: 0;
 }
 
-.subtitle span {
-    font-weight: 500;
-    color: #374151;
-}
+
 
 .description {
     color: #4b5563;
@@ -160,20 +157,9 @@ h2 {
 }
 .btn-primary:hover { background-color: #0a59a8; }
 
-.btn-danger {
-    background-color: #dc2626;
-    color: white;
-    border: 1px solid #b91c1c; /* Eccezione per il bordo rosso */
-}
-.btn-danger:hover { background-color: #b91c1c; }
 
-/* Contenitore pulsanti nel footer */
-.card-footer-actions {
-    display: flex;
-    gap: 10px;
-    flex-wrap: wrap;
-    justify-content: space-between;
-}
+
+
 
 /* === MODALE === */
 .modal {
