@@ -13,10 +13,6 @@ body, html {
     font-style: normal;
 }
 
-h1 {
-    font-weight: 550;
-    font-size: 26px;
-}
 
 hr {
   display: block;
@@ -53,18 +49,6 @@ hr {
     height: 100%;
 }
 
-#close-cross:hover {
-    cursor: pointer;
-}
-
-#close-cross {
-    position: absolute;
-    font-size: 22px;
-    font-weight: 200;
-    right: 18px;
-    top: 10px;
-}
-
 #username {
     font-size: 26px;
     font-weight: 600;
@@ -99,43 +83,6 @@ hr {
 
     border: 0px;
     margin-top: 45px;
-}
-
-.form-btn:hover {
-    cursor: pointer;
-    background-color: #0a59a8;
-}
-
-.form-btn {
-    width: 100%;
-    line-height: 3em;
-    border-radius: 20px;
-    display: block;
-
-    color: white;
-
-    background-color: #0965c1;
-
-    font-weight: 600;
-    font-size: 14px;
-
-    border: 0px;
-    margin-top: 20px;
-
-    text-decoration-line: none;
-    text-align: center;
-}
-
-#name-container {
-    display: flex;
-    align-content: center;
-
-    align-items: center;
-    justify-content: start;
-
-    width: 100%;
-    margin-bottom: 40px;
-    gap: 20px;
 }
 
 .list-entry {
