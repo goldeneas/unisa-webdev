@@ -1,10 +1,7 @@
 <?php
     require_once "navbar.php";
-
-    if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-        header("Location: login.php");
-        exit;
-    }
+    require_once "centered_banner.php";
+ 
 ?>
 
 <!DOCTYPE html>
@@ -14,16 +11,21 @@
         <title>Crea il tuo gruppo!</title>
         <link rel="stylesheet" href="group_creation.css">
         <link rel="stylesheet" href="background.css">
+        <link rel="stylesheet" href="centered_banner.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
     </head>
 
-    <?php
-        if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
-    ?>
         <body>
+  <?php 
+  if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
+         spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
+         header("refresh:3;url=login.php" );
+        return;
+    }if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
+    ?>
             <div id="container">
                 <form id="group-creation-form" method="post">
                     <h1 id="title">Crea il tuo gruppo di studio</h1>
