@@ -107,21 +107,8 @@ button#avanti:hover {
 .assistenza a:hover {
     text-decoration: underline;
 }
-#homepage-container {
-    margin-top: 10px;
-    text-align: center;
-    font-size: 14px;
-}
 
-#homepage-container a {
-    color: #0965c1;
-    text-decoration: none;
-    font-weight: 500;
-}
 
-#homepage-container a:hover {
-    text-decoration: underline;
-}
 
 
 
