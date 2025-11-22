@@ -9,7 +9,13 @@ body, html {
     overflow: hidden;
 }
 
-
+#card-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
 
 .register-card {
     background-color: white;
