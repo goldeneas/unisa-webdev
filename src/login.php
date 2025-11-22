@@ -55,10 +55,6 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                         </a>
                     </div>
                 </div>
-    <div class="homepagelink">
-    <a href="index.php" class="homelink">Torna all'homepage</a>
-</div>
-            </form>
             </form>
         </div>
 <?php
