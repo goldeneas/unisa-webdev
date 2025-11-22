@@ -1,10 +1,10 @@
 <?php
-session_start();
+    require_once "navbar.php";
 
-if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-    header("Location: login.php");
-    exit;
-}
+    if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -21,8 +21,6 @@ if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
     </head>
 
     <?php
-        require_once "navbar.php";
-
         if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
     ?>
         <body>
