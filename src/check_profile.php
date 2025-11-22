@@ -12,7 +12,7 @@
     </head>
 
 <?php
-    session_start();
+    require_once "navbar.php";
 
     $name = $_SESSION["name"] ?? "";
     $surname = $_SESSION["surname"] ?? "";
@@ -23,8 +23,6 @@
     $preferred_mode = $_SESSION["preferred_mode"] ?? "";
     $preferred_time = $_SESSION["preferred_time"] ?? "";
     $groups = $_SESSION["groups"] ?? [];
-
-    require_once "navbar.php";
 ?>
 
     <body>
