@@ -119,8 +119,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 </select>
 
                 <button type="submit" id="avanti">Completa il tuo profilo</button>
-                <div id="homepage-container">
-               </div>
+                
             </form>
 
             <p class="assistenza">
@@ -131,6 +130,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </body>
 </html>
+
 
 
 
