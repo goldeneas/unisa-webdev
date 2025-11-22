@@ -109,12 +109,4 @@ button:hover {
     background-color: #0a59a8;
 }
 
-#homepage-link a {
-    color: #0965c1;
-    text-decoration: none;
-    font-weight: 500;
-}
 
-#homepage-link a:hover {
-    text-decoration: underline;
-}
