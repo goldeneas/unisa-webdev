@@ -10,7 +10,7 @@ require_once "scripts/db_connection.php";
 require_once "scripts/db_users.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    
+
     $anno = $_POST["anno"] ?? null;
     $facolta = $_POST["facolta"] ?? null;
     $modalita = $_POST["modalita"] ?? null;

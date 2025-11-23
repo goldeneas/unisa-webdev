@@ -56,7 +56,7 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                         <p style="display: inline">
                             Non hai ancora un account?
                         </p>
-                        <a href="register.html">
+                        <a href="register.php">
                             Registrati
                         </a>
                     </div>
