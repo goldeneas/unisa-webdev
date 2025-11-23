@@ -88,12 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
                 <fieldset>
                     <legend>Orari preferiti per studiare</legend>
-
-                    <div class="time-choice">
-                      <input type="checkbox" id="fascia4" name="orari[]" value="qualsiasi">
-                      <label for="fascia4">Qualsiasi</label>
-                    </div>
-
+                    
                     <div class="time-choice">
                       <input type="checkbox" id="fascia1" name="orari[]" value="8:30-11:30">
                       <label for="fascia1">8:30 - 11:30</label>
@@ -130,6 +125,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </body>
 </html>
+
 
 
 
