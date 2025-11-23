@@ -3,7 +3,8 @@ require_once "db_utils.php";
 require_once "db_users.php";
 
 function create_group($db, $name, $course, $subject, $max_members, $description, $is_public,
-        $owner_email) {
+    $owner_email) {
+
     $owner_id = get_user_id_by_email($db, $owner_email);
     $sql = "INSERT INTO groups(name, course, subject, max_members, description, is_public, owner_id) 
             VALUES($1, $2, $3, $4, $5, $6, $7)";
