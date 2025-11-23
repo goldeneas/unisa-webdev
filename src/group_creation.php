@@ -19,12 +19,14 @@
     </head>
 
         <body>
-  <?php 
-  if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
+  <?php
+    if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
          spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
          header("refresh:3;url=login.php" );
         return;
-    }if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
+    }
+
+    if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
     ?>
             <div id="container">
                 <form id="group-creation-form" method="post">
@@ -75,27 +77,10 @@
             </div>
 
         </body>
-    <?php
+<?php
         } else {
-            session_start();
-        // TODO: Use database
-    ?>
-        <body>
-            <div id="container">
-                <form id="group-creation-form">
-                    <div>
-                        <h1 style="margin-bottom: 0px;">Gruppo creato correttamente!</h1>
-                        <p style="margin-top: 3px;">Tra poco verrai reindirizzato alla pagina principale</p>
-                        <script>
-                            window.setTimeout(function() {
-                                location.href="index.php"
-                            }, 3000);
-                        </script>
-                    </div>
-                </form>
-            </div>
-        </body>
-    <?php
+            spawn_centered_banner("Gruppo Creato!", "Redirect in corso...");
+            header("refresh:3;url=index.php" );
         }
-    ?>
+?>
 </html>
