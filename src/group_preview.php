@@ -1,5 +1,5 @@
 <?php
-//session_start();
+session_start();
 
 //  SIMULAZIONE DATABASE (DATI DEL GRUPPO)
 // in futuro verrà sostituita da una richiesta SQL tipo:

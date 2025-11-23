@@ -1,9 +1,5 @@
 <link rel="stylesheet" href="navbar.css">
 
-<?php
-    session_start();
-?>
-
 <div id="navbar-container">
     <a id="logo" href="index.php">StudyGroup</a>
         <ul id="navbar">

@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -77,7 +81,6 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 
     $user = get_user_by_email($db, $email);
 
-    session_start();
     $_SESSION["name"] = $user["name"];
     $_SESSION["surname"] = $user["surname"];
     $_SESSION["email"] = $email;

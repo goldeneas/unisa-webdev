@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,14 +17,14 @@
     </head>
 
 <?php
-require_once "navbar.php";
-require_once "centered_banner.php";
-
-require_once "scripts/db_users.php";
-require_once "scripts/db_connection.php";
-
-// Controllo se il bottone "Registrati" è stato premuto
-if (!isset($_POST["registratiBtn"])) {
+    require_once "navbar.php";
+    require_once "centered_banner.php";
+    
+    require_once "scripts/db_users.php";
+    require_once "scripts/db_connection.php";
+    
+    // Controllo se il bottone "Registrati" è stato premuto
+    if (!isset($_POST["registratiBtn"])) {
 ?>
     <body>
         <div id="card-container">

@@ -1,4 +1,6 @@
 <?php
+    session_start();
+
     require_once "navbar.php";
     require_once "centered_banner.php";
  
