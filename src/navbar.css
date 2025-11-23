@@ -74,4 +74,6 @@
 
     text-decoration-line: none;
 }
-
+.navbar-li {
+    align-content: center;
+}
