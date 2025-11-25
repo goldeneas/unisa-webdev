@@ -3,7 +3,6 @@
 
     require_once "navbar.php";
     require_once "centered_banner.php";
- 
 ?>
 
 <!DOCTYPE html>
@@ -28,7 +27,7 @@
         return;
     }
 
-    if (!isset($_POST["group-name"]) || !isset($_POST["course"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
+    if (!isset($_POST["group-name"]) || !isset($_POST["facolta"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
     ?>
             <div id="container">
                 <form id="group-creation-form" method="post">
@@ -37,25 +36,31 @@
 
                     <p>
                         <label for="group-name">Nome del gruppo</label>
-                    
                         <input type="text" placeholder="Inserisci il nome del tuo gruppo" id="group-name" name="group-name" required />
                     </p>
 
                     <p>
-                        <label for="course">Corso di studi</label>
-
-                        <input type="text" placeholder="Inserisci il corso di studi" id="course" name="course" required />
+                        <label for="facolta">Corso di studi</label>
+                        <select id="facolta" name="facolta" onchange="aggiornaMaterie()" required>
+                            <option value="">-- Seleziona il tuo corso di studi --</option>
+                            <option value="Economia">Economia</option>
+                            <option value="Giurisprudenza">Giurisprudenza</option>
+                            <option value="Ingegneria Informatica">Ingegneria Informatica</option>
+                            <option value="Medicina">Medicina e Chirurgia</option>
+                            <option value="Altro">Altro / Non in lista</option>
+                        </select>
                     </p>
 
                     <p>
                         <label for="subject">Materia di studio</label>
 
-                        <input type="text" placeholder="Inserisci la materia di studio" id="subject" name="subject" required />
+                        <select id="subject" name="subject" required disabled>
+                            <option value="">-- Seleziona prima un corso di studi --</option>
+                        </select>
                     </p>
 
                     <p>
                         <label for="description">Descrizione del gruppo</label>
-
                         <textarea placeholder="Inserisci una breve descrizione del tuo gruppo" id="description" name="description" required></textarea>
                     </p>
 
@@ -77,6 +82,72 @@
                 </form>
 
             </div>
+
+            <script>
+                // 1. Definiamo le liste delle materie per ogni facoltà
+                const databaseMaterie = {
+                    "Economia": [
+                        "Analisi Matematica 1", "Economia Aziendale", "Microeconomia", 
+                        "Diritto Privato", "Statistica", "Marketing"
+                    ],
+                    "Giurisprudenza": [
+                        "Diritto Privato", "Diritto Costituzionale", "Diritto Romano", 
+                        "Filosofia del Diritto", "Diritto Penale"
+                    ],
+                    "Ingegneria Informatica": [
+                        "Analisi 1", "Fisica 1", "Fondamenti di Informatica", 
+                        "Basi di Dati", "Reti di Calcolatori", "Sistemi Operativi"
+                    ],
+                    "Medicina": [
+                        "Anatomia Umana", "Istologia", "Biochimica", 
+                        "Fisiologia", "Patologia Generale"
+                    ],
+                    "Altro": [
+                        "Altro, specifica nella descrizione"
+                    ]
+                };
+
+                function aggiornaMaterie() {
+                    // Prendo i riferimenti ai due menu
+                    const selectFacolta = document.getElementById("facolta");
+                    const selectMateria = document.getElementById("subject");
+                    
+                    // Quale facoltà ha scelto l'utente?
+                    const facoltaScelta = selectFacolta.value;
+
+                    // Svuoto il menu delle materie attuale
+                    selectMateria.innerHTML = "";
+
+                    // Se non ha scelto nulla (ha rimesso "-- Seleziona --")
+                    if (facoltaScelta === "") {
+                        selectMateria.innerHTML = '<option value="">-- Seleziona prima un corso di studi --</option>';
+                        selectMateria.disabled = true; // Disabilito di nuovo
+                        return;
+                    }
+
+                    // Riabilito il menu materie
+                    selectMateria.disabled = false;
+
+                    // Cerco le materie corrispondenti nella lista
+                    let materieDisponibili = databaseMaterie[facoltaScelta];
+
+                    // Se per caso ho scelto una facoltà che non ho inserito nel JS, metto un array vuoto
+                    if (!materieDisponibili) {
+                        materieDisponibili = ["Materia generica"];
+                    }
+
+                    // Creo le opzioni per il menu
+                    materieDisponibili.forEach(function(materia) {
+                        // Creo un nuovo elemento <option>
+                        let nuovaOpzione = document.createElement("option");
+                        nuovaOpzione.value = materia; // Cosa viene inviato al server
+                        nuovaOpzione.text = materia;  // Cosa legge l'utente
+                        
+                        // Lo aggiungo al menu
+                        selectMateria.add(nuovaOpzione);
+                    });
+                }
+            </script>
 
         </body>
 <?php
