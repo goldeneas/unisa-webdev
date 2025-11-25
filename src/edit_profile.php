@@ -2,8 +2,9 @@
 session_start();
 
 if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
-    header("Location: login.php");
-    exit;
+    spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
+    header("refresh:3;url=login.php" );
+    return;
 }
 
 require_once "scripts/db_connection.php";

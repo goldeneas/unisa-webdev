@@ -22,6 +22,12 @@ session_start();
     
     require_once "scripts/db_users.php";
     require_once "scripts/db_connection.php";
+
+    if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) {
+        spawn_centered_banner("Sei gia' loggato!", "Prima effettua il logout");
+        header("refresh:3;url=index.php" );
+        return;
+    }
     
     // Controllo se il bottone "Registrati" è stato premuto
     if (!isset($_POST["registratiBtn"])) {

@@ -5,6 +5,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <link rel="stylesheet" href="check_profile.css">
         <link rel="stylesheet" href="background.css">
+        <link rel="stylesheet" href="centered_banner.css">
 
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +16,13 @@
     session_start();
 
     require_once "navbar.php";
+    require_once "centered_banner.php";
+
+    if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
+        spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
+        header("refresh:3;url=login.php" );
+        return;
+    }
 
     $name = $_SESSION["name"] ?? "";
     $surname = $_SESSION["surname"] ?? "";
