@@ -12,7 +12,7 @@ function create_users_table($db) {
             email VARCHAR(255) NOT NULL UNIQUE,
             password_hash VARCHAR(255) NOT NULL,
             department VARCHAR(100),
-            university_year INTEGER,
+            university_year VARCHAR(20),
             enrollment_year INTEGER,
             preferred_mode VARCHAR(50),
             preferred_time VARCHAR(50),

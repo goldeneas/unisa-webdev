@@ -68,7 +68,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="1">1</option>
                         <option value="2">2</option>
                         <option value="3">3</option>
-                        <option value="fuoricorso">Fuoricorso</option>
+                        <option value="Fuoricorso">Fuoricorso</option>
                     </select>
 
                     <label for="faculty">Facoltà</label>
