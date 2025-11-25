@@ -1,6 +1,15 @@
 <?php
 session_start();
 
+if (!isset($_GET["id"]) || !$_GET["id"]) {
+    header("refresh:0;url=login.php");
+    return;
+}
+
+// Questa variabile contiene l'id del gruppo di cui visualizzare le informazioni
+// Puo' essere utilizzata per prendere le informazioni dal database
+$group_id = $_GET["id"];
+
 //  SIMULAZIONE DATABASE (DATI DEL GRUPPO)
 // in futuro verrà sostituita da una richiesta SQL tipo:
 // $gruppo = $conn->query("SELECT * FROM gruppi WHERE id = 1");

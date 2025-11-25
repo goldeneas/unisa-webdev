@@ -68,17 +68,24 @@ session_start();
                 $curr_members = $group['curr_members'];
                 $max_members = $group['max_members'];
 
-                printf('<div class="group">');
-                    printf('<h3 class="group-header">%s</h3>', $name);
-                    printf('<h4 class="group-subheader">%s</h4>', $code);
-                    printf('<h5 class="group-info">');
-                        printf('%s<br>Membri: %s/%s', $description, $curr_members, $max_members);
-                    printf('</h5>');
-
-                    printf('<button class="show-group-btn" onclick="redirect(\'group_preview.php?code=%s\')">', $code);
-                    printf('Visualizza');
-                    printf('</button>');
-                printf('</div>');
+                printf(
+                    '<div class="group">
+                        <h3 class="group-header">%s</h3>
+                        <h4 class="group-subheader">%s</h4>
+                        <h5 class="group-info">
+                            %s<br>Membri: %s/%s
+                        </h5>
+                        <button class="show-group-btn" onclick="redirect(\'group_preview.php?id=%s\')">
+                            Visualizza
+                        </button>
+                    </div>', 
+                    $name, 
+                    $code, 
+                    $description, 
+                    $curr_members, 
+                    $max_members, 
+                    $code
+                );
             }
         }
 
