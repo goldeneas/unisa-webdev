@@ -67,7 +67,9 @@ h2 {
     margin-bottom: 0.75rem;
 }
 
-.card-body h2 { margin-bottom: 5px; }
+.card-body h2 {
+    margin-bottom: 15px;
+}
 
 .subtitle {
     font-size: 0.875rem;
