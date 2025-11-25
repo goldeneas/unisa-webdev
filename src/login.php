@@ -84,6 +84,11 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
     $_SESSION["name"] = $user["name"];
     $_SESSION["surname"] = $user["surname"];
     $_SESSION["email"] = $email;
+    $_SESSION["university_year"] = $user["university_year"];
+    $_SESSION["department"] = $user["department"];
+    $_SESSION["preferred_time"] = $user["preferred_time"];
+    $_SESSION["preferred_mode"] = $user["preferred_mode"];
+    $_SESSION["enrollment_year"] = $user["enrollment_year"];
     $_SESSION["logged_in"] = true;
 
     spawn_centered_banner("Ti sei loggato!", "Redirect alla pagina principale...");
