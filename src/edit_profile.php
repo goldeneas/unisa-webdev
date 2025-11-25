@@ -6,9 +6,9 @@ require_once "scripts/db_users.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $anno = $_POST["anno"] ?? null;
-    $facolta = $_POST["facolta"] ?? null;
-    $modalita = $_POST["modalita"] ?? null;
+    $anno = !empty($_POST["anno"]) ? $_POST["anno"] : null;
+    $facolta = !empty($_POST["facolta"]) ? $_POST["facolta"] : null;
+    $modalita = !empty($_POST["modalita"]) ? $_POST["modalita"] : null;
     
     $orari = isset($_POST["orari"]) ? implode(", ", $_POST["orari"]) : "";
 
@@ -21,8 +21,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION["preferred_time"] = $orari;
     $_SESSION["preferred_mode"] = $modalita;
 
-    header("Location: check_profile.php");
-    exit;
+    $modifica_profilo = true; 
+    
 }
 ?>
 <!DOCTYPE html>
@@ -37,12 +37,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
+    
     </head>
 
 <?php
     require_once "navbar.php";
     require_once "centered_banner.php";
+
+    if (isset($modifica_profilo) && $modifica_profilo) {
+        spawn_centered_banner("Profilo modificato con successo", "Verrai reindirizzato tra pochi secondi...");
+        header("refresh:3;url=check_profile.php");
+        return; 
+    }
 
     if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
         spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
@@ -57,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1>Modifica profilo</h1>
                 <p id="subtitle">Inserisci informazioni aggiuntive</p>
 
-                <form id="profiloForm">
+                <form id="profiloForm" method="POST"> 
                     <label for="anno">Anno universitario</label>
                     <select id="anno" name="anno">
                         <option value="">-- Seleziona il tuo anno --</option>
@@ -87,7 +93,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option>Sociologia</option>
                         <option>Non è tra le opzioni</option>
                     </select>
-
 
                 <fieldset>
                     <legend>Orari preferiti per studiare</legend>
