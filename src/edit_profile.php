@@ -6,23 +6,22 @@ require_once "scripts/db_users.php";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
-    $anno = !empty($_POST["anno"]) ? $_POST["anno"] : null;
-    $facolta = !empty($_POST["facolta"]) ? $_POST["facolta"] : null;
-    $modalita = !empty($_POST["modalita"]) ? $_POST["modalita"] : null;
+    $year = !empty($_POST["year"]) ? $_POST["year"] : null;
+    $faculty = !empty($_POST["faculty"]) ? $_POST["faculty"] : null;
+    $mode = !empty($_POST["mode"]) ? $_POST["mode"] : null;
     
-    $orari = isset($_POST["orari"]) ? implode(", ", $_POST["orari"]) : "";
+    $times = isset($_POST["times"]) ? implode(", ", $_POST["times"]) : "";
 
     $email = $_SESSION["email"];
 
-    update_user_profile($db, $email, $anno, $facolta, $orari, $modalita);
+    update_user_profile($db, $email, $year, $faculty, $times, $mode);
 
-    $_SESSION["university_year"] = $anno;
-    $_SESSION["department"] = $facolta;
-    $_SESSION["preferred_time"] = $orari;
-    $_SESSION["preferred_mode"] = $modalita;
+    $_SESSION["university_year"] = $year;
+    $_SESSION["department"] = $faculty;
+    $_SESSION["preferred_time"] = $times;
+    $_SESSION["preferred_mode"] = $mode;
 
-    $modifica_profilo = true; 
-    
+    $profile_modified = true; 
 }
 ?>
 <!DOCTYPE html>
@@ -37,14 +36,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-    
     </head>
 
 <?php
     require_once "navbar.php";
     require_once "centered_banner.php";
 
-    if (isset($modifica_profilo) && $modifica_profilo) {
+    if (isset($profile_modified) && $profile_modified) {
         spawn_centered_banner("Profilo modificato con successo", "Verrai reindirizzato tra pochi secondi...");
         header("refresh:3;url=check_profile.php");
         return; 
@@ -63,9 +61,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1>Modifica profilo</h1>
                 <p id="subtitle">Inserisci informazioni aggiuntive</p>
 
-                <form id="profiloForm" method="POST"> 
-                    <label for="anno">Anno universitario</label>
-                    <select id="anno" name="anno">
+                <form id="profileForm" method="POST"> 
+                    <label for="year">Anno universitario</label>
+                    <select id="year" name="year">
                         <option value="">-- Seleziona il tuo anno --</option>
                         <option value="1">1</option>
                         <option value="2">2</option>
@@ -73,8 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="fuoricorso">Fuoricorso</option>
                     </select>
 
-                    <label for="facolta">Facoltà</label>
-                    <select id="facolta" name="facolta">
+                    <label for="faculty">Facoltà</label>
+                    <select id="faculty" name="faculty">
                         <option value="">-- Seleziona la tua facoltà --</option>
                         <option>Economia</option>
                         <option>Giurisprudenza</option>
@@ -98,34 +96,34 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <legend>Orari preferiti per studiare</legend>
                     
                     <div class="time-choice">
-                      <input type="checkbox" id="fascia1" name="orari[]" value="8:30-11:30">
-                      <label for="fascia1">8:30 - 11:30</label>
+                      <input type="checkbox" id="range1" name="times[]" value="8:30-11:30">
+                      <label for="range1">8:30 - 11:30</label>
                     </div>
 
                     <div class="time-choice">
-                      <input type="checkbox" id="fascia2" name="orari[]" value="11:30-14:30">
-                      <label for="fascia2">11:30 - 14:30</label>
+                      <input type="checkbox" id="range2" name="times[]" value="11:30-14:30">
+                      <label for="range2">11:30 - 14:30</label>
                     </div>
 
                     <div class="time-choice">
-                      <input type="checkbox" id="fascia3" name="orari[]" value="14:30-18:30">
-                      <label for="fascia3">14:30 - 18:30</label>
+                      <input type="checkbox" id="range3" name="times[]" value="14:30-18:30">
+                      <label for="range3">14:30 - 18:30</label>
                     </div>
                 </fieldset>
 
-                <label for="modalita">Modalità preferita</label>
-                <select id="modalita" name="modalita">
+                <label for="mode">Modalità preferita</label>
+                <select id="mode" name="mode">
                     <option value="">-- Seleziona la modalità --</option>
                     <option value="presenza">In presenza</option>
                     <option value="online">Online</option>
                     <option value="mista">Mista</option>
                 </select>
 
-                <button type="submit" id="avanti">Completa il tuo profilo</button>
+                <button type="submit" id="next">Completa il tuo profilo</button>
                 
             </form>
 
-            <p class="assistenza">
+            <p class="support">
             Se hai bisogno di aiuto, contatta l’assistenza all’indirizzo: 
             <a href="mailto:assistenza@gruppistudio.it">assistenza@gruppistudio.it</a>
             </p>
@@ -133,13 +131,3 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
     </body>
 </html>
-
-
-
-
-
-
-
-
-
-
