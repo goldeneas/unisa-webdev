@@ -8,9 +8,8 @@ body, html {
 * {
     font-family: "Roboto", sans-serif;
     font-optical-sizing: auto;
-    font-weight: 350;
+    font-weight: 450;
     font-style: normal;
-    box-sizing: border-box; /* Spostato qui per pulizia globale */
 }
 
 /* === LAYOUT CENTRALE === */
