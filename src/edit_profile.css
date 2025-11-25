@@ -70,7 +70,7 @@ fieldset {
     margin-bottom: 16px;
 }
 
-button#avanti {
+button#next {
     width: 100%;
     background-color: #0965c1;
     color: white;
@@ -83,11 +83,11 @@ button#avanti {
     border-radius: 25px;
 }
 
-button#avanti:hover {
+button#next:hover {
     background-color: #0a59a8;
 }
 
-.assistenza {
+.support {
     margin-top: 16px;
     margin-bottom: 0px;
     font-size: 0.9em;
@@ -95,19 +95,11 @@ button#avanti:hover {
     text-align: center;
 }
 
-.assistenza a {
+.support a {
     color: #0073b1;
     text-decoration: none;
 }
 
-.assistenza a:hover {
+.support a:hover {
     text-decoration: underline;
 }
-
-
-
-
-
-
-
-
