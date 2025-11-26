@@ -1,7 +1,7 @@
 <?php
     session_start();
-    session_unset();
-    session_destroy();
+    session_unset(); //Svuota la memoria RAM
+    session_destroy(); //I dati sul server vengono cancellati
 ?>
 
 <body>
