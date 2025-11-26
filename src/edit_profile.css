@@ -103,3 +103,17 @@ button#next:hover {
 .support a:hover {
     text-decoration: underline;
 }
+input[type="number"] {
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+    background-color: #fff;
+    font-size: 16px;
+}
+
+input[type="number"]:focus {
+    border-color: #0073b1;
+    box-shadow: 0 0 0 2px rgba(0, 115, 177, 0.2);
+}
