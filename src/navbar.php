@@ -5,6 +5,9 @@
         <ul id="navbar">
 <?php
         if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
+        //Controlla se la variabile esiste || Controlla se il valore è falso
+        // Se non esiste (non è ancora stata settata) o è falso (l'utente non
+        // si è loggato) viene mostrato l'else.
 ?>
             <li class="navbar-li">
                 <a class="navbar-entry login-btn" href="login.php">Login</a>
