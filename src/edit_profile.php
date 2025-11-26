@@ -7,16 +7,17 @@ require_once "scripts/db_users.php";
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $year = !empty($_POST["year"]) ? $_POST["year"] : null;
+    $enrollment_year = !empty($_POST["enrollment_year"]) ? $_POST["enrollment_year"] : null;
     $faculty = !empty($_POST["faculty"]) ? $_POST["faculty"] : null;
     $mode = !empty($_POST["mode"]) ? $_POST["mode"] : null;
-    
     $times = isset($_POST["times"]) ? implode(", ", $_POST["times"]) : "";
 
     $email = $_SESSION["email"];
 
-    update_user_profile($db, $email, $year, $faculty, $times, $mode);
+    update_user_profile($db, $email, $year, $enrollment_year, $faculty, $times, $mode);
 
     $_SESSION["university_year"] = $year;
+    $_SESSION["enrollment_year"] = $enrollment_year;
     $_SESSION["department"] = $faculty;
     $_SESSION["preferred_time"] = $times;
     $_SESSION["preferred_mode"] = $mode;
@@ -70,7 +71,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                         <option value="3">3</option>
                         <option value="Fuoricorso">Fuoricorso</option>
                     </select>
-
+                    <label for="enrollment_year">Anno di immatricolazione</label>
+                    <input  type="number"   id="enrollment_year"   name="enrollment_year"   min="1968"    max="2025"   placeholder="Es. 2004"  >
                     <label for="faculty">Facoltà</label>
                     <select id="faculty" name="faculty">
                         <option value="">-- Seleziona la tua facoltà --</option>
@@ -130,4 +132,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </div>
         </div>
     </body>
-</html>
+    </html>
