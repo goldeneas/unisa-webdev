@@ -67,6 +67,8 @@ select:focus {
 
 fieldset {
     margin-bottom: 16px;
+     border : none ;
+    padding : 0;
 }
 
 button#next {
@@ -116,4 +118,5 @@ input[type="number"]:focus {
     border-color: #0073b1;
     box-shadow: 0 0 0 2px rgba(0, 115, 177, 0.2);
 }
+
 
