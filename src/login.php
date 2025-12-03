@@ -34,11 +34,11 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                 <p id="login-subtitle">Inserisci le tue credenziali</p>
 
                 <label>Email</label>
-                <input type="email" class="text-input" name="email" placeholder="Email" required><br>
+                <input type="email" class="text-input" name="email" placeholder="Email"><br>
 
                 <div id="password-container">
                     <label>Password</label>
-                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" minlength="6" required>
+                    <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" minlength="6">
                     <br>
 
                     <!-- we need type=button to override type=submit -->

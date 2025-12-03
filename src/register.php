@@ -43,22 +43,22 @@ session_start();
 
                     <p>
                         <label for="name">Nome</label>
-                        <input type="text" placeholder="Inserisci il tuo nome" id="name" name="name" required />
+                        <input type="text" placeholder="Inserisci il tuo nome" id="name" name="name" />
                     </p>
 
                     <p>
                         <label for="cognome">Cognome</label>
-                        <input type="text" placeholder="Inserisci il tuo cognome" id="surname" name="surname" required />
+                        <input type="text" placeholder="Inserisci il tuo cognome" id="surname" name="surname" />
                     </p>
                     
                     <p>
                         <label for="email">E-mail</label>
-                        <input type="email" placeholder="Inserisci la tua e-mail" id="email" name="email" required />
+                        <input type="email" placeholder="Inserisci la tua e-mail" id="email" name="email" />
                     </p>
                     
                     <p>
                         <label for="password">Password (minimo 6 caratteri)</label>
-                        <input type="password" placeholder="Inserisci la tua password" id="password" name="password" minlength="6" required />
+                        <input type="password" placeholder="Inserisci la tua password" id="password" name="password" minlength="6" />
 
                         <button type="button" onclick="togglePassword()" id="toggle-password">
                             mostra

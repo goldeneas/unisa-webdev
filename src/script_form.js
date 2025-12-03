@@ -1,5 +1,4 @@
 document.addEventListener("DOMContentLoaded", function() {
-
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return re.test(email);

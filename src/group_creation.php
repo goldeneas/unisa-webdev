@@ -37,12 +37,12 @@
 
                     <p>
                         <label for="group-name">Nome del gruppo</label>
-                        <input type="text" placeholder="Inserisci il nome del tuo gruppo" id="group-name" name="group-name" required />
+                        <input type="text" placeholder="Inserisci il nome del tuo gruppo" id="group-name" name="group-name"/>
                     </p>
 
                     <p>
                         <label for="facolta">Corso di studi</label>
-                        <select id="facolta" name="facolta" onchange="aggiornaMaterie()" required>
+                        <select id="facolta" name="facolta" onchange="aggiornaMaterie()">
                             <option value="">-- Seleziona il tuo corso di studi --</option>
                             <option value="Economia">Economia</option>
                             <option value="Giurisprudenza">Giurisprudenza</option>
@@ -55,14 +55,14 @@
                     <p>
                         <label for="subject">Materia di studio</label>
 
-                        <select id="subject" name="subject" required disabled>
+                        <select id="subject" name="subject" disabled>
                             <option value="">-- Seleziona prima un corso di studi --</option>
                         </select>
                     </p>
 
                     <p>
                         <label for="description">Descrizione del gruppo</label>
-                        <textarea placeholder="Inserisci una breve descrizione del tuo gruppo" id="description" name="description" required></textarea>
+                        <textarea placeholder="Inserisci una breve descrizione del tuo gruppo" id="description" name="description"></textarea>
                     </p>
 
                     <p>
