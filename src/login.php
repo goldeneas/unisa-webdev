@@ -75,7 +75,8 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 
     $password = $_POST["password"];
     if (!check_user_password($db, $email, $password)) {
-        echo "<p>Password errata</p>";
+        spawn_centered_banner("Password Errata", "Potrai riprovare a breve");
+        header("refresh:3;url=login.php" );
         return;
     }
 
