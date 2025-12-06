@@ -1,5 +1,6 @@
 <?php
 
+require_once "db_utils.php";
 //Funzione per creare un utente dato nome, cognome, email e password
 //(Ovvero le informazioni passate nella registrazione).
 function create_user($db, $name, $surname, $email, $password) {
@@ -60,6 +61,7 @@ function get_user_by_email($db, $email) {
     $res = pg_query_params($db, $sql, array($email));
     return fetch_one($res);
 }
+
 function update_user_profile($db, $email, $year, $enrollment_year, $faculty, $preferred_time, $mode) {
     
     $sql = "UPDATE users 

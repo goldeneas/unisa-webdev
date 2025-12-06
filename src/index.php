@@ -42,25 +42,6 @@ session_start();
             </a>
         </div>
 
-        <footer class="main-footer">
-            <div class="footer-content">
-                <div class="footer-column">
-                    <h4>StudyGroup UNISA</h4>
-                    <p>La piattaforma progettata per aiutare gli studenti dell'Università di Salerno a trovare e creare gruppi di studio in modo semplice e veloce.</p>
-                </div>
-                <div class="footer-column">
-                    <h4>Gruppi</h4>
-                    <a href="group_creation.php">Crea un gruppo</a>
-                    <a href="#">Cerca gruppi</a>
-                </div>
-                <div class="footer-column">
-                    <h4>Contatti</h4>
-                    <p>Email: info@studygroupsunisa.it</p>
-                    <p>Tel: +39 081 000 0000</p>
-                </div>
-            </div>
-        </footer>
-
 <?php
         if (!isset($_GET["search"])) {
             return;
@@ -110,6 +91,25 @@ session_start();
 
         echo "</div>";
 ?>
+
+        <footer class="main-footer">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h4>StudyGroup UNISA</h4>
+                    <p>La piattaforma progettata per aiutare gli studenti dell'Università di Salerno a trovare e creare gruppi di studio in modo semplice e veloce.</p>
+                </div>
+                <div class="footer-column">
+                    <h4>Gruppi</h4>
+                    <a href="group_creation.php">Crea un gruppo</a>
+                    <a href="#">Cerca gruppi</a>
+                </div>
+                <div class="footer-column">
+                    <h4>Contatti</h4>
+                    <p>Email: info@studygroupsunisa.it</p>
+                    <p>Tel: +39 081 000 0000</p>
+                </div>
+            </div>
+        </footer>
 
         <script>
             function redirect(destination) {

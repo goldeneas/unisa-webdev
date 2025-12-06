@@ -1,8 +1,5 @@
 <?php
     session_start();
-
-    require_once "navbar.php";
-    require_once "centered_banner.php";
 ?>
 
 <!DOCTYPE html>
@@ -22,6 +19,12 @@
 
         <body>
   <?php
+    require_once "navbar.php";
+    require_once "centered_banner.php";
+
+    require_once "scripts/db_connection.php";
+    require_once "scripts/db_groups.php";
+
     if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
         spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
         header("refresh:3;url=login.php" );
@@ -63,6 +66,11 @@
                     <p>
                         <label for="description">Descrizione del gruppo</label>
                         <textarea placeholder="Inserisci una breve descrizione del tuo gruppo" id="description" name="description"></textarea>
+                    </p>
+
+                    <p>
+                        <label for="max-members">Numero massimo di membri</label>
+                        <input type="number" id="max-members" name="max-members" min="2" max="50" value="10"/>
                     </p>
 
                     <p>
@@ -152,9 +160,21 @@
 
         </body>
 <?php
-        } else {
+    } else {
+        $name = $_POST["group-name"];
+        $course = $_POST["facolta"];
+        $subject = $_POST["subject"];
+        $description = $_POST["description"];
+        $is_public = ($_POST["group-type"] === "public");
+        $max_members = $_POST["max-members"];
+        $owner_email = $_SESSION["email"];
+
+        if(create_group($db, $name, $course, $subject, $max_members, $description, $is_public, $owner_email)){
             spawn_centered_banner("Gruppo Creato!", "Redirect in corso...");
             header("refresh:3;url=index.php" );
+        } else {
+            echo "Errore creazione gruppo";
         }
+    }
 ?>
 </html>

@@ -102,14 +102,23 @@ session_start();
 
     // (SIMULAZIONE DATABASE) 
     // TODO: Use database
-    
-    $_SESSION["name"] = $_POST["name"]; // Prendo il vero nome inserito!
-    $_SESSION["surname"] = $_POST["surname"]; 
-    $_SESSION["email"] = $_POST["email"]; //Stessa cosa qui, fico!!!
-    $_SESSION["logged_in"] = true;
-    
-    spawn_centered_banner("Registrazione completata!", "Redirect alla pagina principale...");
-    header("refresh:3;url=index.php");
+    $name = $_POST["name"];
+    $surname = $_POST["surname"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    if(create_user($db, $name, $surname, $email, $password)) {
+        $_SESSION["name"] = $name; // Prendo il vero nome inserito!
+        $_SESSION["surname"] = $surname; 
+        $_SESSION["email"] = $email; //Stessa cosa qui, fico!!!
+        $_SESSION["password"] = $password;
+        $_SESSION["logged_in"] = true;
+        spawn_centered_banner("Registrazione completata!", "Redirect alla pagina principale...");
+        header("refresh:3;url=index.php");
+    }else {
+        spawn_centered_banner("Errore nella registrazione!", "Riprova tra qualche istante...");
+        header("refresh:3;url=register.php");
+    }
 }
 ?>
 </html>
