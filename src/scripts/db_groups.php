@@ -68,4 +68,18 @@ function get_users_in_group($db, $group_name) {
     return fetch_all($res);
 }
 
+function delete_group($db, $group_id) {
+    $sql_participants = "DELETE FROM group_participants 
+                         WHERE group_id = $1";
+    
+    pg_query_params($db, $sql_participants, array($group_id));
+
+    $sql_group = "DELETE FROM groups 
+                  WHERE id = $1";
+
+    $res = pg_query_params($db, $sql_group, array($group_id));
+
+    return ($res !== false);
+}
+
 ?>

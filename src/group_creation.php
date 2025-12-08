@@ -170,6 +170,7 @@
         $owner_email = $_SESSION["email"];
 
         if(create_group($db, $name, $course, $subject, $max_members, $description, $is_public, $owner_email)){
+            add_user_to_group($db, $name, $owner_email);
             spawn_centered_banner("Gruppo Creato!", "Redirect in corso...");
             header("refresh:3;url=index.php" );
         } else {
