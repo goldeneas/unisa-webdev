@@ -1,14 +1,18 @@
 <?php
 
 require_once "db_utils.php";
-
+//Funzione per creare un utente dato nome, cognome, email e password
+//(Ovvero le informazioni passate nella registrazione).
 function create_user($db, $name, $surname, $email, $password) {
     $hash = password_hash($password, PASSWORD_DEFAULT);
     $sql = "INSERT INTO users(name, surname, email, password_hash)
             VALUES($1, $2, $3, $4)";
 
+    //Esegui quel comando $sql e riempi i buchi $1, $2... con i dati che trovi 
+    // in questo array
     $res = pg_query_params($db, $sql, array($name, $surname, $email, $hash));
     if (!$res) {
+        echo "Errore: " . pg_last_error($db);
         return false;
     }
 
@@ -45,7 +49,7 @@ function get_user_id_by_email($db, $email) {
             WHERE email = $1";
 
     $res = pg_query_params($db, $sql, array($email));
-    
+
     return fetch_value($res);
 }
 
@@ -58,30 +62,17 @@ function get_user_by_email($db, $email) {
     return fetch_one($res);
 }
 
-function update_user_profile($db, $email, $year, $enrollment_year, $faculty, $preferred_time, $mode, $lat = null, $lon = null) {
-    
+function update_user_profile($db, $email, $year, $enrollment_year, $faculty, $preferred_time, $mode) {
+
     $sql = "UPDATE users 
             SET university_year = $1, 
                 enrollment_year = $2,
                 department = $3, 
                 preferred_time = $4, 
-                preferred_mode = $5,
-                latitude = $6,
-                longitude = $7
-            WHERE email = $8";
+                preferred_mode = $5 
+            WHERE email = $6";
 
-    $params = array(
-        $year, 
-        $enrollment_year, 
-        $faculty, 
-        $preferred_time, 
-        $mode, 
-        $lat, 
-        $lon, 
-        $email
-    );
-
-    $res = pg_query_params($db, $sql, $params);
+    $res = pg_query_params($db, $sql, array($year, $enrollment_year, $faculty, $preferred_time, $mode, $email));
 
     return $res;
 }
