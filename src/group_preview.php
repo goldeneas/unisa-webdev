@@ -145,15 +145,15 @@ foreach ($lista_utenti as $utente) {
 <?php require_once "navbar.php"; ?>
 
 <body>
-    <div class="container">
-        <div class="card">
+    <main class="container">
+        <article class="card">
             
-            <div class="card-header">
+            <header class="card-header">
                 <h1><?php echo $nome_gruppo; ?></h1>
                 <p class="subtitle">Creato da: <?php echo $admin_name; ?></p>
-            </div>
+            </header>
 
-            <div class="card-body">
+            <section class="card-body">
                 <h2>Descrizione del gruppo di studio</h2>
                 <p class="description">
                     <?php echo nl2br($descrizione); ?>
@@ -161,24 +161,24 @@ foreach ($lista_utenti as $utente) {
 
                 <h2>Partecipanti (<?php echo $membri_attuali; ?>/<?php echo $max_membri; ?>)</h2>
                 
-                <div class="participants-list">
+                <section class="participants-list">
                     <?php foreach ($membri_display as $membro) { 
                         $classe_avatar = $membro["admin"] ? "avatar avatar-admin" : "avatar";
                         $etichetta_admin = $membro["admin"] ? " (Admin)" : "";
                     ?>
-                        <div class="participant-item">
-                            <div class="<?php echo $classe_avatar; ?>"><?php echo $membro["sigla"]; ?></div>
-                            <span class="participant-name">
+                        <article class="participant-item">
+                            <aside class="<?php echo $classe_avatar; ?>"><?php echo $membro["sigla"]; ?></aside>
+                            <bdi class="participant-name">
                                 <a href="check_profile.php">
                                     <?php echo $membro["nome"] . $etichetta_admin; ?>
                                 </a>
-                            </span>
-                        </div>
+                            </bdi>
+                        </article>
                     <?php } ?>
-                </div>
-            </div>
+                </section>
+            </section>
 
-            <div class="card-footer">
+            <footer class="card-footer">
                 <?php 
                 // --- BOTTONI AZIONE ---
                 
@@ -228,17 +228,17 @@ foreach ($lista_utenti as $utente) {
                     <?php
                 }
                 ?>
-            </div>
-        </div>
-    </div>
+            </footer>
+        </article>
+    </main>
 
-    <div id="join-modal" class="modal">
-        <div class="modal-content">
+    <aside id="join-modal" class="modal">
+        <section class="modal-content">
             <h3>Richiesta Inviata!</h3>
             <p>La tua richiesta di unirti al gruppo "<?php echo $nome_gruppo; ?>" è stata inviata a <?php echo $admin_name; ?>.</p>
             <button onclick="closeModal()" class="btn btn-primary">Chiudi</button>
-        </div>
-    </div>
+        </section>
+    </aside>
 
     <script>
         const modal = document.getElementById('join-modal');
