@@ -20,27 +20,27 @@ session_start();
             require_once "navbar.php";
         ?>
 
-        <div id="upper">
+        <header id="upper">
             <h1 id="header">Trova gruppi di studio ad Unisa</h1>
             <h3 id="subheader"> StudyGroup è la piattaforma collaborativa dedicata agli studenti universitari.
                 <br>
                 Semplifica il tuo studio, espandi il tuo network e raggiungi i tuoi obiettivi accademici insieme agli altri.
             </h3>
-        </div>
+        </header>
 
         <form id="search-bar" method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
             <input id="course-input" name="search" placeholder="Inserisci il corso per vederne i gruppi" minlength="3">
             <button id="search-btn" type="submit">Cerca</button>
         </form>
 
-        <div id="create-group-container">
-            <span id="create-group-span">
+        <section id="create-group-container">
+            <p id="create-group-span">
                 Non trovi il gruppo che cerchi?
-            </span>
+            </p>
             <a id="create-group-href" href="group_creation.php">
                 Crealo ora!
             </a>
-        </div>
+        </section>
 
 <?php
         if (!isset($_GET["search"])) {
@@ -59,7 +59,7 @@ session_start();
         if (!$groups) {
             echo '<p id="no-results-p">Il tuo termine di ricerca non ha prodotto risultati</p>';
         } else {
-            echo "<div id='groups-container'>";
+            echo "<section id='groups-container'>";
 
             foreach ($groups as $group) {
                 $name = $group['name'];
@@ -69,7 +69,7 @@ session_start();
                 $max_members = $group['max_members'];
 
                 printf(
-                    '<div class="group">
+                    '<article class="group">
                         <h3 class="group-header">%s</h3>
                         <h4 class="group-subheader">%s</h4>
                         <h5 class="group-info">
@@ -78,7 +78,7 @@ session_start();
                         <button class="show-group-btn" onclick="redirect(\'group_preview.php?id=%s\')">
                             Visualizza
                         </button>
-                    </div>', 
+                    </article>', 
                     $name, 
                     $code, 
                     $description, 
@@ -89,26 +89,26 @@ session_start();
             }
         }
 
-        echo "</div>";
+        echo "</section>";
 ?>
 
         <footer class="main-footer">
-            <div class="footer-content">
-                <div class="footer-column">
+            <section class="footer-content">
+                <section class="footer-column">
                     <h4>StudyGroup UNISA</h4>
                     <p>La piattaforma progettata per aiutare gli studenti dell'Università di Salerno a trovare e creare gruppi di studio in modo semplice e veloce.</p>
-                </div>
-                <div class="footer-column">
+                </section>
+                <nav class="footer-column">
                     <h4>Gruppi</h4>
                     <a href="group_creation.php">Crea un gruppo</a>
                     <a href="#">Cerca gruppi</a>
-                </div>
-                <div class="footer-column">
+                </nav>
+                <address class="footer-column">
                     <h4>Contatti</h4>
                     <p>Email: info@studygroupsunisa.it</p>
                     <p>Tel: +39 081 000 0000</p>
-                </div>
-            </div>
+                </address>
+            </section>
         </footer>
 
         <script>
@@ -118,3 +118,4 @@ session_start();
         </script>
     </body>
 </html>
+
