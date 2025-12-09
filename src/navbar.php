@@ -1,6 +1,6 @@
 <link rel="stylesheet" href="navbar.css">
 
-<div id="navbar-container">
+<nav id="navbar-container">
     <a id="logo" href="index.php">StudyGroup</a>
         <ul id="navbar">
 <?php
@@ -23,7 +23,6 @@
                 <a class="navbar-entry filled-btn" href="logout.php">Logout</a>
             </li>
             <li class="navbar-li">
-                <!-- icona per il profilo in svg -->
                 <a class="navbar-avatar" href="check_profile.php">
                     <img src="profile_image.svg" />
                 </a>
@@ -32,4 +31,4 @@
         }
 ?>
     </ul>
-</div>
+</nav>
