@@ -34,10 +34,10 @@ session_start();
     if (!isset($_POST["registratiBtn"])) {
 ?>
     <body>
-        <div id="card-container">
-            <div class="register-card">
+        <main id="card-container">
+            <section class="register-card">
                 <h1> Registrati</h1>
-                <div id="register-subtitle"> per trovare un gruppo adatto a te! </div>
+                <p id="register-subtitle"> per trovare un gruppo adatto a te! </p>
                 
                 <form id="Register" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>">
 
@@ -72,8 +72,8 @@ session_start();
                 <p class="login-link">
                     Già registrato? <a href="login.php">Esegui il login</a>
                 </p>
-            </div>
-        </div>
+            </section>
+        </main>
 
         <script>
             function togglePassword() {
@@ -122,3 +122,4 @@ session_start();
 }
 ?>
 </html>
+
