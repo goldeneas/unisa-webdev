@@ -43,53 +43,51 @@ session_start();
         </section>
 
 <?php
-        if (!isset($_GET["search"])) {
-            return;
-        }
+        if (isset($_GET["search"])) {
+            require_once "scripts/db_connection.php";
+            require_once "scripts/db_groups.php";
+            require_once "scripts/db_users.php";
 
-        require_once "scripts/db_connection.php";
-        require_once "scripts/db_groups.php";
-        require_once "scripts/db_users.php";
+            $search = $_GET["search"];
+            $groups = get_groups_starting_with($db, $search);
 
-        $search = $_GET["search"];
-        $groups = get_groups_starting_with($db, $search);
+            echo "<hr>";
 
-        echo "<hr>";
+            if (!$groups) {
+                echo '<p id="no-results-p">Il tuo termine di ricerca non ha prodotto risultati</p>';
+            } else {
+                echo "<section id='groups-container'>";
 
-        if (!$groups) {
-            echo '<p id="no-results-p">Il tuo termine di ricerca non ha prodotto risultati</p>';
-        } else {
-            echo "<section id='groups-container'>";
+                foreach ($groups as $group) {
+                    $name = $group['name'];
+                    $code = $group['id'];
+                    $description = $group['description'];
+                    $curr_members = $group['curr_members'];
+                    $max_members = $group['max_members'];
 
-            foreach ($groups as $group) {
-                $name = $group['name'];
-                $code = $group['id'];
-                $description = $group['description'];
-                $curr_members = $group['curr_members'];
-                $max_members = $group['max_members'];
-
-                printf(
-                    '<article class="group">
-                        <h3 class="group-header">%s</h3>
-                        <h4 class="group-subheader">%s</h4>
-                        <h5 class="group-info">
-                            %s<br>Membri: %s/%s
-                        </h5>
-                        <button class="show-group-btn" onclick="redirect(\'group_preview.php?id=%s\')">
-                            Visualizza
-                        </button>
-                    </article>', 
-                    $name, 
-                    $code, 
-                    $description, 
-                    $curr_members, 
-                    $max_members, 
-                    $code
-                );
+                    printf(
+                        '<article class="group">
+                            <h3 class="group-header">%s</h3>
+                            <h4 class="group-subheader">%s</h4>
+                            <h5 class="group-info">
+                                %s<br>Membri: %s/%s
+                            </h5>
+                            <button class="show-group-btn" onclick="redirect(\'group_preview.php?id=%s\')">
+                                Visualizza
+                            </button>
+                        </article>', 
+                        $name, 
+                        $code, 
+                        $description, 
+                        $curr_members, 
+                        $max_members, 
+                        $code
+                    );
+                }
             }
-        }
 
-        echo "</section>";
+            echo "</section>";
+        }
 ?>
 
         <footer class="main-footer">
