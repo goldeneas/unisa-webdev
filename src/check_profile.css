@@ -1,6 +1,9 @@
 body, html {
     height: 100%;
     margin: 0;
+
+    /*nascondi scrollbar*/
+    overflow: hidden;
 }
 
 * {
@@ -25,7 +28,7 @@ hr {
 
 #form {
     background-color: white;
-    
+
     border-radius: 8px;
     box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
 
@@ -40,12 +43,10 @@ hr {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: 100vh;
-    padding: 20px 0; 
-    box-sizing: border-box; 
+    height: 100%;
 }
 
-h2#username { 
+#username {
     font-size: 26px;
     font-weight: 600;
 }
@@ -89,20 +90,8 @@ h2#username {
     list-style-type: disc;
 }
 
-#profile-details {
-    margin: 0;
-    padding: 0;
-}
-#profile-details dt {
-    margin-top: 15px; 
-}
-#profile-details dd {
-    margin-bottom: 15px;
-    margin-left: 0; 
-}
-
-
 .label-title {
+    display: flex;
     text-align: left;
     font-weight: 600;
 
@@ -111,17 +100,10 @@ h2#username {
 }
 
 .label {
+    display: flex;
     text-align: left;
     font-weight: 450;
     color: gray;
 
     font-size: 16px;
-}
-
-#map {
-    height: 250px; 
-    width: 100%; 
-    border-radius: 5px; 
-    margin-top: 5px; 
-    margin-bottom: 20px;
 }
