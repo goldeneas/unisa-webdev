@@ -33,7 +33,7 @@
 
     if (!isset($_POST["group-name"]) || !isset($_POST["facolta"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
     ?>
-            <div id="container">
+            <main id="container">
                 <form id="group-creation-form" method="post">
                     <h1 id="title">Crea il tuo gruppo di studio</h1>
                     <p id="subtitle">Inserisci le informazioni del tuo gruppo</p>
@@ -76,21 +76,21 @@
                     <p>
                         <label for="group-type">Visibilità del gruppo</label>
 
-                        <div class="radio-option">
+                        <section class="radio-option">
                             <input type="radio" id="public" name="group-type" value="public" checked>
                             <label for="public">Pubblico</label>
-                        </div>
+                        </section>
 
-                        <div class="radio-option">
+                        <section class="radio-option">
                             <input type="radio" id="private" name="group-type" value="private">
                             <label for="private">Privato</label>
-                        </div>
+                        </section>
                     </p>
 
                     <button id="create-btn" type="submit">Crea il gruppo</button>
                 </form>
 
-            </div>
+            </main>
 
             <script>
                 // 1. Definiamo le liste delle materie per ogni facoltà
@@ -179,3 +179,4 @@
     }
 ?>
 </html>
+
