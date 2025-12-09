@@ -28,7 +28,7 @@ require_once "navbar.php";
 if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 ?>
     <body>
-        <div id="login-form-container">
+        <main id="login-form-container">
             <form id="login-form" method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                 <h1 id="login-title">Login</h1>
                 <p id="login-subtitle">Inserisci le tue credenziali</p>
@@ -36,33 +36,32 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                 <label>Email</label>
                 <input type="email" class="text-input" name="email" placeholder="Email"><br>
 
-                <div id="password-container">
+                <section id="password-container">
                     <label>Password</label>
                     <input type="password" id="password-input" class="text-input" name="password" placeholder="Password" minlength="6">
                     <br>
 
-                    <!-- we need type=button to override type=submit -->
                     <button type="button" onclick="togglePassword()" id="toggle-password">
                         mostra
                     </button>
-                </div>
+                </section>
 
                 <a href="/forgot-password" id="forgot-password-href">Password dimenticata?</a>
 
-                <div id="input-separator">
+                <section id="input-separator">
                     <button class="form-btn" type="submit">Accedi</button>
 
-                    <div id="register-container">
+                    <nav id="register-container">
                         <p style="display: inline">
                             Non hai ancora un account?
                         </p>
                         <a href="register.php">
                             Registrati
                         </a>
-                    </div>
-                </div>
+                    </nav>
+                </section>
             </form>
-        </div>
+        </main>
 <?php
 } else {
 
