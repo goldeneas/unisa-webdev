@@ -129,6 +129,7 @@ hr {
 #create-group-span {
     color: rgb(50 50 50);
     font-weight: 350;
+    margin: 0;
 }
 
 #no-results-p {
