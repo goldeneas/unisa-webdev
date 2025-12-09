@@ -120,3 +120,25 @@ input[type="number"]:focus {
 }
 
 
+#map {
+    height: 300px;
+    width: 100%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    z-index: 1; 
+}
+
+#geo-btn {
+    background-color: transparent; 
+    color: #0965c1; 
+    border: 1px solid #0965c1; 
+}
+
+#geo-btn:hover {
+    background-color: #f0f8ff; 
+}
+
+
+
