@@ -11,19 +11,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $faculty = !empty($_POST["faculty"]) ? $_POST["faculty"] : null;
     $mode = !empty($_POST["mode"]) ? $_POST["mode"] : null;
     $times = isset($_POST["times"]) ? implode(", ", $_POST["times"]) : "";
+    $latitude = !empty($_POST["latitude"]) ? $_POST["latitude"] : null;
+    $longitude = !empty($_POST["longitude"]) ? $_POST["longitude"] : null;
 
     $email = $_SESSION["email"];
-
-    update_user_profile($db, $email, $year, $enrollment_year, $faculty, $times, $mode);
+    update_user_profile($db, $email, $year, $enrollment_year, $faculty, $times, $mode, $latitude, $longitude);
 
     $_SESSION["university_year"] = $year;
     $_SESSION["enrollment_year"] = $enrollment_year;
     $_SESSION["department"] = $faculty;
     $_SESSION["preferred_time"] = $times;
     $_SESSION["preferred_mode"] = $mode;
+    $_SESSION["latitude"] = $latitude;
+    $_SESSION["longitude"] = $longitude;
 
     $profile_modified = true; 
-}
+} 
+
 ?>
 <!DOCTYPE html>
 <html lang="it">
@@ -58,10 +62,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
     <body>
-        <div id="card-container">
-            <div class="container">
-                <h1>Modifica profilo</h1>
-                <p id="subtitle">Inserisci informazioni aggiuntive</p>
+        <main id="card-container">
+            <section class="container">
+                <header>
+                    <h1>Modifica profilo</h1>
+                    <p id="subtitle">Inserisci informazioni aggiuntive</p>
+                </header>
 
                 <form id="profileForm" method="POST"> 
                     <label for="year">Anno universitario</label>
@@ -98,20 +104,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <fieldset>
                     <legend>Orari preferiti per studiare</legend>
 
-                    <div class="time-choice">
+                    <p class="time-choice">
                       <input type="checkbox" id="range1" name="times[]" value="8:30-11:30">
                       <label for="range1">8:30 - 11:30</label>
-                    </div>
+                    </p>
 
-                    <div class="time-choice">
+                    <p class="time-choice">
                       <input type="checkbox" id="range2" name="times[]" value="11:30-14:30">
                       <label for="range2">11:30 - 14:30</label>
-                    </div>
+                    </p>
 
-                    <div class="time-choice">
+                    <p class="time-choice">
                       <input type="checkbox" id="range3" name="times[]" value="14:30-18:30">
                       <label for="range3">14:30 - 18:30</label>
-                    </div>
+                    </p>
                 </fieldset>
 
                 <label for="mode">Modalità preferita</label>
@@ -121,7 +127,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                     <option value="online">Online</option>
                     <option value="mista">Mista</option>
                 </select>
+                 <input type="hidden" id="latitude" name="latitude" value="<?= $_SESSION["latitude"] ?? "" ?>">
+                <input type="hidden" id="longitude" name="longitude" value="<?= $_SESSION["longitude"] ?? "" ?>">
 
+                 <button type="button" id="geo-btn" class="btn"> Acquisisci la tua posizione </button>
                 <button type="submit" id="next">Completa il tuo profilo</button>
 
             </form>
@@ -130,8 +139,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             Se hai bisogno di aiuto, contatta l’assistenza all’indirizzo: 
             <a href="mailto:assistenza@gruppistudio.it">assistenza@gruppistudio.it</a>
             </p>
-        </div>
-        </div>
+        </section>
+        </main>
     </body>
     </html>
 

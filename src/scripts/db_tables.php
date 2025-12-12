@@ -16,6 +16,8 @@ function create_users_table($db) {
             enrollment_year INTEGER,
             preferred_mode VARCHAR(50),
             preferred_time VARCHAR(50),
+            latitude NUMERIC(10, 7),
+            longitude NUMERIC(10, 7),
             timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
 
             //id è diverso dal nome, viene messo a prescindere dal db

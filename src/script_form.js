@@ -1,3 +1,28 @@
+function onGeoSuccess(position) {
+    const lat = position.coords.latitude;
+    const lon = position.coords.longitude;
+    
+    document.getElementById("latitude").value = lat;
+    document.getElementById("longitude").value = lon;
+    
+    const geoButton = document.getElementById("geo-btn");
+    if (geoButton) {
+        geoButton.textContent = `Posizione Acquisita: Lat=${lat.toFixed(4)}, Lon=${lon.toFixed(4)}`;
+        geoButton.disabled = true;
+    }
+}
+
+function onGeoError(error) {
+    let message = "Impossibile ottenere la posizione.";
+    
+    const geoButton = document.getElementById("geo-btn");
+    if (geoButton) {
+        geoButton.textContent = `Errore Geolocalizzazione: ${message}`;
+        geoButton.disabled = true;
+        geoButton.style.backgroundColor = 'red';
+    }
+}
+
 document.addEventListener("DOMContentLoaded", function() {
     function validateEmail(email) {
         const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -126,5 +151,20 @@ document.addEventListener("DOMContentLoaded", function() {
                 alert("Impossibile salvare il profilo:\n- " + errors.join("\n- "));
             }
         });
+
+       
+        const geoButton = document.getElementById("geo-btn");
+        if (geoButton) {
+            geoButton.addEventListener("click", function(event) {
+                event.preventDefault(); 
+                
+                if (navigator.geolocation) {
+                    navigator.geolocation.getCurrentPosition(onGeoSuccess, onGeoError); 
+                    geoButton.textContent = "Acquisizione in corso...";
+                } else {
+                    alert("Il tuo browser non supporta la geolocalizzazione.");
+                }
+            });
+        }
     }
 });

@@ -1,3 +1,7 @@
+<?php
+    session_start();
+?>
+
 <!DOCTYPE html>
 <html>
     <head>
@@ -13,16 +17,16 @@
     </head>
 
 <?php
-    session_start();
-
     require_once "navbar.php";
     require_once "centered_banner.php";
 
+   
     if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
         spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
         header("refresh:3;url=login.php" );
         return;
     }
+
 
     $name = $_SESSION["name"] ?? "";
     $surname = $_SESSION["surname"] ?? "";
@@ -33,48 +37,67 @@
     $preferred_mode = $_SESSION["preferred_mode"] ?? "";
     $preferred_time = $_SESSION["preferred_time"] ?? "";
     $groups = $_SESSION["groups"] ?? [];
+    $latitude = $_SESSION["latitude"] ?? null;
+    $longitude = $_SESSION["longitude"] ?? null;
 ?>
-
     <body>
-        <div id="form-container">
+        <main id="form-container">
             <form id="form">
-<?php
-                printf('<label id="username">%s %s</label>', $name, $surname);
-                printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
-?>
+                <p id="username"><?= $name . " " . $surname?></p>
+                <p id="email"><?= $email ?></p>
 
                 <hr>
 
-                <label class="label-title">Facoltà</label>
-                <label class="label"><?= $department ?: "Non impostato"?></label>
-                <br>
+                <section>
+                    <p class="label-title">Facoltà</p>
+                    <p class="label"><?= $department ?: "Non impostato"?></p>
+                    <br>
+                </section>
 
-                <label class="label-title">Anno universitario</label>
-                <label class="label"><?= $university_year ?: "Non impostato"?></label>
-                <br>
+                <section>
+                    <p class="label-title">Anno universitario</p>
+                    <p class="label"><?= $university_year ?: "Non impostato"?></p>
+                    <br>
+                </section>
 
-                <label class="label-title">Anno di immatricolazione</label>
-                <label class="label"><?= $enrollment_year ?: "Non impostato"?></label>
-                <br>
+                <section>
+                    <p class="label-title">Anno di immatricolazione</p>
+                    <p class="label"><?= $enrollment_year ?: "Non impostato"?></p>
+                    <br>
+                </section>
 
-                <label class="label-title">Modalità preferita</label>
-                <label class="label"><?= $preferred_mode ?: "Non impostato"?></label>
-                <br>
+                <section>
+                    <p class="label-title">Modalità preferita</p>
+                    <p class="label"><?= $preferred_mode ?: "Non impostato"?></p>
+                    <br>
+                </section>
 
-                <label class="label-title">Orari preferiti</label>
-                <label class="label"><?= $preferred_time ?: "Non impostato"?></label>
-                <br>
-
-                <label class="label-title">Gruppi</label>
+                <section>
+                    <p class="label-title">Orari preferiti</p>
+                    <p class="label"><?= $preferred_time ?: "Non impostato"?></p>
+                    <br>
+                </section>
+                
+                <section>
+                    <p class="label-title">Posizione (Latitudine / Longitudine)</p>
+                    <?php if ($latitude && $longitude) { ?>
+                        <p class="label"><?= sprintf("%.4f / %.4f", $latitude, $longitude) ?></p>
+                    <?php } else { ?>
+                        <p class="label">Non impostato</p>
+                    <?php } ?>
+                    <br>
+                </section>
+                <p class="label-title">Gruppi</p>
 
 <?php
                 if (!$groups) {
-                    printf('<label class="label">Non sei ancora in nessun gruppo</label>');
+                    printf('<p class="label">Non sei ancora in nessun gruppo</p>');
                 } else {
                     echo  '<ul id="group-list">';
                     foreach ($groups as $group) {
                         printf('<li class="list-entry">%s</li>', $group);
                     }
+                    echo '</ul>';
                 }
 ?>
 
@@ -82,7 +105,7 @@
                     Modifica
                 </button>
             </form>
-        </div>
+        </main>
 
         <script>
             function redirect(destination) {
