@@ -13,7 +13,7 @@ html, body {
 h1 {
     font-weight: 550;
     font-size: 26px;
-    margin-top: 0px;
+    margin-top: 10px;
     margin-bottom: 0px;
     text-align: left;
 }
@@ -32,12 +32,13 @@ main#card-container {
 
 section.container {
     background-color: #ffffff;
-    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
-    padding: 28px 32px;
-    width: 100%;
-    max-width: 450px;
+    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
+    padding: 42px;
+    width: 469px;
     box-sizing: border-box;
     border-radius: 5px;
+    top: 45px;
+    position: relative;
 }
 
 p.time-choice {
@@ -81,7 +82,6 @@ button#next {
     font-size: 14px;
     font-weight: 600;
     cursor: pointer;
-    margin-top: 7%; 
     border-radius: 25px;
 }
 
@@ -122,8 +122,8 @@ input[type="number"]:focus {
 
 
 button#geo-btn.btn {
- 
     width: 100%;
+    margin-top: 7%; 
     border: none;
     padding: 14px 20px;
     font-size: 14px;

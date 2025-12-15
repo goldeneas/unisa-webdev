@@ -33,12 +33,6 @@ body, html {
     padding: 1.5rem;
 }
 
-@media (min-width: 768px) {
-    .card-header, .card-body, .card-footer {
-        padding: 2rem;
-    }
-}
-
 .card-header { 
     border-bottom: 1px solid #e5e7eb; 
 }

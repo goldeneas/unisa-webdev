@@ -143,6 +143,7 @@ document.addEventListener("DOMContentLoaded", function() {
             }
 
             if (yearSelect === "") errors.push("Seleziona il tuo anno universitario.");
+            if (enrollmentInput === "") errors.push("Seleziona il tuo anno di immatricolazione.")
             if (facultySelect === "") errors.push("Seleziona la tua facoltà.");
             if (modeSelect === "") errors.push("Seleziona la modalità preferita.");
 

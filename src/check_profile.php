@@ -43,51 +43,54 @@
     <body>
         <main id="form-container">
             <form id="form">
-                <p id="username"><?= $name . " " . $surname?></p>
-                <p id="email"><?= $email ?></p>
+<?php
+                printf('<label id="username">%s %s</label>', $name, $surname);
+                printf('<a href="mailto:%s" class="label" id="email">%s</a>', $email, $email);
+?>
 
                 <hr>
 
                 <section>
-                    <p class="label-title">Facoltà</p>
-                    <p class="label"><?= $department ?: "Non impostato"?></p>
-                    <br>
+                    <label class="label-title">Facoltà</label>
+                    <label class="label"><?= $department ?: "Non impostato"?></label>
                 </section>
+                <br>
 
                 <section>
-                    <p class="label-title">Anno universitario</p>
-                    <p class="label"><?= $university_year ?: "Non impostato"?></p>
-                    <br>
+                    <label class="label-title">Anno universitario</label>
+                    <label class="label"><?= $university_year ?: "Non impostato"?></label>
                 </section>
+                <br>
 
                 <section>
-                    <p class="label-title">Anno di immatricolazione</p>
-                    <p class="label"><?= $enrollment_year ?: "Non impostato"?></p>
-                    <br>
+                    <label class="label-title">Anno di immatricolazione</label>
+                    <label class="label"><?= $enrollment_year ?: "Non impostato"?></label>
                 </section>
+                <br>
 
                 <section>
-                    <p class="label-title">Modalità preferita</p>
-                    <p class="label"><?= $preferred_mode ?: "Non impostato"?></p>
-                    <br>
+                    <label class="label-title">Modalità preferita</label>
+                    <label class="label"><?= $preferred_mode ?: "Non impostato"?></label>
                 </section>
+                <br>
 
                 <section>
-                    <p class="label-title">Orari preferiti</p>
-                    <p class="label"><?= $preferred_time ?: "Non impostato"?></p>
-                    <br>
+                    <label class="label-title">Orari preferiti</label>
+                    <label class="label"><?= $preferred_time ?: "Non impostato"?></label>
                 </section>
-                
+                <br>
+
                 <section>
                     <p class="label-title">Posizione (Latitudine / Longitudine)</p>
                     <?php if ($latitude && $longitude) { ?>
-                        <p class="label"><?= sprintf("%.4f / %.4f", $latitude, $longitude) ?></p>
+                        <label class="label"><?= sprintf("%.4f / %.4f", $latitude, $longitude) ?></label>
                     <?php } else { ?>
-                        <p class="label">Non impostato</p>
+                        <label class="label">Non impostato</label>
                     <?php } ?>
                     <br>
                 </section>
-                <p class="label-title">Gruppi</p>
+
+                <label class="label-title">Gruppi</label>
 
 <?php
                 if (!$groups) {

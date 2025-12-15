@@ -36,16 +36,17 @@ hr {
     max-width: 385px;
 
     position: relative;
+    top: 30px;
 }
 
-main#form-container {
+#form-container {
     display: flex;
     justify-content: center;
     align-items: center;
     height: 100%;
 }
 
-p#username {
+#username {
     font-size: 26px;
     font-weight: 600;
     margin-top: 0;
@@ -91,7 +92,7 @@ p#username {
     list-style-type: disc;
 }
 
-p.label-title {
+.label-title {
     display: flex;
     text-align: left;
     font-weight: 600;
@@ -102,7 +103,7 @@ p.label-title {
     margin-top: 10px;
 }
 
-p.label {
+.label {
     display: flex;
     text-align: left;
     font-weight: 450;
@@ -113,6 +114,6 @@ p.label {
     margin-bottom: 0px;
 }
 
-#form section {
+#form {
     margin-bottom: 0;
 }
