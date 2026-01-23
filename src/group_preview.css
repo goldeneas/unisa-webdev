@@ -46,6 +46,35 @@ body, html {
     gap: 10px;
 }
 
+.group-tags {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.tag {
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.course-tag {
+    background-color: #f9fafb;
+    color: #000000;
+    border: 1px solid #d1d5db;
+}
+
+.subject-tag {
+    background-color: #f9fafb;
+    color: #000000;
+    border: 1px solid #d1d5db;
+}
+
 h1 {
     font-weight: 700;
     margin: 0;

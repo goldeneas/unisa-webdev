@@ -89,6 +89,8 @@ if (!$info_gruppo) {
 $lista_utenti = get_users_in_group($db, $info_gruppo["name"]);
 $nome_gruppo = $info_gruppo["name"];
 $descrizione = $info_gruppo["description"];
+$corso = $info_gruppo["course"];
+$materia = $info_gruppo["subject"];
 $max_membri = $info_gruppo["max_members"];
 $membri_attuali = count($lista_utenti);
 $owner_id = $info_gruppo["owner_id"];
@@ -154,6 +156,14 @@ foreach ($lista_utenti as $utente) {
             </header>
 
             <section class="card-body">
+                <div class="group-tags">
+                    <span class="tag course-tag">
+                        <?php echo $corso; ?>
+                    </span>
+                    <span class="tag subject-tag">
+                        <?php echo $materia; ?>
+                    </span>
+                </div>
                 <h2>Descrizione del gruppo di studio</h2>
                 <p class="description">
                     <?php echo nl2br($descrizione); ?>
