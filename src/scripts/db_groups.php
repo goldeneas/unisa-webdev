@@ -26,10 +26,10 @@ function get_group_with_id($db, $id) {
 }
 
 function get_groups_starting_with($db, $str) {
-    $sql = "SELECT * 
-            FROM groups
-            WHERE name 
-            LIKE $1";
+    $sql = "SELECT * FROM groups
+            WHERE name ILIKE $1
+            OR course ILIKE $1
+            OR subject ILIKE $1";
 
     $res = pg_query_params($db, $sql, array($str . "%"));
 

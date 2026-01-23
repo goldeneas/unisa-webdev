@@ -29,7 +29,7 @@ session_start();
         </header>
 
         <form id="search-bar" method="GET" action="<?php echo $_SERVER["PHP_SELF"] ?>">
-            <input id="course-input" name="search" placeholder="Inserisci il corso per vederne i gruppi" minlength="3">
+            <input id="course-input" name="search" placeholder="Inserisci il nome, il corso o la facoltà per vederne i gruppi" minlength="3">
             <button id="search-btn" type="submit">Cerca</button>
         </form>
 
