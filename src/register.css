@@ -6,7 +6,7 @@
 body, html {
     height: 100%;
     margin: 0;
-    overflow: hidden;
+    overflow: auto;
 }
 
 #card-container {
@@ -40,6 +40,17 @@ h1 {
     margin: 0 0 10% 0;
     text-align: left;
     font-size: 16px;
+}
+
+.error-box {
+    background-color: #f8d7da;
+    color: #721c24;
+    border: 1px solid #f5c6cb;
+    padding: 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+    text-align: center;
+    font-weight: 500;
 }
 
 form p {

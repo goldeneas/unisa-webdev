@@ -1,5 +1,47 @@
 <?php
 session_start();
+
+require_once "scripts/db_users.php";
+require_once "scripts/db_connection.php";
+require_once "navbar.php";
+
+if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) {
+    header("Location: index.php" );
+    exit;
+}
+
+$name_val = "";
+$surname_val = "";
+$email_val = "";
+$error_message = "";
+
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name_val = $_POST["name"] ?? "";
+    $surname_val = $_POST["surname"] ?? "";
+    $email_val = $_POST["email"] ?? "";
+    $password = $_POST["password"] ?? "";
+
+    if (empty($name_val) || empty($surname_val) || empty($email_val) || empty($password)) {
+        $error_message = "Tutti i campi sono obbligatori.";
+    } elseif (strlen($password) < 6) {
+        $error_message = "La password deve contenere almeno 6 caratteri.";
+    } elseif (does_user_exist($db, $email_val)) {
+        $error_message = "L'email è già in uso. Scegline un'altra oppure effettua il login.";
+    }
+    else {
+        if (create_user($db, $name_val, $surname_val, $email_val, $password)) {
+            $_SESSION["name"] = $name_val;
+            $_SESSION["surname"] = $surname_val;
+            $_SESSION["email"] = $email_val;
+            $_SESSION["logged_in"] = true;
+
+            header("Location: index.php" );
+            exit;
+        } else {
+            $error_message = "Si è verificato un errore durante la registrazione. Riprova più tardi.";
+        }
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -17,28 +59,18 @@ session_start();
         <script src="script_form.js" defer></script>
     </head>
 
-<?php
-    require_once "navbar.php";
-    require_once "centered_banner.php";
-    
-    require_once "scripts/db_users.php";
-    require_once "scripts/db_connection.php";
-
-    if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) {
-        spawn_centered_banner("Sei gia' loggato!", "Prima effettua il logout");
-        header("refresh:3;url=index.php" );
-        return;
-    }
-    
-    // Controllo se il bottone "Registrati" è stato premuto
-    if (!isset($_POST["registratiBtn"])) {
-?>
     <body>
         <main id="card-container">
             <section class="register-card">
                 <h1> Registrati</h1>
                 <p id="register-subtitle"> per trovare un gruppo adatto a te! </p>
                 
+                <?php if (!empty($error_message)): ?>
+                    <div class="error-box">
+                        <?php echo $error_message; ?>
+                    </div>
+                <?php endif; ?>
+
                 <form id="Register" method="post" action="<?php echo $_SERVER["PHP_SELF"] ?>">
 
                     <p>
@@ -90,36 +122,4 @@ session_start();
             }
         </script>
     </body>
-
-<?php
-} else {
-     $email = $_POST["email"];
-    if (does_user_exist($db, $_POST["email"])) {
-        spawn_centered_banner("Email già in uso!", "Potrai riprovare a breve...");
-        header("refresh:3;url=register.php");
-        exit;
-    }
-
-    // (SIMULAZIONE DATABASE) 
-    // TODO: Use database
-    $name = $_POST["name"];
-    $surname = $_POST["surname"];
-    $email = $_POST["email"];
-    $password = $_POST["password"];
-
-    if(create_user($db, $name, $surname, $email, $password)) {
-        $_SESSION["name"] = $name; // Prendo il vero nome inserito!
-        $_SESSION["surname"] = $surname; 
-        $_SESSION["email"] = $email; //Stessa cosa qui, fico!!!
-        $_SESSION["password"] = $password;
-        $_SESSION["logged_in"] = true;
-        spawn_centered_banner("Registrazione completata!", "Redirect alla pagina principale...");
-        header("refresh:3;url=index.php");
-    }else {
-        spawn_centered_banner("Errore nella registrazione!", "Riprova tra qualche istante...");
-        header("refresh:3;url=register.php");
-    }
-}
-?>
 </html>
-
