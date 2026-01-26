@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>profilo</title>
+        <title>Profilo</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <link rel="stylesheet" href="check_profile.css">
         <link rel="stylesheet" href="background.css">
@@ -19,6 +19,10 @@
 <?php
     require_once "navbar.php";
     require_once "centered_banner.php";
+
+    require_once "scripts/db_connection.php";
+    require_once "scripts/db_groups.php";
+    require_once "scripts/db_users.php";
 
    
     if (!isset($_SESSION["logged_in"]) || !$_SESSION["logged_in"]) {
@@ -39,6 +43,8 @@
     $groups = $_SESSION["groups"] ?? [];
     $latitude = $_SESSION["latitude"] ?? null;
     $longitude = $_SESSION["longitude"] ?? null;
+
+    $groups = get_groups_by_user($db, $email);
 ?>
     <body>
         <main id="form-container">
@@ -90,18 +96,40 @@
                     <br>
                 </section>
 
-                <label class="label-title">Gruppi</label>
+                <label class="label-title">I tuoi gruppi</label>
 
 <?php
-                if (!$groups) {
-                    printf('<p class="label">Non sei ancora in nessun gruppo</p>');
-                } else {
-                    echo  '<ul id="group-list">';
-                    foreach ($groups as $group) {
-                        printf('<li class="list-entry">%s</li>', $group);
-                    }
-                    echo '</ul>';
-                }
+    if (!$groups) {
+        echo '<p class="label">Non sei ancora in nessun gruppo</p>';
+    } else {
+        echo '<div id="profile-groups-container">';
+
+    foreach ($groups as $group) {
+        $nome = htmlspecialchars($group['name']);
+        $corso = htmlspecialchars($group['course']);
+        $materia = htmlspecialchars($group['subject']);
+        $membri = $group['curr_members'] . "/" . $group['max_members'];
+        $id = $group['id'];
+
+        echo "
+        <article class='group-card'>
+            <h3 class='group-header'>$nome</h3>
+            <h4 class='group-subheader'>
+                $corso<br>
+                $materia
+            </h4>
+            
+            <h5 class='group-info'>
+                Membri: $membri
+            </h5>
+            
+            <a class='show-group-btn' href='group_preview.php?id=$id'>
+                Visualizza
+            </a>
+        </article>";
+    }
+        echo '</div>';
+    }
 ?>
 
                 <button id="edit-btn" onclick='redirect("edit_profile.php")' type="button">

@@ -72,7 +72,14 @@ function add_user_to_group($db, $group_name, $user_email) {
     $sql = "INSERT INTO group_participants(group_id, user_id)
             VALUES($1, $2)";
 
-    pg_query_params($db, $sql, array($group_id, $user_id));
+    $res = pg_query_params($db, $sql, array($group_id, $user_id));
+
+    if ($res) {
+        $sql_update = "UPDATE groups 
+                       SET curr_members = curr_members + 1 
+                       WHERE id = $1";
+        pg_query_params($db, $sql_update, array($group_id));
+    }
 }
 
 function get_users_in_group($db, $group_name) {
@@ -99,6 +106,21 @@ function delete_group($db, $group_id) {
     $res = pg_query_params($db, $sql_group, array($group_id));
 
     return ($res !== false);
+}
+
+function get_groups_by_user($db, $email) {
+    $user_id = get_user_id_by_email($db, $email);
+
+    $sql = "SELECT * FROM groups
+            WHERE id IN (
+                SELECT group_id
+                FROM group_participants
+                WHERE user_id = $1
+                )";
+
+    $res = pg_query_params($db, $sql, array($user_id));
+
+    return fetch_all($res);
 }
 
 ?>
