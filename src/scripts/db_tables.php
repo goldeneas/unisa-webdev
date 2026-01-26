@@ -47,6 +47,7 @@ function create_groups_table($db) {
             subject VARCHAR(100) NOT NULL,
             description VARCHAR(255),
             is_public BOOLEAN DEFAULT FALSE,
+            group_pass_hash VARCHAR(255), 
             curr_members INTEGER DEFAULT 0,
             max_members INTEGER NOT NULL,
             timestamp TIMESTAMP DEFAULT CURRENT_TIMESTAMP)";
@@ -57,6 +58,8 @@ function create_groups_table($db) {
             //ON DELETE CASCADE -> Se cancelli owner_id, automaticamente il database
             // cancellerà anche tutti i gruppi creati da lui e tutte le righe dove lui
             //  compare come partecipante.
+
+            //group_pass_hash -> null se il gruppo è pubblico.
 
     $ret = pg_query($db, $sql);
     if (!$ret) echo pg_last_error($db); 

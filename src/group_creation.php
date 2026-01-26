@@ -74,19 +74,21 @@
                     </p>
 
                     <p>
-                        <label for="group-type">Visibilità del gruppo</label>
-
-                        <section class="radio-option">
-                            <input type="radio" id="public" name="group-type" value="public" checked>
+                        <label>Visibilità del gruppo</label> <section class="radio-option">
+                            <input type="radio" id="public" name="group-type" value="public" checked onchange="togglePassword()">
                             <label for="public">Pubblico</label>
                         </section>
 
                         <section class="radio-option">
-                            <input type="radio" id="private" name="group-type" value="private">
+                            <input type="radio" id="private" name="group-type" value="private" onchange="togglePassword()">
                             <label for="private">Privato</label>
                         </section>
                     </p>
 
+                    <p id="password-container" style="display: none;">
+                        <label for="group-password">Password del gruppo</label>
+                        <input type="password" id="group-password" name="group-password" placeholder="Imposta una password per accedere">
+                    </p>
                     <button id="create-btn" type="submit">Crea il gruppo</button>
                 </form>
 
@@ -156,6 +158,23 @@
                         selectMateria.add(nuovaOpzione);
                     });
                 }
+
+                function togglePassword() {
+                    const privateRadio = document.getElementById("private");
+                    const passContainer = document.getElementById("password-container");
+                    const passInput = document.getElementById("group-password");
+
+                    if (privateRadio.checked) {
+                        // Se è privato: mostro il campo e lo rendo obbligatorio
+                        passContainer.style.display = "block";
+                        passInput.required = true;
+                    } else {
+                        // Se è pubblico: nascondo il campo, lo svuoto e tolgo l'obbligatorietà
+                        passContainer.style.display = "none";
+                        passInput.required = false;
+                        passInput.value = "";
+                    }
+                }
             </script>
 
         </body>
@@ -168,8 +187,13 @@
         $is_public = ($_POST["group-type"] === "public");
         $max_members = $_POST["max-members"];
         $owner_email = $_SESSION["email"];
+        // Se è privato prendo la password, altrimenti null
+        $password = null;
+        if (!$is_public && isset($_POST["group-password"])) {
+            $password = $_POST["group-password"];
+        }
 
-        if(create_group($db, $name, $course, $subject, $max_members, $description, $is_public, $owner_email)){
+        if(create_group($db, $name, $course, $subject, $max_members, $description, $is_public, $owner_email,$password)){
             add_user_to_group($db, $name, $owner_email);
             spawn_centered_banner("Gruppo Creato!", "Redirect in corso...");
             header("refresh:3;url=index.php" );

@@ -27,6 +27,29 @@ if (!isset($_GET["id"]) || !$_GET["id"]) {
 
 $group_id = $_GET["id"];
 
+$is_logged_in = isset($_SESSION["logged_in"]) && $_SESSION["logged_in"];
+$current_user_email = $is_logged_in ? $_SESSION["email"] : "";
+$current_user_id = $is_logged_in ? get_user_id_by_email($db, $current_user_email) : -1;
+
+$info_gruppo = get_group_with_id($db, $group_id);
+if (!$info_gruppo) {
+    header("refresh:3;url=index.php");
+    ?>
+    <!DOCTYPE html>
+    <html lang="it">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="centered_banner.css">
+        <link rel="stylesheet" href="background.css">
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    </head>
+    <?php
+    require_once "navbar.php";
+    spawn_centered_banner("Gruppo non trovato", "Il gruppo che hai selezionato non esiste!");
+    exit;
+    exit;
+}
+
 // --- 2. LOGICA ELIMINAZIONE (POST) ---
 // Controlliamo se è stato premuto il tasto elimina PRIMA di caricare il resto
 if (isset($_POST["delete_group_btn"])) {
@@ -85,6 +108,48 @@ if (!$info_gruppo) {
     exit;
 }
 
+if (isset($_POST["join_group_btn"])) {
+    if ($is_logged_in) {
+        $can_join = false; 
+        $error_msg = "";
+
+        // Caso 1: Gruppo Pubblico -> Accesso libero
+        if ($info_gruppo["is_public"] == 't' || $info_gruppo["is_public"] == 1) {
+            $can_join = true;
+        } 
+        // Caso 2: Gruppo Privato -> Verifica Password
+        else {
+            $input_pass = $_POST["group_password"] ?? "";
+            
+            if (check_group_password($db, $group_id, $input_pass)) {
+                $can_join = true;
+            } else {
+                $error_msg = "Password errata!";
+            }
+        }
+
+        // Se $can_join è true, procediamo all'inserimento
+        if ($can_join) {
+            
+            add_user_to_group($db, $info_gruppo["name"], $current_user_email);
+            
+            // Ricarica la pagina per mostrare che l'utente è stato effettivamente inserito
+            header("Location: group_preview.php?id=" . $group_id);
+            exit;
+            
+        } 
+        // Gestione errore (mostra il messaggio solo se non si è ricaricata la pagina)
+        elseif ($error_msg == "") {
+            $error_msg = "Impossibile unirsi al gruppo.";
+        }
+
+    } else {
+        // Se non è loggato
+        header("Location: login.php");
+        exit;
+    }
+}
+
 // --- 4. PREPARAZIONE DATI PER HTML ---
 $lista_utenti = get_users_in_group($db, $info_gruppo["name"]);
 $nome_gruppo = $info_gruppo["name"];
@@ -94,12 +159,10 @@ $materia = $info_gruppo["subject"];
 $max_membri = $info_gruppo["max_members"];
 $membri_attuali = count($lista_utenti);
 $owner_id = $info_gruppo["owner_id"];
-$admin_name = "Sconosciuto";
+$is_public = ($info_gruppo["is_public"] == 't' || $info_gruppo["is_public"] == 1);
 
-// Dati Utente Corrente
-$is_logged_in = isset($_SESSION["logged_in"]) && $_SESSION["logged_in"];
-$current_user_email = $is_logged_in ? $_SESSION["email"] : "";
-$current_user_id = $is_logged_in ? get_user_id_by_email($db, $current_user_email) : -1;
+
+
 
 // Sei il proprietario?
 $is_owner = ($is_logged_in && $current_user_id == $owner_id);
@@ -108,6 +171,10 @@ $user_already_joined = false;
 // Loop Membri per visualizzazione
 $membri_display = [];
 foreach ($lista_utenti as $utente) {
+    if ($is_logged_in && $utente["email"] === $current_user_email) {
+        $user_already_joined = true;
+    }
+
     $is_admin = ($utente["id"] == $owner_id);
     $nome_completo = $utente["name"] . " " . $utente["surname"];
     
@@ -125,7 +192,8 @@ foreach ($lista_utenti as $utente) {
     $membri_display[] = [
         "nome" => $nome_completo,
         "sigla" => $sigla,
-        "admin" => $is_admin
+        "admin" => $is_admin,
+        "email" => $utente["email"]
     ];
 }
 ?>
@@ -179,7 +247,7 @@ foreach ($lista_utenti as $utente) {
                         <article class="participant-item">
                             <aside class="<?php echo $classe_avatar; ?>"><?php echo $membro["sigla"]; ?></aside>
                             <bdi class="participant-name">
-                                <a href="check_profile.php">
+                                <a href="check_profile.php?email=<?php echo $membro['email']; ?>">
                                     <?php echo $membro["nome"] . $etichetta_admin; ?>
                                 </a>
                             </bdi>
@@ -230,12 +298,37 @@ foreach ($lista_utenti as $utente) {
                     <?php
 
                 } else {
-                    // LOGGATO E LIBERO -> Unisciti
-                    ?>
-                    <button onclick="showModal()" class="btn btn-primary">
-                        Unisciti al gruppo
-                    </button>
-                    <?php
+                    // LOGGATO E LIBERO -> LOGICA JOIN
+                    
+                    if ($is_public) {
+                        // --- GRUPPO PUBBLICO ---
+                        ?>
+                        <form method="post" class="join-form">
+                            <button type="submit" name="join_group_btn" class="btn btn-primary">
+                                Unisciti al gruppo
+                            </button>
+                        </form>
+                        <?php
+                    } else {
+                        // --- GRUPPO PRIVATO ---
+                        ?>
+                        <form method="post" class="join-form">
+                            <input type="password" 
+                                   name="group_password" 
+                                   class="group-password-input" 
+                                   placeholder="Inserisci password gruppo" 
+                                   required>
+                            
+                            <button type="submit" name="join_group_btn" class="btn btn-primary">
+                                Unisciti al gruppo
+                            </button>
+                        </form>
+                        
+                        <p class="private-group-label">
+                            <small>Questo è un gruppo privato.</small>
+                        </p>
+                        <?php
+                    }
                 }
                 ?>
             </footer>

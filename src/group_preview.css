@@ -229,3 +229,38 @@ button:disabled, .btn:disabled {
     color: #4b5563;
     margin: 0 0 1.5rem 0;
 }
+
+/* --- Stili per il modulo di iscrizione (Join Form) --- */
+
+.join-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    max-width: 300px; /* Evita che il form diventi troppo largo su desktop */
+    /* Nota: Essendo dentro .card-footer che ha align-items: center, 
+       il form starà al centro automaticamente */
+}
+
+.group-password-input {
+    padding: 12px; /* Ho aumentato leggermente per matchare l'altezza del bottone */
+    border-radius: 25px; /* Arrotondato come i bottoni */
+    border: 1px solid #ccc;
+    width: 100%;
+    box-sizing: border-box; /* Essenziale affinché il padding non rompa la larghezza */
+    font-family: inherit;
+    font-size: 1rem;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.group-password-input:focus {
+    border-color: #007bff; /* Colore primario quando clicchi */
+}
+
+.private-group-label {
+    font-size: 0.85em;
+    color: #6b7280; /* Un grigio bilanciato */
+    margin-top: 5px;
+    margin-bottom: 0;
+}
