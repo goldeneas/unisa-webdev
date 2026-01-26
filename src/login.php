@@ -46,7 +46,7 @@ if (!isset($_POST["email"]) || !isset($_POST["password"])) {
                     </button>
                 </section>
 
-                <a href="/forgot-password" id="forgot-password-href">Password dimenticata?</a>
+              
 
                 <section id="input-separator">
                     <button class="form-btn" type="submit">Accedi</button>
