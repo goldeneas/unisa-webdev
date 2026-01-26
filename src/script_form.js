@@ -1,9 +1,7 @@
-
 function validateEmail(email) {
     const re = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return re.test(email);
 }
-
 
 function initLoginValidation() {
     const loginForm = document.getElementById("login-form");
@@ -26,7 +24,6 @@ function initLoginValidation() {
         }
     });
 }
-
 
 function initRegisterValidation() {
     const registerForm = document.getElementById("Register");
@@ -51,7 +48,6 @@ function initRegisterValidation() {
     });
 }
 
-
 function initGroupCreationValidation() {
     const groupForm = document.getElementById("group-creation-form");
     if (!groupForm) return;
@@ -75,17 +71,16 @@ function initGroupCreationValidation() {
     });
 }
 
-
 function initProfileManagement() {
     const profileForm = document.getElementById("profileForm");
     if (!profileForm) return;
 
-  
     profileForm.addEventListener("submit", function(event) {
         let errors = [];
         const enrollmentInput = document.getElementById("enrollment_year").value.trim();
         const yearSelect = document.getElementById("year").value;
         const facultySelect = document.getElementById("faculty").value;
+        const modeSelect = document.getElementById("mode").value;
 
         if (enrollmentInput !== "") {
             const year = parseInt(enrollmentInput, 10);
@@ -98,6 +93,7 @@ function initProfileManagement() {
 
         if (yearSelect === "") errors.push("Seleziona il tuo anno universitario");
         if (facultySelect === "") errors.push("Seleziona la tua facoltà");
+        if (modeSelect === "") errors.push("Seleziona la tua modalità di studio preferita");
 
         if (errors.length > 0) {
             event.preventDefault();
@@ -105,7 +101,6 @@ function initProfileManagement() {
         }
     });
 
-    
     const geoButton = document.getElementById("geo-btn");
     if (geoButton) {
         geoButton.addEventListener("click", function(e) {
@@ -119,7 +114,6 @@ function initProfileManagement() {
                         document.getElementById("latitude").value = lat;
                         document.getElementById("longitude").value = lon;
                         geoButton.textContent = `Posizione OK: ${lat.toFixed(2)}, ${lon.toFixed(2)}`;
-                        geoButton.classList.add("success");
                         geoButton.disabled = true;
                     },
                     () => {
