@@ -95,7 +95,7 @@
 
                     <p id="password-container" style="display: none;">
                         <label for="group-password">Password del gruppo</label>
-                        <input type="password" id="group-password" name="group-password" placeholder="Imposta una password per accedere">
+                        <input type="password" id="group-password" name="group-password" placeholder="Imposta una password">
                     </p>
                     <button id="create-btn" type="submit">Crea il gruppo</button>
                 </form>
