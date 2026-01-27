@@ -215,6 +215,15 @@ foreach ($lista_utenti as $utente) {
 <?php require_once "navbar.php"; ?>
 
 <body>
+    <?php if (isset($error_msg) && !empty($error_msg)): ?>
+        <script>
+            // Questo codice viene generato solo se c'è un errore PHP 
+            // (Pass errata)
+            alert("<?php echo addslashes($error_msg); ?>");
+            
+        </script>
+    <?php endif; ?>
+
     <main class="container">
         <article class="card">
             
