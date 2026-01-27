@@ -121,7 +121,9 @@
                     <br>
                 </section>
 
-                <label class="label-title">I tuoi gruppi</label>
+                <label class="label-title">
+                    <?php echo $is_my_profile ? "I tuoi gruppi" : "Gruppi di cui fa parte"; ?>
+                </label>
 
 <?php
     if (!$groups) {

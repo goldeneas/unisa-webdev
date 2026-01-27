@@ -14,10 +14,10 @@ function create_group($db, $name, $course, $subject, $max_members, $description,
     $sql = "INSERT INTO groups(name, course, subject, max_members, description, is_public, owner_id, group_pass_hash) 
             VALUES($1, $2, $3, $4, $5, $6, $7, $8)";
 
-    pg_query_params($db, $sql, array($name, $course, $subject,
+    $res =pg_query_params($db, $sql, array($name, $course, $subject,
         $max_members, $description, $bool_public, $owner_id, $hash));
 
-    return true;
+    return ($res !== false);
 }
 
 function check_group_password($db, $group_id, $password_input) {
@@ -107,13 +107,8 @@ function get_users_in_group($db, $group_name) {
 }
 
 function delete_group($db, $group_id) {
-    $sql_participants = "DELETE FROM group_participants 
-                         WHERE group_id = $1";
     
-    pg_query_params($db, $sql_participants, array($group_id));
-
-    $sql_group = "DELETE FROM groups 
-                  WHERE id = $1";
+    $sql_group = "DELETE FROM groups WHERE id = $1";
 
     $res = pg_query_params($db, $sql_group, array($group_id));
 
