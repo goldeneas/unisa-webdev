@@ -1,5 +1,5 @@
 
-/* --- GENERALI --- */
+/* --- GLOBAL --- */
 * {
     box-sizing: border-box;
 }
@@ -8,7 +8,7 @@ body, html {
     height: 100%;
     margin: 0;
     font-family: "Roboto", sans-serif;
-    background-color: #f3f4f6;
+    background-color: transparent; 
 }
 
 a {
@@ -20,9 +20,14 @@ a {
 .container {
     min-height: 100vh;
     display: flex;
-    align-items: center;
+    align-items: flex-start; 
     justify-content: center;
-    padding: 1rem;
+    
+   
+    padding-top: 60px;
+    padding-bottom: 60px;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /* --- CARD --- */
@@ -34,15 +39,22 @@ a {
     max-width: 42rem;
     display: flex;
     flex-direction: column;
+    overflow: hidden;
+    position: relative;
 }
 
-.card-header, .card-body, .card-footer {
+.card-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.card-body {
     padding: 1.5rem;
 }
 
-.card-header { border-bottom: 1px solid #e5e7eb; }
-
+/* --- FOOTER --- */
 .card-footer {
+    padding: 1.5rem;
     background-color: #f9fafb;
     border-top: 1px solid #e5e7eb;
     display: flex;
@@ -51,7 +63,7 @@ a {
     gap: 10px;
 }
 
-/* --- SOTTOTITOLI --- */
+/* --- TYPOGRAPHY --- */
 h1 {
     font-weight: 700;
     margin: 0;
@@ -143,7 +155,7 @@ h2 {
     color: #0965c1;
 }
 
-/* --- PULSANTI --- */
+/* --- BOTTONI --- */
 .btn {
     width: 100%;
     padding: 12px 24px;
@@ -181,7 +193,7 @@ button:disabled, .btn:disabled {
     background-color: #6c757d !important;
 }
 
-/* --- FORM ISCRIZIONE E INPUT PASSWORD --- */
+/* --- FORM ISCRIZIONE --- */
 .join-form {
     display: flex;
     flex-direction: column;
