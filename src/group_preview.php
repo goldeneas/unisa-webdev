@@ -8,7 +8,6 @@ require_once "centered_banner.php";
 
 // --- 1. CONTROLLO INIZIALE: ID PRESENTE? ---
 if (!isset($_GET["id"]) || !$_GET["id"]) {
-    // Se manca l'ID, mostriamo errore e redirect
     header("refresh:3;url=index.php");
     ?>
     <!DOCTYPE html>
@@ -19,19 +18,26 @@ if (!isset($_GET["id"]) || !$_GET["id"]) {
         <link rel="stylesheet" href="background.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     </head>
+    <body>
+        <?php
+        require_once "navbar.php";
+        spawn_centered_banner("Link non valido", "Non è stato specificato nessun gruppo.");
+        ?>
+    </body>
+    </html>
     <?php
-    require_once "navbar.php";
-    spawn_centered_banner("Link non valido", "Non è stato specificato nessun gruppo.");
-    exit; // Stop esecuzione
+    exit;
 }
 
 $group_id = $_GET["id"];
 
+// --- 1.5 DATI UTENTE ---
 $is_logged_in = isset($_SESSION["logged_in"]) && $_SESSION["logged_in"];
 $current_user_email = $is_logged_in ? $_SESSION["email"] : "";
 $current_user_id = $is_logged_in ? get_user_id_by_email($db, $current_user_email) : -1;
 
 $info_gruppo = get_group_with_id($db, $group_id);
+
 if (!$info_gruppo) {
     header("refresh:3;url=index.php");
     ?>
@@ -43,42 +49,62 @@ if (!$info_gruppo) {
         <link rel="stylesheet" href="background.css">
         <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
     </head>
+    <body>
+        <?php
+        require_once "navbar.php";
+        spawn_centered_banner("Gruppo non trovato", "Il gruppo che hai selezionato non esiste!");
+        ?>
+    </body>
+    </html>
     <?php
-    require_once "navbar.php";
-    spawn_centered_banner("Gruppo non trovato", "Il gruppo che hai selezionato non esiste!");
-    exit;
     exit;
 }
 
-// --- 2. LOGICA ELIMINAZIONE (POST) ---
-// Controlliamo se è stato premuto il tasto elimina PRIMA di caricare il resto
+// --- 2. LOGICA ELIMINAZIONE (POST - ADMIN) ---
 if (isset($_POST["delete_group_btn"])) {
-    
-    // Sicurezza: L'utente deve essere loggato
-    if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) {
-        
-        // Recuperiamo i dati per verificare che sia DAVVERO il proprietario
+    if ($is_logged_in) {
         $temp_group = get_group_with_id($db, $group_id);
-        $current_user_id = get_user_id_by_email($db, $_SESSION["email"]);
+        $current_user_id = get_user_id_by_email($db, $_SESSION["email"]); // Aggiorno ID per sicurezza
 
-        // Se il gruppo esiste e l'utente loggato è il proprietario
         if ($temp_group && $temp_group["owner_id"] == $current_user_id) {
-            
-            
             if(delete_group($db, $group_id)) {
-                // Successo
                 header("refresh:3;url=index.php");
                 ?>
                 <!DOCTYPE html>
                 <html lang="it">
                 <head>
+                    <meta charset="UTF-8">
                     <link rel="stylesheet" href="centered_banner.css">
                     <link rel="stylesheet" href="background.css">
+                    <link rel="preconnect" href="https://fonts.googleapis.com">
+                    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
                     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+                    
+                    <style>
+                        body, html {
+                            height: 100%;
+                            margin: 0;
+                            font-family: "Roboto", sans-serif;
+                            background-color: transparent;
+                        }
+                        .feedback-container {
+                            height: 100%;
+                            width: 100%;
+                            display: flex;
+                            align-items: center;
+                            justify-content: center;
+                            padding-bottom: 10%;
+                        }
+                    </style>
                 </head>
+                <body>
+                    <?php require_once "navbar.php"; ?>
+                    <main class="feedback-container">
+                        <?php spawn_centered_banner("Gruppo Eliminato", "Il gruppo è stato rimosso con successo."); ?>
+                    </main>
+                </body>
+                </html>
                 <?php
-                require_once "navbar.php";
-                spawn_centered_banner("Gruppo Eliminato", "Il gruppo è stato rimosso con successo.");
                 exit;
             } else {
                 echo "Errore durante l'eliminazione del gruppo.";
@@ -87,40 +113,35 @@ if (isset($_POST["delete_group_btn"])) {
     }
 }
 
-// --- 3. RECUPERO DATI GRUPPO ---
-$info_gruppo = get_group_with_id($db, $group_id);
+// --- 3. LOGICA JOIN / LEAVE (POST) ---
 
-// Se il gruppo non esiste (o è stato appena cancellato e ricarichi la pagina)
-if (!$info_gruppo) {
-    header("refresh:3;url=index.php");
-    ?>
-    <!DOCTYPE html>
-    <html lang="it">
-    <head>
-        <meta charset="UTF-8">
-        <link rel="stylesheet" href="centered_banner.css">
-        <link rel="stylesheet" href="background.css">
-        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
-    </head>
-    <?php
-    require_once "navbar.php";
-    spawn_centered_banner("Gruppo non trovato", "Il gruppo che hai selezionato non esiste!");
-    exit;
+// A. LOGICA PER USCIRE DAL GRUPPO 
+if (isset($_POST["leave_group_btn"])) {
+    if ($is_logged_in) {
+        
+        if (remove_user_from_group($db, $group_id, $current_user_id)) {
+            
+            header("Location: group_preview.php?id=" . $group_id);
+            exit;
+        } else {
+            $error_msg = "Impossibile uscire dal gruppo.";
+        }
+    }
 }
 
+// B. LOGICA PER UNIRSI
 if (isset($_POST["join_group_btn"])) {
     if ($is_logged_in) {
         $can_join = false; 
         $error_msg = "";
 
-        // Caso 1: Gruppo Pubblico -> Accesso libero
+        // Caso 1: Pubblico
         if ($info_gruppo["is_public"] == 't' || $info_gruppo["is_public"] == 1) {
             $can_join = true;
         } 
-        // Caso 2: Gruppo Privato -> Verifica Password
+        // Caso 2: Privato
         else {
             $input_pass = $_POST["group_password"] ?? "";
-            
             if (check_group_password($db, $group_id, $input_pass)) {
                 $can_join = true;
             } else {
@@ -128,29 +149,22 @@ if (isset($_POST["join_group_btn"])) {
             }
         }
 
-        // Se $can_join è true, procediamo all'inserimento
         if ($can_join) {
-            
             add_user_to_group($db, $info_gruppo["name"], $current_user_email);
-            
-            // Ricarica la pagina per mostrare che l'utente è stato effettivamente inserito
             header("Location: group_preview.php?id=" . $group_id);
             exit;
-            
         } 
-        // Gestione errore (mostra il messaggio solo se non si è ricaricata la pagina)
         elseif ($error_msg == "") {
             $error_msg = "Impossibile unirsi al gruppo.";
         }
 
     } else {
-        // Se non è loggato
         header("Location: login.php");
         exit;
     }
 }
 
-// --- 4. PREPARAZIONE DATI PER HTML ---
+// --- 4. PREPARAZIONE DATI HTML ---
 $lista_utenti = get_users_in_group($db, $info_gruppo["name"]);
 $nome_gruppo = $info_gruppo["name"];
 $descrizione = $info_gruppo["description"];
@@ -160,35 +174,22 @@ $max_membri = $info_gruppo["max_members"];
 $membri_attuali = count($lista_utenti);
 $owner_id = $info_gruppo["owner_id"];
 $is_public = ($info_gruppo["is_public"] == 't' || $info_gruppo["is_public"] == 1);
+$admin_name = "Sconosciuto";
 
-
-
-
-// Sei il proprietario?
 $is_owner = ($is_logged_in && $current_user_id == $owner_id);
 $user_already_joined = false;
 
-// Loop Membri per visualizzazione
 $membri_display = [];
 foreach ($lista_utenti as $utente) {
     if ($is_logged_in && $utente["email"] === $current_user_email) {
         $user_already_joined = true;
     }
-
     $is_admin = ($utente["id"] == $owner_id);
     $nome_completo = $utente["name"] . " " . $utente["surname"];
     
-    // Verifico se io (utente loggato) sono in questa lista
-    if ($is_logged_in && $utente["email"] === $current_user_email) {
-        $user_already_joined = true;
-    }
-
+    if ($is_admin) { $admin_name = $nome_completo; }
     $sigla = strtoupper(substr($utente["name"], 0, 1) . substr($utente["surname"], 0, 1));
     
-    if ($is_admin) {
-        $admin_name = $nome_completo;
-    }
-
     $membri_display[] = [
         "nome" => $nome_completo,
         "sigla" => $sigla,
@@ -204,25 +205,17 @@ foreach ($lista_utenti as $utente) {
     <meta charset="UTF-8">
     <title>Gruppo <?php echo $nome_gruppo; ?></title>
     
-    <link rel="stylesheet" href="group_preview.css">
-    <link rel="stylesheet" href="background.css">
-    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="background.css">
+    
+    <link rel="stylesheet" href="group_preview.css">
 </head>
 
-<?php require_once "navbar.php"; ?>
-
 <body>
-    <?php if (isset($error_msg) && !empty($error_msg)): ?>
-        <script>
-            // Questo codice viene generato solo se c'è un errore PHP 
-            // (Pass errata)
-            alert("<?php echo addslashes($error_msg); ?>");
-            
-        </script>
-    <?php endif; ?>
+    <?php require_once "navbar.php"; ?>
 
     <main class="container">
         <article class="card">
@@ -234,12 +227,8 @@ foreach ($lista_utenti as $utente) {
 
             <section class="card-body">
                 <div class="group-tags">
-                    <span class="tag course-tag">
-                        <?php echo $corso; ?>
-                    </span>
-                    <span class="tag subject-tag">
-                        <?php echo $materia; ?>
-                    </span>
+                    <span class="tag course-tag"><?php echo $corso; ?></span>
+                    <span class="tag subject-tag"><?php echo $materia; ?></span>
                 </div>
                 <h2>Descrizione del gruppo di studio</h2>
                 <p class="description">
@@ -267,75 +256,51 @@ foreach ($lista_utenti as $utente) {
 
             <footer class="card-footer">
                 <?php 
-                // --- BOTTONI AZIONE ---
-                
                 if ($is_owner) {
-                    // SEI IL PROPRIETARIO -> Bottone Elimina
+                    // --- CASO 1: PROPRIETARIO (Tasto Elimina) ---
                     ?>
                     <form method="post" onsubmit="return confirm('Sei sicuro di voler eliminare definitivamente questo gruppo? Questa azione non è reversibile.');">
-                        <button type="submit" name="delete_group_btn" class="btn btn-danger">
-                            Elimina Gruppo
-                        </button>
+                        <button type="submit" name="delete_group_btn" class="btn btn-danger">Elimina Gruppo</button>
                     </form>
-                    <p style="text-align:center; font-size: 0.85em; margin-top:10px; color: #777;">
-                        Sei l'amministratore di questo gruppo.
-                    </p>
+                    <p style="text-align:center; font-size: 0.85em; margin-top:10px; color: #777;">Sei l'amministratore di questo gruppo.</p>
                     <?php
 
                 } elseif (!$is_logged_in) {
-                    // NON LOGGATO -> Login
+                    // --- CASO 2: NON LOGGATO (Tasto Login) ---
                     ?>
-                    <button onclick="window.location.href='login.php'" class="btn btn-primary" style="background-color: #f0ad4e;">
-                        Accedi per unirti
-                    </button>
+                    <button onclick="window.location.href='login.php'" class="btn btn-primary" style="background-color: #f0ad4e;">Accedi per unirti</button>
                     <?php
 
                 } elseif ($user_already_joined) {
-                    // GIÀ MEMBRO -> Info
+                    // --- CASO 3: GIÀ MEMBRO (Tasto Esci) ---
                     ?>
-                    <button class="btn btn-primary" disabled style="background-color: #5cb85c; cursor: default;">
-                        Sei già membro
-                    </button>
+                    <form method="post" onsubmit="return confirm('Sei sicuro di voler uscire da questo gruppo?');" style="width:100%; display: flex; justify-content: center;">
+                        <button type="submit" name="leave_group_btn" class="btn btn-danger" style="background-color: #d9534f;">Esci dal gruppo</button>
+                    </form>
+                    <p style="text-align:center; font-size: 0.85em; margin-top:5px; color: #777;">Fai parte di questo gruppo.</p>
                     <?php
 
                 } elseif ($membri_attuali >= $max_membri) {
-                    // PIENO -> Disabilitato
+                    // --- CASO 4: GRUPPO PIENO ---
                     ?>
-                    <button class="btn btn-primary" disabled style="background-color: grey; cursor: not-allowed;">
-                        Gruppo Completo
-                    </button>
+                    <button class="btn btn-primary" disabled style="background-color: grey; cursor: not-allowed;">Gruppo Completo</button>
                     <?php
 
                 } else {
-                    // LOGGATO E LIBERO -> LOGICA JOIN
-                    
+                    // --- CASO 5: UTENTE LOGGATO PUÒ UNIRSI ---
                     if ($is_public) {
-                        // --- GRUPPO PUBBLICO ---
                         ?>
                         <form method="post" class="join-form">
-                            <button type="submit" name="join_group_btn" class="btn btn-primary">
-                                Unisciti al gruppo
-                            </button>
+                            <button type="submit" name="join_group_btn" class="btn btn-primary">Unisciti al gruppo</button>
                         </form>
                         <?php
                     } else {
-                        // --- GRUPPO PRIVATO ---
                         ?>
                         <form method="post" class="join-form">
-                            <input type="password" 
-                                   name="group_password" 
-                                   class="group-password-input" 
-                                   placeholder="Inserisci password gruppo" 
-                                   required>
-                            
-                            <button type="submit" name="join_group_btn" class="btn btn-primary">
-                                Unisciti al gruppo
-                            </button>
+                            <input type="password" name="group_password" class="group-password-input" placeholder="Inserisci password gruppo" required>
+                            <button type="submit" name="join_group_btn" class="btn btn-primary">Unisciti al gruppo</button>
                         </form>
-                        
-                        <p class="private-group-label">
-                            <small>Questo è un gruppo privato.</small>
-                        </p>
+                        <p class="private-group-label"><small>Questo è un gruppo privato.</small></p>
                         <?php
                     }
                 }
@@ -344,19 +309,16 @@ foreach ($lista_utenti as $utente) {
         </article>
     </main>
 
-    <aside id="join-modal" class="modal">
-        <section class="modal-content">
-            <h3>Richiesta Inviata!</h3>
-            <p>La tua richiesta di unirti al gruppo "<?php echo $nome_gruppo; ?>" è stata inviata a <?php echo $admin_name; ?>.</p>
-            <button onclick="closeModal()" class="btn btn-primary">Chiudi</button>
-        </section>
-    </aside>
+    <?php if (isset($error_msg) && !empty($error_msg)): ?>
+        <script>
+            setTimeout(function() {
+                alert("<?php echo addslashes($error_msg); ?>");
+            }, 50);
+            if ( window.history.replaceState ) {
+                window.history.replaceState( null, null, window.location.href );
+            }
+        </script>
+    <?php endif; ?>
 
-    <script>
-        const modal = document.getElementById('join-modal');
-        function showModal() { if (modal) modal.style.display = 'flex'; }
-        function closeModal() { if (modal) modal.style.display = 'none'; }
-        window.onclick = function(event) { if (event.target == modal) closeModal(); }
-    </script>  
 </body>
 </html>

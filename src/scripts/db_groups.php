@@ -82,6 +82,18 @@ function add_user_to_group($db, $group_name, $user_email) {
     }
 }
 
+function remove_user_from_group($db, $group_id, $user_id) {
+    $sql = "DELETE FROM group_participants WHERE group_id = $1 AND user_id = $2";
+    $res = pg_query_params($db, $sql, array($group_id, $user_id));
+
+    if ($res) {
+        $update_sql = "UPDATE groups SET curr_members = curr_members - 1 WHERE id = $1";
+        pg_query_params($db, $update_sql, array($group_id));
+        return true;
+    }
+    return false;
+}
+
 function get_users_in_group($db, $group_name) {
     $group_id = get_group_id_by_name($db, $group_name);
     
