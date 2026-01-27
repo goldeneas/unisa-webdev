@@ -31,20 +31,45 @@
         return;
     }
 
+    // Se c'è un'email nell'URL (GET), usiamo quella.
+    // Altrimenti usiamo l'email dell'utente loggato (SESSION).
+    //Serve per far visualizzare il profilo di un altro utente quando
+    //Si è nella group_preview.
+    if (isset($_GET['email']) && !empty($_GET['email'])) {
+        $email_target = $_GET['email'];
+    } else {
+        $email_target = $_SESSION['email'];
+    }
 
-    $name = $_SESSION["name"] ?? "";
-    $surname = $_SESSION["surname"] ?? "";
-    $email = $_SESSION["email"] ?? "";
-    $department = $_SESSION["department"] ?? "";
-    $university_year = $_SESSION["university_year"] ?? "";
-    $enrollment_year = $_SESSION["enrollment_year"] ?? "";
-    $preferred_mode = $_SESSION["preferred_mode"] ?? "";
-    $preferred_time = $_SESSION["preferred_time"] ?? "";
-    $groups = $_SESSION["groups"] ?? [];
-    $latitude = $_SESSION["latitude"] ?? null;
-    $longitude = $_SESSION["longitude"] ?? null;
+    //recupero i dati relativi all'email nell'URL della pagina.
+    $sql = "SELECT * FROM users WHERE email = $1";
+    $res = pg_query_params($db, $sql, array($email_target));
+    $user_data = pg_fetch_assoc($res);
 
-    $groups = get_groups_by_user($db, $email);
+    // Se l'utente non esiste (o email sbagliata nell'URL), 
+    // errore
+    if (!$user_data) {
+        spawn_centered_banner("Errore", "Utente non trovato.");
+        exit;
+    }
+
+
+    $name = $user_data["name"];
+    $surname = $user_data["surname"];
+    $email = $user_data["email"];
+    $department = $user_data["department"];
+    $university_year = $user_data["university_year"];
+    $enrollment_year = $user_data["enrollment_year"];
+    $preferred_mode = $user_data["preferred_mode"];
+    $preferred_time = $user_data["preferred_time"];
+    $latitude = isset($user_data["latitude"]) ? $user_data["latitude"] : null;
+    $longitude = isset($user_data["longitude"]) ? $user_data["longitude"] : null;
+
+    $groups = get_groups_by_user($db, $email_target);
+
+    //Devo capire se sto guardando il mio profilo, in caso affermativo
+    // devo mostrare il tasto "Modifica", sennò lo nascondo.
+    $is_my_profile = ($email_target === $_SESSION['email']);
 ?>
     <body>
         <main id="form-container">
@@ -132,9 +157,12 @@
     }
 ?>
 
-                <button id="edit-btn" onclick='redirect("edit_profile.php")' type="button">
-                    Modifica
-                </button>
+                <?php if ($is_my_profile) { ?>
+                    <button id="edit-btn" onclick='redirect("edit_profile.php")' type="button">
+                        Modifica
+                    </button>
+                <?php } ?>
+
             </form>
         </main>
 
