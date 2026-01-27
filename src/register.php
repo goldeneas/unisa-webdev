@@ -45,7 +45,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="it">
     <head>
         <title>Registrazione</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
