@@ -64,7 +64,7 @@ if (isset($_POST["delete_group_btn"])) {
         // Se il gruppo esiste e l'utente loggato è il proprietario
         if ($temp_group && $temp_group["owner_id"] == $current_user_id) {
             
-            // CHIAMATA ALLA FUNZIONE CHE HAI AGGIUNTO IN DB_GROUPS.PHP
+            
             if(delete_group($db, $group_id)) {
                 // Successo
                 header("refresh:3;url=index.php");
