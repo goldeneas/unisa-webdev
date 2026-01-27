@@ -1,4 +1,5 @@
-body, html {
+body,
+html {
     height: 100%;
     margin: 0;
 
@@ -24,13 +25,10 @@ label {
     font-size: 15px;
 }
 
-
-
-
 #login-form {
     background-color: white;
 
-  
+
     text-align: left;
 
     padding: 35px 32px;

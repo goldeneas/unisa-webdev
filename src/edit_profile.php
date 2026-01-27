@@ -42,14 +42,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
        <script src="script_form.js" defer></script>
-<script>
-    document.addEventListener("DOMContentLoaded", function() {
-       
-        if (typeof initProfileManagement === "function") {
-            initProfileManagement();
-        }
-    });
-</script>
+        <script>
+            document.addEventListener("DOMContentLoaded", function() {
+               
+                if (typeof initProfileManagement === "function") {
+                    initProfileManagement();
+                }
+            });
+        </script>
     </head>
 
 <?php
