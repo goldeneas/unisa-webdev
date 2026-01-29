@@ -35,9 +35,11 @@ function initRegisterValidation() {
         const surname = document.getElementById("surname").value.trim();
         const email = document.getElementById("email").value.trim();
         const password = document.getElementById("password").value;
-
+        const hasNumber = /[0-9]/;
         if (name.length < 2) errors.push("Il nome deve avere almeno 2 lettere");
+        if (hasNumber.test(name)) errors.push("Il nome non può contenere numeri");
         if (surname.length < 2) errors.push("Il cognome deve avere almeno 2 lettere");
+        if (hasNumber.test(surname)) errors.push("Il cognome non può contenere numeri");
         if (!validateEmail(email)) errors.push("Inserisci un indirizzo email valido");
         if (password.length < 6) errors.push("La password deve avere almeno 6 caratteri");
 
