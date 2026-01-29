@@ -33,7 +33,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="it">
     <head>
         <meta charset="UTF-8">
-        <title>Creazione Profilo - Gruppi di Studio</title>
+        <title>Modifica Profilo</title>
         <link rel="stylesheet" href="edit_profile.css">
         <link rel="stylesheet" href="background.css">
         <link rel="stylesheet" href="centered_banner.css">

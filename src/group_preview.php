@@ -203,7 +203,7 @@ foreach ($lista_utenti as $utente) {
 <html lang="it">
 <head>
     <meta charset="UTF-8">
-    <title>Gruppo <?php echo $nome_gruppo; ?></title>
+    <title>Gruppo: <?php echo $nome_gruppo; ?></title>
     
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

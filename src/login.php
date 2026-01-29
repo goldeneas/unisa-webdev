@@ -5,7 +5,7 @@ session_start();
 <!DOCTYPE html>
 <html>
     <head>
-        <title>login</title>
+        <title>Login</title>
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8" /> 
         <link rel="stylesheet" href="login.css">
         <link rel="stylesheet" href="background.css">
