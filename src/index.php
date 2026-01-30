@@ -20,7 +20,7 @@ session_start();
             require_once "navbar.php";
         ?>
 
-        <header id="upper">
+        <header>
             <h1 id="header">Trova gruppi di studio ad Unisa</h1>
             <h3 id="subheader"> StudyGroup è la piattaforma collaborativa dedicata agli studenti universitari.
                 <br>

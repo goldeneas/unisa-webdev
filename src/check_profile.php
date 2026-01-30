@@ -72,7 +72,7 @@
     $is_my_profile = ($email_target === $_SESSION['email']);
 ?>
     <body>
-        <main id="form-container">
+        <main>
             <form id="form">
 <?php
                 printf('<label id="username">%s %s</label>', $name, $surname);

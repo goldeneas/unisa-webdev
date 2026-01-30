@@ -37,7 +37,7 @@ hr {
     position: relative;
 }
 
-#form-container {
+html main {
     display: flex;
     justify-content: center;
     align-items: center;

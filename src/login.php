@@ -35,7 +35,7 @@ require_once "navbar.php";
 if (!isset($_POST["email"]) || !isset($_POST["password"])) {
 ?>
     <body>
-        <main id="login-form-container">
+        <main>
             <form id="login-form" method="POST" action="<?php echo $_SERVER["PHP_SELF"] ?>">
                 <h1 id="login-title">Login</h1>
                 <p id="login-subtitle">Inserisci le tue credenziali</p>

@@ -40,7 +40,7 @@ label {
     max-width: 300px;
 }
 
-#login-form-container {
+html main {
     display: flex;
     justify-content: center;
     align-items: center;
