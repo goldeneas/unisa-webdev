@@ -7,6 +7,8 @@ require_once "scripts/db_users.php";
 require_once "centered_banner.php";
 
 // --- 1. CONTROLLO INIZIALE: ID PRESENTE? ---
+//Se nell'url non è presente l'id di nessuno gruppo, rimando
+//l'utente alla homepage con relativo messagio di errore
 if (!isset($_GET["id"]) || !$_GET["id"]) {
     header("refresh:3;url=index.php");
     ?>
@@ -31,11 +33,16 @@ if (!isset($_GET["id"]) || !$_GET["id"]) {
 
 $group_id = $_GET["id"];
 
-// --- 1.5 DATI UTENTE ---
+// --- 1.5 DATI UTENTE E GRUPPO ---
+//Controllo se l'utente è loggato
 $is_logged_in = isset($_SESSION["logged_in"]) && $_SESSION["logged_in"];
+
+//Se è loggato, ne recupero email e id utente
 $current_user_email = $is_logged_in ? $_SESSION["email"] : "";
 $current_user_id = $is_logged_in ? get_user_id_by_email($db, $current_user_email) : -1;
 
+//Ottengo le informazioni su un gruppo, se non trovato reindirizzo
+//alla homepage
 $info_gruppo = get_group_with_id($db, $group_id);
 
 if (!$info_gruppo) {
@@ -61,11 +68,13 @@ if (!$info_gruppo) {
 }
 
 // --- 2. LOGICA ELIMINAZIONE (POST - ADMIN) ---
+//In caso in cui l'admin del gruppo voglia eliminare il gruppo
 if (isset($_POST["delete_group_btn"])) {
     if ($is_logged_in) {
         $temp_group = get_group_with_id($db, $group_id);
         $current_user_id = get_user_id_by_email($db, $_SESSION["email"]); // Aggiorno ID per sicurezza
 
+        //Controllo che l'utente sia effettivamente l'admin
         if ($temp_group && $temp_group["owner_id"] == $current_user_id) {
             if(delete_group($db, $group_id)) {
                 header("refresh:3;url=index.php");
@@ -115,7 +124,7 @@ if (isset($_POST["delete_group_btn"])) {
 
 // --- 3. LOGICA JOIN / LEAVE (POST) ---
 
-// A. LOGICA PER USCIRE DAL GRUPPO 
+// A. logica per uscire dal gruppo
 if (isset($_POST["leave_group_btn"])) {
     if ($is_logged_in) {
         
@@ -129,7 +138,7 @@ if (isset($_POST["leave_group_btn"])) {
     }
 }
 
-// B. LOGICA PER UNIRSI
+// B. logica per unirsi
 if (isset($_POST["join_group_btn"])) {
     if ($is_logged_in) {
         $can_join = false; 
@@ -142,6 +151,7 @@ if (isset($_POST["join_group_btn"])) {
         // Caso 2: Privato
         else {
             $input_pass = $_POST["group_password"] ?? "";
+            //Controllo che la password inserita dall'utente sia corretta
             if (check_group_password($db, $group_id, $input_pass)) {
                 $can_join = true;
             } else {
@@ -150,6 +160,7 @@ if (isset($_POST["join_group_btn"])) {
         }
 
         if ($can_join) {
+            //Aggiungo l'utente al gruppo e aggiorno la pagina
             add_user_to_group($db, $info_gruppo["name"], $current_user_email);
             header("Location: group_preview.php?id=" . $group_id);
             exit;
@@ -184,6 +195,9 @@ foreach ($lista_utenti as $utente) {
     if ($is_logged_in && $utente["email"] === $current_user_email) {
         $user_already_joined = true;
     }
+    //Scorro tutti gli utenti per salvare in un array nome, cognome
+    //sigla (iniziali di nome e cognome), se è l'admin del gruppo e 
+    //la sua mail
     $is_admin = ($utente["id"] == $owner_id);
     $nome_completo = $utente["name"] . " " . $utente["surname"];
     
@@ -239,6 +253,8 @@ foreach ($lista_utenti as $utente) {
                 
                 <section class="participants-list">
                     <?php foreach ($membri_display as $membro) { 
+                        //Se l'utente è l'admin, l'icona verrè mostrata
+                        //con un colore diverso
                         $classe_avatar = $membro["admin"] ? "avatar avatar-admin" : "avatar";
                         $etichetta_admin = $membro["admin"] ? " (Admin)" : "";
                     ?>
