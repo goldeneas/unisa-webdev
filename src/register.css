@@ -5,6 +5,7 @@
     box-sizing: border-box; 
 }
 
+/*Unione di sellettori*/
 body, html {
     height: 100%;
     margin: 0;
@@ -12,6 +13,8 @@ body, html {
 }
 
 /* --- CARD --- */
+
+/*ID selettore */
 #card-container {
     display: flex;
     justify-content: center;
@@ -20,6 +23,7 @@ body, html {
     width: 100%;
 }
 
+/*Class selettore*/
 .register-card {
     background: white;
     border-radius: 8px;
@@ -31,6 +35,8 @@ body, html {
 }
 
 /* --- SOTTOTITOLI --- */
+
+/*Tipo selettore*/
 h1 {
     font-weight: 700;
     font-size: 28px;
@@ -46,6 +52,8 @@ h1 {
 }
 
 /* --- ELEMENTI FORM --- */
+
+/*Selettore descendant*/
 form p {
     margin: 0 0 16px 0;
     text-align: left;
@@ -73,6 +81,7 @@ input[type="password"] {
     font-weight: 350;
 }
 
+/*Pseudo classe :focus*/
 input:focus {
     outline: none;
     border-color: #0965c1;
