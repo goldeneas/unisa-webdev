@@ -5,6 +5,7 @@ require_once "scripts/db_users.php";
 require_once "scripts/db_connection.php";
 require_once "navbar.php";
 
+//Se l'utente è loggato lo reinderizzo alla homepage
 if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) {
     header("Location: index.php" );
     exit;
@@ -13,8 +14,11 @@ if (isset($_SESSION["logged_in"]) && $_SESSION["logged_in"]) {
 $name_val = "";
 $surname_val = "";
 $email_val = "";
+//Variabile per salvare tutti gli errori che trovo per poi stamparli
+//alla fine dei controlli
 $error_message = "";
 
+//Prendo i campi che l'utente ha inserito e faccio dei controlli
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $name_val = $_POST["name"] ?? "";
     $surname_val = $_POST["surname"] ?? "";
@@ -28,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (does_user_exist($db, $email_val)) {
         $error_message = "L'email è già in uso. Scegline un'altra oppure effettua il login.";
     }
-    else {
+    else { //Se non ci sono errori, aggiungo l'utente al database
         if (create_user($db, $name_val, $surname_val, $email_val, $password)) {
             $_SESSION["name"] = $name_val;
             $_SESSION["surname"] = $surname_val;
@@ -74,6 +78,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <h1> Registrati</h1>
                 <p id="register-subtitle"> per trovare un gruppo adatto a te! </p>
                 
+                <!-- Controllo se ci sono stati errori nella registrazione
+                 in caso affermativo, mostro all'utente cosa ha sbagliato -->
                 <?php if (!empty($error_message)): ?>
                     <div class="error-box">
                         <?php echo $error_message; ?>
@@ -117,6 +123,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         </main>
 
         <script>
+            //Funzione per mostrare / nascondere la password
             function togglePassword() {
                 const passwordElement = document.getElementById("password");
                 const passwordToggleElement = document.getElementById("toggle-password");
