@@ -4,6 +4,7 @@
     box-sizing: border-box;
 }
 
+/*Unione di selettori*/
 body, html {
     height: 100%;
     margin: 0;
@@ -17,6 +18,13 @@ a {
 }
 
 /* --- LAYOUT --- */
+
+/* ID selettore */
+#main-layout {
+    width: 100%;
+}
+
+/*Selettore class*/
 .container {
     min-height: 100vh;
     display: flex;
@@ -64,7 +72,9 @@ a {
 }
 
 /* --- TYPOGRAPHY --- */
-h1 {
+
+/*Selettore figlio diretto*/
+.card-header > h1 {
     font-weight: 700;
     margin: 0;
     letter-spacing: -1px;
@@ -186,6 +196,7 @@ h2 {
 }
 .btn-danger:hover { background-color: #b02a37 !important; }
 
+/*Pseudo classi*/
 button:disabled, .btn:disabled {
     opacity: 0.6;
     cursor: not-allowed;

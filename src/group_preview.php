@@ -217,7 +217,7 @@ foreach ($lista_utenti as $utente) {
 <body>
     <?php require_once "navbar.php"; ?>
 
-    <main class="container">
+    <main id="main-layout" class="container">
         <article class="card">
             
             <header class="card-header">
