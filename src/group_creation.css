@@ -65,7 +65,6 @@ input[type="text"], input[type="number"], input[type="password"], textarea, sele
     font-size: 16px;
     height: 36px; 
     line-height: 32px;
-    
     font-weight: 350;
     font-family: "Roboto", sans-serif;
     background-color: white;
@@ -80,7 +79,6 @@ textarea {
 .radio-option {
     display: flex;
     align-items: center;
-    gap: 8px;
     margin: 6px 0;
 }
 
@@ -88,16 +86,11 @@ button {
     width: 100%;
     line-height: 3em;
     border-radius: 20px;
-
     color: white;
-
     background-color: #0965c1;
-    box-shadow: 0px 0px 15px -2px rgba(0, 0, 0, 0.2);
-
+    border: 1px solid #0965c1;
     font-weight: 600;
     font-size: 14px;
-
-    border: 0px;
 }
 
 button:hover {

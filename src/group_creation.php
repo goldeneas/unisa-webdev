@@ -17,7 +17,7 @@
         <script src="script_form.js" defer></script>
         <script>
             document.addEventListener("DOMContentLoaded", function() {
-               
+                //Inizializza la validazione lato client se lo script è stato caricato
                 if (typeof initGroupCreationValidation === "function") {
                     initGroupCreationValidation();
                 }
@@ -26,19 +26,21 @@
     </head>
 
     <body>
-  <?php
+    <?php
     require_once "navbar.php";
     require_once "centered_banner.php";
 
     require_once "scripts/db_connection.php";
     require_once "scripts/db_groups.php";
 
+    //Controllo se l'utente è loggato, in caso contrario non può accedere a questa pagina reindirizzandolo al login
     if (!isset($_SESSION["logged_in"]) || $_SESSION["logged_in"] !== true) {
         spawn_centered_banner("Non puoi accedere", "Per farlo ti serve un account");
         header("refresh:3;url=login.php" );
         return;
     }
 
+    //Controllo se il form è stato inviato, in caso contrario mostro il form di creazione gruppo
     if (!isset($_POST["group-name"]) || !isset($_POST["facolta"]) || !isset($_POST["subject"]) || !isset($_POST["description"]) || !isset($_POST["group-type"])) {
     ?>
             <main id="container">
@@ -82,7 +84,8 @@
                     </p>
 
                     <p>
-                        <label>Visibilità del gruppo</label> <section class="radio-option">
+                        <label>Visibilità del gruppo</label> 
+                        <section class="radio-option">
                             <input type="radio" id="public" name="group-type" value="public" checked onchange="togglePassword()">
                             <label for="public">Pubblico</label>
                         </section>
@@ -126,58 +129,56 @@
                     ]
                 };
 
+                //Funzione per aggiornare dinamicamente il menu delle materie in base alla facoltà selezionata
                 function aggiornaMaterie() {
-                    // Prendo i riferimenti ai due menu
                     const selectFacolta = document.getElementById("facolta");
                     const selectMateria = document.getElementById("subject");
                     
-                    // Quale facoltà ha scelto l'utente?
                     const facoltaScelta = selectFacolta.value;
 
-                    // Svuoto il menu delle materie attuale
+                    //Svuoto il menu delle materie attuale per evitare duplicati
                     selectMateria.innerHTML = "";
 
-                    // Se non ha scelto nulla (ha rimesso "-- Seleziona --")
+                    //Se non ha scelto nulla (ha rimesso "-- Seleziona --")
                     if (facoltaScelta === "") {
                         selectMateria.innerHTML = '<option value="">-- Seleziona prima un corso di studi --</option>';
-                        selectMateria.disabled = true; // Disabilito di nuovo
+                        selectMateria.disabled = true; //Disabilito di nuovo
                         return;
                     }
 
-                    // Riabilito il menu materie
+                    //Abilito il menu delle materie
                     selectMateria.disabled = false;
 
-                    // Cerco le materie corrispondenti nella lista
+                    //Cerco le materie corrispondenti nella lista
                     let materieDisponibili = databaseMaterie[facoltaScelta];
 
-                    // Se per caso ho scelto una facoltà che non ho inserito nel JS, metto un array vuoto
+                    //Se per caso ho scelto una facoltà che non ho inserito nel JS, metto un array vuoto
                     if (!materieDisponibili) {
                         materieDisponibili = ["Materia generica"];
                     }
 
                     // Creo le opzioni per il menu
                     materieDisponibili.forEach(function(materia) {
-                        // Creo un nuovo elemento <option>
                         let nuovaOpzione = document.createElement("option");
                         nuovaOpzione.value = materia; // Cosa viene inviato al server
                         nuovaOpzione.text = materia;  // Cosa legge l'utente
-                        
                         // Lo aggiungo al menu
                         selectMateria.add(nuovaOpzione);
                     });
                 }
 
+                //Funzione per mostrare/nascondere il campo password in base al tipo di gruppo selezionato
                 function togglePassword() {
                     const privateRadio = document.getElementById("private");
                     const passContainer = document.getElementById("password-container");
                     const passInput = document.getElementById("group-password");
-
+                    
                     if (privateRadio.checked) {
-                        // Se è privato: mostro il campo e lo rendo obbligatorio
+                        //Se è privato: mostro il campo e lo rendo obbligatorio
                         passContainer.style.display = "block";
                         passInput.required = true;
                     } else {
-                        // Se è pubblico: nascondo il campo, lo svuoto e tolgo l'obbligatorietà
+                        //Se è pubblico: nascondo il campo, lo svuoto e tolgo l'obbligatorietà
                         passContainer.style.display = "none";
                         passInput.required = false;
                         passInput.value = "";
@@ -195,13 +196,16 @@
         $is_public = ($_POST["group-type"] === "public");
         $max_members = $_POST["max-members"];
         $owner_email = $_SESSION["email"];
-        // Se è privato prendo la password, altrimenti null
+
+        //Se è privato prendo la password, altrimenti null
         $password = null;
         if (!$is_public && isset($_POST["group-password"])) {
             $password = $_POST["group-password"];
         }
 
+        //Provo a creare il gruppo nel database
         if(create_group($db, $name, $course, $subject, $max_members, $description, $is_public, $owner_email,$password)){
+            //Aggiungo subito il creatore come membro del gruppo
             add_user_to_group($db, $name, $owner_email);
             spawn_centered_banner("Gruppo Creato!", "Redirect in corso...");
             header("refresh:3;url=index.php" );
