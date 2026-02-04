@@ -18,8 +18,12 @@ $email_val = "";
 //alla fine dei controlli
 $error_message = "";
 
-//Prendo i campi che l'utente ha inserito e faccio dei controlli
+
+//Questo controllo permette che il codice di salvataggio venga 
+// eseguito solo quando l'utente preme effettivamente il tasto, 
+// e non ogni volta che la pagina viene caricata.
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    //Prendo i campi che l'utente ha inserito e faccio dei controlli
     $name_val = $_POST["name"] ?? "";
     $surname_val = $_POST["surname"] ?? "";
     $email_val = $_POST["email"] ?? "";
